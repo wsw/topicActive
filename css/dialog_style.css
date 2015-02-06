@@ -1,0 +1,35 @@
+
+.widget-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #fff;
+    margin-top: -200px;
+    z-index: 999999999;
+}
+.widget-dialog .header {
+    height: 5px;
+    background: #9ad64b;
+}
+.widget-dialog .title {
+    font-weight: bold;
+}
+.widget-dialog .dialog-close {
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    text-decoration: none;
+    font-size: 30px;
+    color: #f89406;
+}
+.widget-dialog .dialog-close:hover {
+    color: #C6E746;
+}
+.widget-dialog .footer {
+    position: absolute;
+    bottom: 0;
+}
+
+.widget-dialog .main {
+    overflow: auto;
+}

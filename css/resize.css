@@ -1,0 +1,104 @@
+
+.element-box {
+    background: #ffffff;
+    opacity: 1;
+    height: 100%;
+    width: 100%;
+}
+.element-box-contents {
+    height: 100%;
+    width: 100%;
+}
+
+
+/* resize 组件样式*/
+
+.comp-resize .bar {
+    position: absolute;  display: none
+}
+.comp-resize .bar-touch {
+    touch-action: pan-x pan-y; -webkit-user-select: none; -webkit-user-drag: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.comp-resize .bar-n {
+    width: 100%;
+    height: 5px;
+    top: 0;
+    cursor: n-resize;
+    background: url(http://as.eqxiu.com/assets/images/bar-1px.png) repeat-x
+}
+
+.comp-resize .bar-s {
+    width: 100%;
+    height: 5px;
+    bottom: 0;
+    cursor: s-resize;
+    background: url(http://as.eqxiu.com/assets/images/bar-1px.png) repeat-x bottom
+}
+
+.comp-resize .bar-e {
+    width: 5px;
+    height: 100%;
+    top: 0;
+    right: 0;
+    cursor: e-resize;
+    background: url(http://as.eqxiu.com/assets/images/bar-1px.png) repeat-y right
+}
+
+.comp-resize .bar-w {
+    width: 5px;
+    height: 100%;
+    top: 0;
+    cursor: w-resize;
+    background: url(http://as.eqxiu.com/assets/images/bar-1px.png) repeat-y
+}
+
+.comp-resize .bar-ne {
+    top: -6px;
+    right: -6px;
+    cursor: ne-resize
+}
+
+.comp-resize .bar-nw {
+    top: -6px;
+    left: -6px;
+    cursor: nw-resize
+}
+
+.comp-resize .bar-se {
+    bottom: -6px;
+    right: -6px;
+    cursor: se-resize
+}
+
+.comp-resize .bar-sw {
+    bottom: -6px;
+    left: -6px;
+    cursor: sw-resize
+}
+
+.comp-resize .bar-radius {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border: 1px solid #08a1ef;
+    border-radius: 12px
+}
+
+.comp-rotate .bar-rotate {
+    top: -30px;
+    left: 50%;
+    margin-left: -6px;
+    background-color: #9ad64b;
+    border: none;
+    cursor: url(http://as.eqxiu.com/assets/images/mouserotate.ico), default
+}
+
+.comp-rotate .bar-line {
+    width: 2px;
+    height: 18px;
+    top: -18px;
+    left: 50%;
+    margin-left: -1px;
+    background-color: #9ad64b
+}
