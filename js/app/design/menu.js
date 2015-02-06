@@ -4,6 +4,8 @@
 define(function(require, exports, module) {
 
     var $ = require('$');
+    var StyleAnimation = require('./styleobj');
+    var StyleClass = require('./styleclass');
 
     var contextMenu = [
         [
@@ -16,13 +18,30 @@ define(function(require, exports, module) {
             {
                 text: "样式",
                 func: function () {
-                    alert("样式");
+//                    var opt = {
+//                        background: this.style.backgroundColor || "rgb(0,0,0)",
+//                        opacity: 100,
+//                        borderWidth: this.style.borderWidth || 0,
+//                        borderRadius: this.style.borderRadius || 0,
+//                        borderType: this.style.borderStyle || 0,
+//                        borderColor: this.style.borderColor || "rgb(0,255,0)",
+//                        transform: this.style.transform,
+//                        shadowSize: 0,
+//                        shadowOffset: 0,
+//                        shadowColor: "rgb(10,0,0)",
+//                        animateType: 0,
+//                        animateTime: 0,
+//                        animateDelay: 0,
+//                        animateTimes: 0,
+//                        animateInfinite: false
+//                    };
+                    new StyleAnimation(this, "style", (new StyleClass(this)).getStyle());
                 }
             },
             {
                 text: "动画",
                 func: function () {
-                    alert("动画");
+                    new StyleAnimation(this, "animation", (new StyleClass(this)).getStyle());
                 }
             },
             {

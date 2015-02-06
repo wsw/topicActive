@@ -38,12 +38,30 @@ define(function (require, exprots, module) {
             src: "",   //图片的地址
             top: 0,    //
             left: 0,    //
-            transform: "none",
-            dataId: null //
+            dataId: null, //
+            // style and animation 上的数据  也是默认的
+            background: "rgb(255,0,0)",
+            opacity: 100,
+            borderWidth: 0,
+            borderRadius: 0,
+            borderType: 0,
+            borderColor: "rgb(0,0,0)",
+            transform: 350,
+            shadowSize: 0,
+            shadowOffset: 0,
+            shadowColor: "rgb(0,0,0)",
+            animateType: "",
+            animateTime: 0,
+            animateDelay: 0,
+            animateTimes: 0,
+            animateInfinite: false
         };
+
+        console.log(opt)
 
         Default = $.extend({}, Default, opt);
 
+        console.log(Default)
         this.init(Default);
     };
 
@@ -54,10 +72,24 @@ define(function (require, exprots, module) {
             this.$elemet = $(template);
             this.$elemet.attr('id', this.id);
             this.$ct.append(this.$elemet);
+            // 样式初始化
+            this.$elemet.css({
+                width: opt.width+'px',
+                height: opt.height+'px',
+                top: opt.top + 'px',
+                left: opt.left + 'px',
+                transform: "rotateZ("+opt.transform+"deg)",
+                "border-style": opt.borderType || "solid",
+                "border-radius": (opt.borderRadius || 0) + 'px',
+                "border-width:" : (opt.borderWidth || 0) + 'px',
+                "zIndex": opt.zIndex,
+                "box-shadow": opt.shadowSize + "px " + opt.shadowOffset + 'px ' + opt.shadowColor,
+                "animation-duration": opt.animateTime + 's',
+                "animation-delay": opt.animateDelay + 's',
+                "animation-iteration-count": opt.animateInfinite ? "infinite" : opt.animateTimes
+            }).find('img').attr('src', opt.src).addClass('animated '+opt.animateType);
 
-            this.$elemet.css({width: opt.width+'px', height: opt.height+'px',
-            top: opt.top, left: opt.left, transform: opt.transform})
-                .find('img').attr('src', opt.src);
+            this.$elemet.parents('.drag').attr('data-animation', opt.animateType);
 
             if (opt.dataId) {
                 this.$elemet.attr('data-id', opt.dataId);
@@ -76,7 +108,7 @@ define(function (require, exprots, module) {
                 parentIsRelative: true
             });
 
-            //this.$elemet.smartMenu(Context.contextMenu, {name: this.id});
+            this.$elemet.smartMenu(Context.contextMenu, {name: this.id});
         },
         bindClickEvent: function() {
             this.$elemet.on('mousedown', function() {

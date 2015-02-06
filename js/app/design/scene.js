@@ -50,10 +50,25 @@ define(function(require, exports, module) {
                     width: value.css.width,
                     height: value.css.height,
                     src: value.content,
-                    top: value.css.top || 0,
-                    left: value.css.left || 0,
-                    transform: value.css.transform || null,
-                    dataId: value.id
+                    top: value.css.top,
+                    left: value.css.left,
+                    dataId: value.id,
+                    // css style
+                    background: value.css.background,
+                    opacity: value.css.opacity,
+                    borderWidth: value.css.borderWidth,
+                    borderRadius: value.css.borderRadius,
+                    borderType: value.css.borderType,
+                    borderColor: value.css.borderColor,
+                    transform: value.css.transform,
+                    shadowSize: value.css.shadowSize,
+                    shadowOffset: value.css.shadowOffset,
+                    shadowColor: value.css.shadowColor,
+                    animateType: value.css.animateType,
+                    animateTime: value.css.animateTime,
+                    animateDelay: value.css.animateDelay,
+                    animateTimes: value.css.animateTimes,
+                    animateInfinite: value.css.animateInfinite
                 });
             }
         });
@@ -78,6 +93,10 @@ define(function(require, exports, module) {
             parameter.css.height = _this.height();
             parameter.css.top = _this.css('top') || 0;
             parameter.css.left = _this.css('left') || 0;
+            parameter.css.zIndex = _this.css('zIndex') || 0;
+
+
+
             // 注意下content 目前是图片
             parameter.content = _this.find('img').attr('src');
 

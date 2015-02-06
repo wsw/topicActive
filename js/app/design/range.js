@@ -41,10 +41,12 @@ define(function(require, exports, module) {
                 if (dragging) {
                     var moveX = e.pageX;
                     var left = moveX - pageX + elL;
-
+                    // 左右边界的限制
                     (left >= width) ? left = width : left < 0 ? left = 0 : "";
-
+                    // 滑动时点移动位置
                     element.css('left', left+'px').attr('data-value', left*100/width);
+                    // 输入框的值改变
+                    parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))));
                 }
             }).bind('mouseup', function() {
                 dragging = false;
@@ -55,6 +57,8 @@ define(function(require, exports, module) {
                 var left = e.pageX - $(this).offset().left;
                 (left >= width) ? left = width : left < 0 ? left = 0 : "";
                 element.css('left', left+'px').attr('data-value', left*100/width);
+                // 输入框的值改变
+                parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))));
             });
         }
     };

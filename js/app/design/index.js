@@ -164,7 +164,7 @@ define(function(require, exports, module) {
     });
 
 
-    new StyleAnimation("animation", {})
+    //new StyleAnimation("animation", {});
 
 //    new CompImg({
 //        container: ".design",

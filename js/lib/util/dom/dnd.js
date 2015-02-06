@@ -85,7 +85,7 @@ define(function(require, exports, module) {
                     return false;
                 });
             }
-            nodes.find('input,textarea,button').css('cursor', 'text').mousedown(function(e) {
+            nodes.find('input,textarea,button,select').css('cursor', 'default').mousedown(function(e) {
                 return false;
             });
             handlers.each(function(index, handler) { // 支持多个拖拽
