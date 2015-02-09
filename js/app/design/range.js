@@ -46,7 +46,8 @@ define(function(require, exports, module) {
                     // 滑动时点移动位置
                     element.css('left', left+'px').attr('data-value', left*100/width);
                     // 输入框的值改变
-                    parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))));
+                    parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))))
+                        .trigger('input');
                 }
             }).bind('mouseup', function() {
                 dragging = false;
@@ -58,7 +59,8 @@ define(function(require, exports, module) {
                 (left >= width) ? left = width : left < 0 ? left = 0 : "";
                 element.css('left', left+'px').attr('data-value', left*100/width);
                 // 输入框的值改变
-                parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))));
+                parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))))
+                    .trigger('input');
             });
         }
     };

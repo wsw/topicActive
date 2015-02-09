@@ -39,6 +39,7 @@ define(function(require, exports, module) {
                 }).show().after('hide', function() {
                         this.destroy();
                     });
+                imgDialog.clickType = 'create';
             },
             /**
              * 创建背景图片对话框
@@ -110,10 +111,9 @@ define(function(require, exports, module) {
                 if (!node.hasClass('active')) {
                     Scene.pageSave(designContainer, node.siblings('active'));
                     node.addClass('active').siblings().removeClass('active');
-                    var i = Math.floor(Math.random()*3);
-                    i == 0 ? Scene.ctInit(Data.item2) :
-                    i == 1 ? Scene.ctInit(Data.item) :
-                        Scene.ctInit(Data.item3);
+                    var i = node.index();
+                    i > 4 ? i = 4 : "";
+                    Scene.ctInit(Data.item[i]);
                 }
             },
             /**
@@ -122,7 +122,6 @@ define(function(require, exports, module) {
              * @param node
              */
             addNewScene: function(e, node) {
-
                 //var sceneId = sceneId;
                 var pageId = window.parseInt(Math.random()*10000);
 
@@ -146,21 +145,21 @@ define(function(require, exports, module) {
              */
             addImgComp: function(e, node) {
                 var $img = node.find('img');
-
                 // 创建时从后台获取一个id
-                new CompImg({
-                    container: ".design",
-                    id: "CompImg-"+index++,
-                    width: $img.width(),
-                    height: $img.height(),
-                    src: $img.attr('src')
-                });
-
-                imgDialog.hide();
+                if (imgDialog && imgDialog.clickType == "create") {
+                    new CompImg({
+                        container: ".design",
+                        id: "CompImg-"+index++,
+                        width: $img.width(),
+                        height: $img.height(),
+                        src: $img.attr('src')
+                    });
+                    imgDialog.hide();
+                }
             }
         });
         Scene.init(Data.list);
-        Scene.ctInit(Data.item);
+        Scene.ctInit(Data.item[0]);
     });
 
 

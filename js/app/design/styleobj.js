@@ -11,6 +11,9 @@ define(function(require, exports, module) {
 
     var element = null; // 当前处理的对象
 
+    var animation = "";   // 当前的动画类型
+    var animateInfinite = false;
+
     var $dialog = $("#styleAnimation");
     var $background = $dialog.find("#background");
     var $opacity = $dialog.find("#opacity");
@@ -62,7 +65,8 @@ define(function(require, exports, module) {
         $dialog.find(".color-select").colorpicker()         // 颜色选择器的绑定
             .on('changeColor', function(ev) {
                 $(this).css('background', ev.color.toString('rgb'));
-                $(this).parent().find('.ipt').val(ev.color.toString('rgb'));
+                $(this).parent().find('.ipt').val(ev.color.toString('rgb')).trigger('input');
+                return false;
             });
         $animateType.change(function() {
             if ($(this).val() == "" || $(this).val() == "none") {
@@ -73,32 +77,103 @@ define(function(require, exports, module) {
         });
     }
 
+    /**
+     * 样式和动画的对话框上，值实时变化事件
+     */
     function interfaceContentChange() {
+        // 输入框值变化时
         $dialog.on('input', function(e) {
-            console.log(e.target)
             if (e.target.tagName.toLowerCase() === "input") {
                 var $target = $(e.target);
-                var max = window.parseInt($target.attr('data-max'));
-                var value = window.parseInt($target.val());
-                // 当前输入值的最大最小值做限制
-                value >= max ? ($target.val(max), value=max): (value < 0 ? ($target.val(0), value=0) : "");
-                // 实时的改变滑动条
-                var $slide = $target.parent().find('a');
-                var percent = (value / max) * 100;
-                $slide.attr('data-value', percent).css('left', (percent*($slide.parent().width()-$slide.width())/100) + 'px');
-            }
-        });
+                var type = $target.attr('data-type');
+                // 除去输入框为颜色的
+                if (type != "borderColor" && type != "background" && type != "shadowColor") {
 
+                    var max = window.parseInt($target.attr('data-max'));
+                    var value = window.parseInt($target.val());
+                    // 当前输入值的最大最小值做限制
+                    value >= max ? ($target.val(max), value=max): (value < 0 ? ($target.val(0), value=0) : "");
+                    // 实时的改变滑动条
+                    var $slide = $target.parent().find('a');
+                    var percent = (value / max) * 100;
+                    $slide.attr('data-value', percent).css('left', (percent*($slide.parent().width()-$slide.width())/100) + 'px');
+                    // 当前输入框的类型进行对应的变化
+                    switch (type) {
+                        case "opacity":
+                            $(element).css('opacity', value/100);
+                            break;
+                        case "borderWidth":
+                            $(element).css('border-width', value+'px');
+                            break;
+                        case "borderRadius":
+                            $(element).css('border-radius', value+'%').find('.element-box').css('border-radius', value+'%');
+                            break;
+                        case "transform":
+                            $(element).css('transform', "rotateZ("+value+"deg)");
+                            break;
+                        case "shadowSize":
+                            break;
+                        case "shadowOffset":
+                            break;
+                        case "animateTime":
+                            $(element).css('-webkit-animation-duration', value+'s');
+                            break;
+                        case "animateDelay":
+                            $(element).css('-webkit-animation-delay', value+'s');
+                            break;
+                        case "animateTimes":
+                            $(element).css('-webkit-animation-iteration-count', value+"");
+                            break;
+                    }
+                } else {
+                    value = $target.val();
+                    // 对输入框的值进行限制的。
+                    if (type == "borderColor") {
+                        $(element).css('border-color', value);
+                    } else if (type == "background") {
+                        $(element).css('background', value);
+                    } else if (type == "shadowColor") {
+
+                    }
+                }
+            }
+        })
+            // 选择框值变化时
+            .on('change', function(e) {
+                // 类型
+                var type = e.target.getAttribute('data-type');
+                if (type == "borderType") {
+                    $(element).css('border-style', $(e.target).val());
+                } else if (type == "animateType") {
+                    $(element).removeClass(animation).addClass($(e.target).val());
+                    animation = $(e.target).val();
+                }
+            });
+        // 循环播放框变化
+        $animateInfinite.on('click', function() {
+           if (animateInfinite) {
+               animateInfinite = false;
+               $(element).css('animation-iteration-count', $animateTimes.val());
+           } else {
+               animateInfinite = true;
+               $(element).css('animation-iteration-count', 'infinite');
+           }
+        });
     }
 
-
+    /**
+     * 当前节点对象所对应的值内容
+     * @param element node
+     * @param type string "animation","style"
+     * @param opt object
+     */
     var obj = function(element, type, opt) {
         var Default = {
             background: "rgb(255,0,0)",
             opacity: 100,
             borderWidth: 0,
             borderRadius: 0,
-            borderType: 0,
+            borderType: "solid",
             borderColor: "rgb(0,0,0)",
             transform: 350,
             shadowSize: 0,
@@ -142,6 +217,8 @@ define(function(require, exports, module) {
          */
         initInterfaceData: function(opt) {
 
+            console.log(opt);
+
             $background.val(opt.background);
             $opacity.val(opt.opacity).trigger('input');
             $borderWidth.val(opt.borderWidth).trigger('input');
@@ -161,17 +238,24 @@ define(function(require, exports, module) {
             $borderColor.parent().find('span').css({'background-color': opt.borderColor});
             $shadowColor.parent().find('span').css({'background-color': opt.shadowColor});
             // 动画的类型情况
-            if (opt.animateType || opt.animateType == "none") {
+            if (!opt.animateType || opt.animateType == "none") {
+                $animateType.val("");
                 $dialog.find('.animate-panel').hide();
             } else {
                 $animateType.find('option').each(function() {
-                    console.log(this.getAttribute('value') + " " +opt.animateType)
                     if (this.getAttribute('value') == opt.animateType) {
-                        $(this).select();
+                        $animateType.val(opt.animateType);
                     }
                 });
                 $dialog.find('.animate-panel').show();
+
+                animation = opt.animateType;
             }
+            // 边框类型
+            $borderType.val(opt.borderType);
+            // 循环播放
+            opt.animateInfinite ? $animateInfinite.attr('checked', true) : $animateInfinite.attr('checked', false);
+            animateInfinite = opt.animateInfinite;
         }
     };
 

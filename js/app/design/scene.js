@@ -6,6 +6,7 @@ define(function(require, exports, module) {
 
     var $ = require('$');
     var CompImg = require('./compimg');
+    require('../../../js/lib/cmp/smartmenu');
 
     var $pageManage = $("#pageManage");
     var $container = $('.design');
@@ -28,6 +29,20 @@ define(function(require, exports, module) {
             $li.attr('data-scene-id', value.sceneId).attr('data-page-id', value.id);
             $ul.append($li);
         });
+        $container.smartMenu([[{text: "粘贴", func: cloneNode}]], {name: "design"});
+    }
+
+    /**
+     * 复制一个对象的方法
+     */
+    function cloneNode() {
+        // 存在复制的对象
+        if (window.cloneNode) {
+            var opt = window.cloneNode;
+            opt.container = ".design";
+            opt.top = window.parseInt(opt.top) + 30;
+            new CompImg(opt);
+        }
     }
 
     /**
@@ -36,12 +51,12 @@ define(function(require, exports, module) {
      */
     function containerInit(item) {
         if (item.scene.image.imgSrc) {
-            $container.css('background','url('+item.scene.image.imgSrc+');');
+            $container.css({"background-image": "url("+item.scene.image.imgSrc+")"});
         } else {
             $container.css('background',item.scene.image.background);
         }
         $container.html("").attr('data-scene-id', item.sceneId)
-            .attr('data-page-id', item.id);;
+            .attr('data-page-id', item.id);
         $.each(item.elements, function(index, value) {
             if (value.content) {
                 new CompImg({
@@ -95,8 +110,6 @@ define(function(require, exports, module) {
             parameter.css.left = _this.css('left') || 0;
             parameter.css.zIndex = _this.css('zIndex') || 0;
 
-
-
             // 注意下content 目前是图片
             parameter.content = _this.find('img').attr('src');
 
@@ -110,8 +123,6 @@ define(function(require, exports, module) {
         page.name = node.find('.text').text();
         page.num = node.find('.number').text();
         page.elements = elements;
-
-        console.log(page);
     }
 
     module.exports = {

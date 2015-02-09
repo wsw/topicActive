@@ -80,7 +80,7 @@
                 <div class="phone-top"></div>
                 <div class="menu-bar"></div>
                 <div class="title">第一个容器</div>
-                <ul class="design"></ul>
+                <ul class="design" style="background: url('../css/image/bg1.jpg');"></ul>
                 <div class="phone-bottom"></div>
             </div>
         </div>
@@ -271,7 +271,7 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="opacity" data-max="100"/> %
+                        <input type="text" class="ipt-sm" id="opacity" data-max="100" data-type="opacity"/> %
                     </div>
                     <hr class="line"/>
                 </div>
@@ -287,7 +287,7 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="borderWidth" data-max="20"/> px
+                        <input type="text" class="ipt-sm" id="borderWidth" data-max="20" data-type="borderWidth"/> px
                     </div>
                     <hr class="line"/>
                     <p>边框弧度</p>
@@ -295,12 +295,12 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="borderRadius" data-max="50"/> px
+                        <input type="text" class="ipt-sm" id="borderRadius" data-max="50" data-type="borderRadius"/> %
                     </div>
                     <hr class="line"/>
                     <p>边框样式</p>
                     <div class="user-ipt">
-                        <select name="" id="borderType" class="type-select">
+                        <select name="" id="borderType" class="type-select" data-type="borderType">
                             <option value="solid">直线</option>
                             <option value="dashed">虚线</option>
                             <option value="dotted">点线</option>
@@ -313,14 +313,14 @@
                     <p>边框颜色</p>
                     <div class="user-ipt">
                         <span class="color-select"></span>
-                        <input type="text" class="ipt" id="borderColor"/>
+                        <input type="text" class="ipt" id="borderColor" data-type="borderColor"/>
                     </div>
                     <p>旋转</p>
                     <div class="user-ipt">
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="transform" data-max="360"/> 度
+                        <input type="text" class="ipt-sm" id="transform" data-type="transform" data-max="360"/> 度
                     </div>
                     <hr class="line"/>
                 </div>
@@ -336,13 +336,13 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" data-max="10" id="shadowSize"/> px
+                        <input type="text" class="ipt-sm" data-max="10" id="shadowSize" data-type="shadowSize"/> px
                     </div>
                     <hr class="line"/>
                     <p>颜色</p>
                     <div class="user-ipt">
                         <span class="color-select"></span>
-                        <input type="text" class="ipt" id="shadowColor" />
+                        <input type="text" class="ipt" id="shadowColor" data-type="shadowColor" />
                     </div>
                     <hr class="line"/>
                     <p>模糊</p>
@@ -350,7 +350,7 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="shadowOffset" data-max="10"/> px
+                        <input type="text" class="ipt-sm" id="shadowOffset" data-max="10" data-type="shadowOffset"/> px
                     </div>
                 </div>
             </li>
@@ -362,7 +362,7 @@
             <li>
                 <p>动画类型</p>
                 <div class="user-ipt">
-                    <select name="" id="animateType" class="type-select">
+                    <select name="" id="animateType" class="type-select" data-type="animateType" >
                         <option value="">无</option>
                         <option value="fadeIn">淡入</option>
                         <option value="swing">摇摆</option>
@@ -382,7 +382,7 @@
                         <span class="percent-select">
                             <a href="#" data-value="30"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="animateTime" data-max="20"/> 秒
+                        <input type="text" class="ipt-sm" id="animateTime" data-max="20" data-type="animateTime"/> 秒
                     </div>
                     <hr class="line"/>
                     <p>延迟时间</p>
@@ -390,7 +390,7 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="animateDelay" data-max="20"/> 秒
+                        <input type="text" class="ipt-sm" id="animateDelay" data-type="animateDelay" data-max="20"/> 秒
                     </div>
                     <hr class="line"/>
                     <p>动画次数</p>
@@ -398,10 +398,10 @@
                         <span class="percent-select">
                             <a href="#"></a>
                         </span>
-                        <input type="text" class="ipt-sm" id="animateTimes" data-max="10"/> 次
+                        <input type="text" class="ipt-sm" id="animateTimes" data-type="animateTimes" data-max="10"/> 次
                     </div>
                     <div class="user-ipt">
-                        <input type="checkbox" id="animateInfinite"/> 循环播放
+                        <input type="checkbox" id="animateInfinite" data-type="animateInfinite"/> 循环播放
                     </div>
                     <hr class="line"/>
                 </div>

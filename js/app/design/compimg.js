@@ -46,7 +46,7 @@ define(function (require, exprots, module) {
             borderRadius: 0,
             borderType: 0,
             borderColor: "rgb(0,0,0)",
-            transform: 350,
+            transform: 0,
             shadowSize: 0,
             shadowOffset: 0,
             shadowColor: "rgb(0,0,0)",
@@ -56,12 +56,7 @@ define(function (require, exprots, module) {
             animateTimes: 0,
             animateInfinite: false
         };
-
-        console.log(opt)
-
         Default = $.extend({}, Default, opt);
-
-        console.log(Default)
         this.init(Default);
     };
 
@@ -79,18 +74,25 @@ define(function (require, exprots, module) {
                 top: opt.top + 'px',
                 left: opt.left + 'px',
                 transform: "rotateZ("+opt.transform+"deg)",
+                background: opt.background,
                 "border-style": opt.borderType || "solid",
-                "border-radius": (opt.borderRadius || 0) + 'px',
+                "border-radius": (opt.borderRadius || 0) + '%',
                 "border-width:" : (opt.borderWidth || 0) + 'px',
                 "zIndex": opt.zIndex,
                 "box-shadow": opt.shadowSize + "px " + opt.shadowOffset + 'px ' + opt.shadowColor,
                 "animation-duration": opt.animateTime + 's',
                 "animation-delay": opt.animateDelay + 's',
-                "animation-iteration-count": opt.animateInfinite ? "infinite" : opt.animateTimes
-            }).find('img').attr('src', opt.src).addClass('animated '+opt.animateType);
+                "animation-iteration-count": (opt.animateInfinite ? "infinite" : ""+opt.animateTimes)
+                // 字符串的
+                // "animation-iteration-count": "8"
+            }).find('img').attr('src', opt.src);
 
-            this.$elemet.parents('.drag').attr('data-animation', opt.animateType);
+            // 动画类型
+            this.$elemet.attr('data-animation', opt.animateType).addClass('animated '+opt.animateType);
 
+            // 内容
+            this.$elemet.find('.element-box').css({"boder-radius": (opt.borderRadius || 0) + '%'});
+            //
             if (opt.dataId) {
                 this.$elemet.attr('data-id', opt.dataId);
             }
