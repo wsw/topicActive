@@ -20,19 +20,19 @@ define(function(require, exports, module) {
             {
                 text: "样式",
                 func: function () {
-                    new StyleAnimation(this, "style", (new MenuFunc.style(this)).getStyle());
+                    new StyleAnimation(this, "style", MenuFunc.getStyle(this) );
                 }
             },
             {
                 text: "动画",
                 func: function () {
-                    new StyleAnimation(this, "animation", (new MenuFunc.style(this)).getStyle());
+                    new StyleAnimation(this, "animation", MenuFunc.getStyle(this));
                 }
             },
             {
                 text: "复制",
                 func: function () {
-                    window.cloneNode = new MenuFunc.style(this).getStyle();
+                    window.cloneNode = MenuFunc.getStyle(this).getStyle();
                 }
             },
             {

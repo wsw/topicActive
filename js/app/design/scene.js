@@ -6,6 +6,7 @@ define(function(require, exports, module) {
 
     var $ = require('$');
     var CompImg = require('./compimg');
+    var Css = require('./css');
     require('../../../js/lib/cmp/smartmenu');
 
     var $pageManage = $("#pageManage");
@@ -104,11 +105,12 @@ define(function(require, exports, module) {
         $.each(container.find('li'), function() {
             var _this = $(this);
             var parameter = { css:{} };
-            parameter.css.width = _this.width();
-            parameter.css.height = _this.height();
-            parameter.css.top = _this.css('top') || 0;
-            parameter.css.left = _this.css('left') || 0;
-            parameter.css.zIndex = _this.css('zIndex') || 0;
+            parameter.css = (new Css(this)).getStyle();
+//            parameter.css.width = _this.width();
+//            parameter.css.height = _this.height();
+//            parameter.css.top = _this.css('top') || 0;
+//            parameter.css.left = _this.css('left') || 0;
+//            parameter.css.zIndex = _this.css('zIndex') || 0;
 
             // 注意下content 目前是图片
             parameter.content = _this.find('img').attr('src');
@@ -119,11 +121,14 @@ define(function(require, exports, module) {
 
             elements.push(parameter);
         });
+        console.log(elements);
 
         page.name = node.find('.text').text();
         page.num = node.find('.number').text();
         page.elements = elements;
     }
+
+
 
     module.exports = {
         init: pageManageInit,

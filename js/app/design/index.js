@@ -18,6 +18,7 @@ define(function(require, exports, module) {
     $(function() {
 
         var designContainer = $('.design');
+        var pageList = $("#pageManage .content-list");
         var bgDialog = null;
         var imgDialog = null;
         var sceneId = 712959;
@@ -156,6 +157,26 @@ define(function(require, exports, module) {
                     });
                     imgDialog.hide();
                 }
+            },
+            /**
+             * 页面管理- 删除事件
+             * @param e
+             * @param node
+             */
+            pageDelete: function(e, node) {
+                var element = pageList.find('li.active');
+                var index = element.index();
+                index = index < 1 ? 1: index-1;
+                //delete ajax
+                var pageId = element.attr('data-page-id');
+                var sceneId = element.attr('data-scene-id');
+
+                // 选择状态变化
+                pageList.find('li').eq(index).click();
+                element.remove();
+            },
+            pageClone: function(e, node) {
+
             }
         });
         Scene.init(Data.list);

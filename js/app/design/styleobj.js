@@ -179,15 +179,15 @@ define(function(require, exports, module) {
             shadowSize: 0,
             shadowOffset: 0,
             shadowColor: "rgb(0,0,0)",
-            animateType: 0,
-            animateTime: 0,
+            animateType: "",
+            animateTime: 2,
             animateDelay: 0,
-            animateTimes: 0,
+            animateTimes: 2,
             animateInfinite: false
         };
-        console.log(opt);
+
         Default = $.extend({}, Default, opt);
-        console.log(Default);
+
         this.init(element, type, Default);
     };
 
