@@ -30,6 +30,7 @@ define(function(require, exports, module) {
             $li.attr('data-scene-id', value.sceneId).attr('data-page-id', value.id);
             $ul.append($li);
         });
+        // 容器的右键粘贴初始化
         $container.smartMenu([[{text: "粘贴", func: cloneNode}]], {name: "design"});
     }
 
@@ -51,13 +52,16 @@ define(function(require, exports, module) {
      * @param item object
      */
     function containerInit(item) {
-        if (item.scene.image.imgSrc) {
+        // 判断当前背景为图片还是纯色
+        if (item.scene && item.scene.image.imgSrc && item.scene.image.imgSrc != "none") {
             $container.css({"background-image": "url("+item.scene.image.imgSrc+")"});
         } else {
             $container.css('background',item.scene.image.background);
         }
+        // 当前容器内容置空，并绑定相关的id
         $container.html("").attr('data-scene-id', item.sceneId)
             .attr('data-page-id', item.id);
+        // 初始化当前容器中各个控件, 目前只有图片类型的
         $.each(item.elements, function(index, value) {
             if (value.content) {
                 new CompImg({
@@ -106,33 +110,52 @@ define(function(require, exports, module) {
             var _this = $(this);
             var parameter = { css:{} };
             parameter.css = (new Css(this)).getStyle();
-//            parameter.css.width = _this.width();
-//            parameter.css.height = _this.height();
-//            parameter.css.top = _this.css('top') || 0;
-//            parameter.css.left = _this.css('left') || 0;
-//            parameter.css.zIndex = _this.css('zIndex') || 0;
 
             // 注意下content 目前是图片
             parameter.content = _this.find('img').attr('src');
 
-            if (_this.attr('data-id')) {          //id 存在为修改控件 否则为新建
+            //id 存在为修改控件 否则为新建
+            if (_this.attr('data-id')) {
                 parameter.id = _this.attr('data-id');
             }
 
             elements.push(parameter);
         });
-        console.log(elements);
 
+        // 列表上的内容
         page.name = node.find('.text').text();
         page.num = node.find('.number').text();
         page.elements = elements;
+
+        // 容器的内容
+        page.scene = {image: {}};
+        var url = $container.css('background-image').trim();
+        page.scene.image.imgSrc = url.replace(/url\(([^\)]+)\).*/gi,'$1');
+        page.scene.image.background = $container.css('background-color');
+        // @保存page内容到服务器
+        console.log(page);
+
+        // test
+        return page;
     }
 
-
+    function onePageContentCreate(item) {
+        // 列表新增一个项
+        var $ul = $pageManage.find('.content-list');
+        var $li = $(liHtml);
+        $li.find('.number').text(item.num);
+        $li.find('.text').text(item.name);
+        $li.attr('data-scene-id', item.sceneId).attr('data-page-id', item.id);
+        $ul.append($li);
+        // 初始化容器内的内容
+        $li.click();
+        containerInit(item);
+    }
 
     module.exports = {
         init: pageManageInit,
         ctInit: containerInit,
-        pageSave: onePageContentSave
+        pageSave: onePageContentSave,
+        pageCreate: onePageContentCreate
     };
 });

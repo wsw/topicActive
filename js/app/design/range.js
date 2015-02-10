@@ -10,7 +10,6 @@ define(function(require, exports, module) {
 
     var rangeFunc = function(node, opt) {
         this.element = $(node);
-
         this.init(opt);
     };
     rangeFunc.prototype = {

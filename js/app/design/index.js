@@ -176,6 +176,13 @@ define(function(require, exports, module) {
                 element.remove();
             },
             pageClone: function(e, node) {
+                var element = pageList.find('li.active');
+                var index = element.index();
+                // 保存当前页面内容
+                var item = Scene.pageSave(designContainer, element);
+                console.log(item);
+                //
+                Scene.pageCreate(item);
 
             }
         });

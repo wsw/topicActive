@@ -32,7 +32,7 @@ define(function(require, exports, module) {
             {
                 text: "复制",
                 func: function () {
-                    window.cloneNode = MenuFunc.getStyle(this).getStyle();
+                    window.cloneNode = MenuFunc.getStyle(this);
                 }
             },
             {

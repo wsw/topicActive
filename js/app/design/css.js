@@ -33,7 +33,7 @@ define(function(require, exports, module) {
                 src: $(element).find('img').attr('src'),
 
                 background: element.style.backgroundColor,
-                opacity: element.style.opacity,
+                opacity: window.parseInt($(element).css('opacity'))*100,
                 borderWidth: bw && bw[0] || 0,
                 borderRadius: br && br[0] || 0,
                 borderType: element.style.borderStyle || "solid",
