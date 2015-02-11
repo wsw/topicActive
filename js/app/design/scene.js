@@ -139,6 +139,10 @@ define(function(require, exports, module) {
         return page;
     }
 
+    /**
+     * 创建一个新的场景包括当前页的内容信息
+     * @param item
+     */
     function onePageContentCreate(item) {
         // 列表新增一个项
         var $ul = $pageManage.find('.content-list');
@@ -152,6 +156,10 @@ define(function(require, exports, module) {
         containerInit(item);
     }
 
+    /**
+     * 设置模版内容到设计容器里
+     * @param item
+     */
     function setTemplate(item) {
         containerInit(item);
     }

@@ -16,6 +16,7 @@ define(function(require, exports, module) {
     var animation = "";   // 当前的动画类型
     var animateInfinite = false;
 
+    //
     var $dialog = $("#styleAnimation");
     var $background = $dialog.find("#background");
     var $opacity = $dialog.find("#opacity");
@@ -77,12 +78,14 @@ define(function(require, exports, module) {
     bindEveryEvent(); //绑定各种事件
     interfaceContentChange(); // 绑定界面上实时变化的值
 
-
+    /**
+     * 对话框的拖拽，滑动条，颜色选择器，选择框的变化
+     */
     function bindEveryEvent(){
-        new Dnd({                          // 创建拖拽事件
-            element: '#styleAnimation',
-            except: 'ul'
-        });
+//        new Dnd({                          // 创建拖拽事件
+//            element: '#styleAnimation',
+//            except: 'ul'
+//        });
         $dialog.find('input').bind('click', function() {    //input点击时重新获取焦点
             this.focus();
         });
@@ -219,6 +222,7 @@ define(function(require, exports, module) {
     };
 
     obj.prototype = {
+        constructor: obj,
         init: function(el, type, opt) {
             element = el;
             this.showModuleByType(type);

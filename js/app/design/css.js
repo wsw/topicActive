@@ -9,7 +9,9 @@ define(function(require, exports, module) {
     var css = function(node) {
         this.node = node;
     };
-
+    /**
+     * css对象主要获取当前节点的样式值，和设置样式值
+     */
     css.prototype = {
         constructOr: css,
         getStyle: function() {
@@ -25,13 +27,14 @@ define(function(require, exports, module) {
             var sh = element.style.boxShadow.match(reg);
 
             return {
-                //
+                //元素的基本样式
                 width: $(element).width(),
                 height: $(element).height(),
                 left: $(element).position().left,
                 top: $(element).position().top,
                 src: $(element).find('img').attr('src'),
 
+                // 样式和动画 对话框上的值信息
                 background: element.style.backgroundColor,
                 opacity: window.parseInt($(element).css('opacity'))*100,
                 borderWidth: bw && bw[0] || 0,
@@ -49,6 +52,11 @@ define(function(require, exports, module) {
                 animateInfinite: element.style.webkitAnimationIterationCount == "infinite"
             };
         },
+        /**
+         * 根据type类型判断当前的设置是那个值
+         * @param type "size", "color", "offset"
+         * @param value
+         */
         setShadow: function(type, value) {
             var element = this.node;
             var reg = /\-?[0-9]+\.?[0-9]*/g;

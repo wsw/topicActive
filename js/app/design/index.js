@@ -9,9 +9,7 @@ define(function(require, exports, module) {
     var Dialog = require('../../lib/cmp/dialog/dialog');
     var Scene = require('./scene');
     var Data = require('./data');
-    var StyleAnimation = require('./styleobj');
 
-    var index = 0;  //容器的控件索引
     /**
      * 页面上各种事件的监听
      */
@@ -199,27 +197,22 @@ define(function(require, exports, module) {
                 var id = node.attr('data-id');
 
                 Scene.setTemplate(Data.template[id]);
+            },
+            /**
+             * 页面模板模块 tab页
+             * @param e
+             * @param node
+             */
+            templateTab: function(e, node) {
+                var pNode = node.parent();
+                if (!pNode.hasClass('active')) {
+                    pNode.addClass('active').siblings().removeClass('active');
+                    node.parents(".content-1").find('.content-list').hide()
+                        .eq(pNode.index()).show();
+                }
             }
         });
         Scene.init(Data.list);
         Scene.ctInit(Data.item[0]);
     });
-
-
-    //new StyleAnimation("animation", {});
-
-//    new CompImg({
-//        container: ".design",
-//        id: "CompImg-"+index++
-//    });
-//    new CompImg({
-//        container: ".design",
-//        id: "CompImg-"+index++
-//    });
-//
-//    new CompImg({
-//        container: ".design",
-//        id: "CompImg-"+index++
-//    });
-
 });
