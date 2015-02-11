@@ -216,9 +216,9 @@ define(function(require, exports, module) {
         Scene.init(Data.list);
         Scene.ctInit(Data.item[0]);
 
-        new Sortable({
-            element: '#pageManage .content-list',
-            item: 'li'
-        })
+//        new Sortable({
+//            element: '#pageManage .content-list',
+//            item: 'li'
+//        })
     });
 });
