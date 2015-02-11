@@ -175,6 +175,11 @@ define(function(require, exports, module) {
                 pageList.find('li').eq(index).click();
                 element.remove();
             },
+            /**
+             * 当前页面复制一份
+             * @param e
+             * @param node
+             */
             pageClone: function(e, node) {
                 var element = pageList.find('li.active');
                 var index = element.index();
@@ -184,6 +189,16 @@ define(function(require, exports, module) {
                 //
                 Scene.pageCreate(item);
 
+            },
+            /**
+             * 设置模版
+             * @param e
+             * @param node
+             */
+            selectTemplate: function(e, node) {
+                var id = node.attr('data-id');
+
+                Scene.setTemplate(Data.template[id]);
             }
         });
         Scene.init(Data.list);

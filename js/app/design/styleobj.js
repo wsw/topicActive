@@ -6,6 +6,8 @@ define(function(require, exports, module) {
     var $ = require('$');
     var Action = require('../../lib/util/dom/action');
     var Dnd = require('../../../js/lib/util/dom/dnd');
+    var Css = require('./css');
+
     require('./range');
     require('./colorpicker');
 
@@ -32,6 +34,11 @@ define(function(require, exports, module) {
     var $animateInfinite = $dialog.find("#animateInfinite");
 
     Action.listen({
+        /**
+         * 样式 与 动画 的切换
+         * @param e
+         * @param node
+         */
         styleAnimationChange: function(e, node) {
             var $parent = node.parent();
             if (!$parent.hasClass('active')) {
@@ -39,25 +46,43 @@ define(function(require, exports, module) {
                 $dialog.find('.content-list').hide().eq($parent.index()).show();
             }
         },
+        /**
+         * 对话框上tab切换
+         * @param e
+         * @param node
+         */
         styleAnimationLiTab: function(e, node) {
             node.find('.li-content').show();
             node.siblings().find('.li-content').hide();
         },
+        /**
+         * 对话框关闭
+         */
         styleAnimationClose: function() {
             $dialog.hide();
+        },
+        /**
+         * 切换控件时，改变样式动画对话框的值对象
+         * @param e
+         * @param node
+         */
+        liClick: function(e, node) {
+            if ($dialog.css('display') != "none") {
+                new obj(node[0], "", (new Css(node[0])).getStyle());
+            }
         }
     });
 
 
     bindEveryEvent(); //绑定各种事件
-    interfaceContentChange();
+    interfaceContentChange(); // 绑定界面上实时变化的值
 
 
     function bindEveryEvent(){
-//        new Dnd({                          // 创建拖拽事件
-//            element: '#styleAnimation',
-//            except: 'ul'
-//        });
+        new Dnd({                          // 创建拖拽事件
+            element: '#styleAnimation',
+            except: 'ul'
+        });
         $dialog.find('input').bind('click', function() {    //input点击时重新获取焦点
             this.focus();
         });
@@ -112,8 +137,10 @@ define(function(require, exports, module) {
                             $(element).css('transform', "rotateZ("+value+"deg)");
                             break;
                         case "shadowSize":
+                            (new Css(element)).setShadow("size", value);
                             break;
                         case "shadowOffset":
+                            (new Css(element)).setShadow("offset", value);
                             break;
                         case "animateTime":
                             $(element).css('-webkit-animation-duration', value+'s');
@@ -133,7 +160,7 @@ define(function(require, exports, module) {
                     } else if (type == "background") {
                         $(element).css('background', value);
                     } else if (type == "shadowColor") {
-
+                        (new Css(element)).setShadow("color", value);
                     }
                 }
             }
@@ -164,7 +191,7 @@ define(function(require, exports, module) {
     /**
      * 当前节点对象所对应的值内容
      * @param element node
-     * @param type string "animation","style"
+     * @param type string "animation","style",""
      * @param opt object
      */
     var obj = function(element, type, opt) {
@@ -216,8 +243,6 @@ define(function(require, exports, module) {
          * @param opt
          */
         initInterfaceData: function(opt) {
-
-            console.log(opt);
 
             $background.val(opt.background);
             $opacity.val(opt.opacity).trigger('input');

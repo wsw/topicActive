@@ -621,6 +621,109 @@ define(function(require, exports, module) {
         }
     ];
 
+    var template = [
+        {
+            "id": 0,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "http://res.eqxiu.com//group1/M00/39/EB/yq0KA1SszcCANQ2jAACbPrrck1I552.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 2,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "http://res.eqxiu.com//group1/M00/C5/D9/yq0KA1SH7WGAcLRVAAFlJSWRcus339.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 3,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "http://res.eqxiu.com//group1/M00/CD/7B/yq0KA1SOQnuAWAlCAABMB2xStqU718.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 4,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "/topicActive/css/image/bg.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 5,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "http://res.eqxiu.com//group1/M00/CD/7B/yq0KA1SOQnuAWAlCAABMB2xStqU718.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 6,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "http://res.eqxiu.com//group1/M00/A2/F7/yq0KA1Qb6EuAWdXuAAPkKC5eRbY090.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 7,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    //"imgSrc": "/topicActive/css/image/bg.jpg",
+                    "background": "black"
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 8,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "/topicActive/css/image/bg.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        },{
+            "id": 0,
+            "scene": {
+                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                "createTime": 1422327309000,
+                "image": {
+                    "imgSrc": "/topicActive/css/image/bg.jpg",
+                    "background": false
+                },
+                "isTpl": 1
+            }
+        }
+    ];
+
     var newItem = {
         "id": 9339439,
         "sceneId": 712959,
@@ -667,7 +770,8 @@ define(function(require, exports, module) {
 
     module.exports = {
         list: list,
-        item: item
+        item: item,
+        template: template
     }
 
 });

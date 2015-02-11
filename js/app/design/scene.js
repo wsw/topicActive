@@ -152,10 +152,16 @@ define(function(require, exports, module) {
         containerInit(item);
     }
 
+    function setTemplate(item) {
+        containerInit(item);
+    }
+
+
     module.exports = {
         init: pageManageInit,
         ctInit: containerInit,
         pageSave: onePageContentSave,
-        pageCreate: onePageContentCreate
+        pageCreate: onePageContentCreate,
+        setTemplate: setTemplate
     };
 });

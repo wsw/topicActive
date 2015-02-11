@@ -9,7 +9,7 @@ define(function (require, exprots, module) {
     var Dnd = require('../../../js/lib/util/dom/dnd');
     var Context = require('./menu');
 
-    var template = '<li class="comp-resize comp-rotate drag" title="按住鼠标进行拖动，点击鼠标进行编辑">\
+    var template = '<li class="comp-resize comp-rotate drag" data-action="liClick" title="按住鼠标进行拖动，点击鼠标进行编辑">\
                         <div class="element-box">\
                             <div class="element-box-contents">\
                                 <img src="../css/image/dog.jpeg" alt=""/>\

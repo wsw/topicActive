@@ -224,7 +224,6 @@ define(function(require, exports, module) {
     }
 
     $.fn.bindResize = function(opt) {
-
         var def = {
             container: ".container"
         };
