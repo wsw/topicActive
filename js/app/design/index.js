@@ -9,6 +9,7 @@ define(function(require, exports, module) {
     var Dialog = require('../../lib/cmp/dialog/dialog');
     var Scene = require('./scene');
     var Data = require('./data');
+    var Sortable = require('../../../js/lib/util/dom/sortable');
 
     /**
      * 页面上各种事件的监听
@@ -61,7 +62,7 @@ define(function(require, exports, module) {
             /**
              * 对话框上按钮的点击事件
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             dialogTab: function(e, node) {
                 if (node.hasClass('active')) {  //判断当前点击是否为以选中项
@@ -76,7 +77,7 @@ define(function(require, exports, module) {
             /**
              * 背景对话框上图片的点击事件
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             bgModify: function(e, node) {
                 if (node.attr('src') == "") {  //判断当前为纯色还是图片
@@ -89,7 +90,7 @@ define(function(require, exports, module) {
             /**
              * 页面管理中列表项标题修改
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             textModify: function(e, node) {
                 var ipt = $("<input type='text' value='"+node.text()+"'/>"); //创建一个input
@@ -104,7 +105,7 @@ define(function(require, exports, module) {
             /**
              * 页面管理中列表项点击事件，改变容器的场景
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             changeScene: function(e, node) {
                 if (!node.hasClass('active')) {
@@ -118,7 +119,7 @@ define(function(require, exports, module) {
             /**
              * 页面管理中增加一个新的场景，多一个列表项,且场景切换到新增的列表项
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             addNewScene: function(e, node) {
                 //var sceneId = sceneId;
@@ -140,7 +141,7 @@ define(function(require, exports, module) {
             /**
              * 图片对话框中新增一个图片控件
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             addImgComp: function(e, node) {
                 var $img = node.find('img');
@@ -159,7 +160,7 @@ define(function(require, exports, module) {
             /**
              * 页面管理- 删除事件
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             pageDelete: function(e, node) {
                 var element = pageList.find('li.active');
@@ -176,7 +177,7 @@ define(function(require, exports, module) {
             /**
              * 当前页面复制一份
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             pageClone: function(e, node) {
                 var element = pageList.find('li.active');
@@ -191,7 +192,7 @@ define(function(require, exports, module) {
             /**
              * 设置模版
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             selectTemplate: function(e, node) {
                 var id = node.attr('data-id');
@@ -201,7 +202,7 @@ define(function(require, exports, module) {
             /**
              * 页面模板模块 tab页
              * @param e
-             * @param node
+             * @param node 当前点击元素节点$对象
              */
             templateTab: function(e, node) {
                 var pNode = node.parent();
@@ -214,5 +215,10 @@ define(function(require, exports, module) {
         });
         Scene.init(Data.list);
         Scene.ctInit(Data.item[0]);
+
+        new Sortable({
+            element: '#pageManage .content-list',
+            item: 'li'
+        })
     });
 });

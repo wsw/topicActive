@@ -43,7 +43,7 @@ define(function(require, exports, module) {
                 borderColor: element.style.borderColor || "rgb(255,255,255)",
                 transform: tf && tf[0] || 0,
                 shadowSize: sh && sh[4],
-                shadowOffset: sh && sh[3],
+                shadowOffset: sh && sh[5],
                 shadowColor: sh && "rgb("+sh[0]+","+sh[1]+","+sh[2]+")",
                 animateType: element.getAttribute('data-animation'),
                 animateTime: at && at[0] || 0,
@@ -55,7 +55,7 @@ define(function(require, exports, module) {
         /**
          * 根据type类型判断当前的设置是那个值
          * @param type "size", "color", "offset"
-         * @param value
+         * @param value 当前要设置的值
          */
         setShadow: function(type, value) {
             var element = this.node;
@@ -63,11 +63,11 @@ define(function(require, exports, module) {
             var sh = element.style.boxShadow.match(reg);
 
             if (type === "size") {
-                $(element).css('box-shadow', value+'px ' + sh[3] + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
+                $(element).css('box-shadow', value+'px ' + value+'px ' + sh[5] + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
             } else if (type === "color") {
-                $(element).css('box-shadow', sh[4]+'px ' + sh[3] + 'px ' +value);
+                $(element).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + sh[5] + 'px ' +value);
             } else if (type === "offset") {
-                $(element).css('box-shadow', sh[4]+'px ' + value + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
+                $(element).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + value + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
             }
         }
     };

@@ -79,7 +79,7 @@ define(function (require, exprots, module) {
                 "border-radius": (opt.borderRadius || 0) + '%',
                 "border-width:" : (opt.borderWidth || 0) + 'px',
                 "zIndex": opt.zIndex,
-                "box-shadow": opt.shadowSize + "px " + opt.shadowOffset + 'px ' + opt.shadowColor,
+                "box-shadow": opt.shadowSize + "px " + opt.shadowSize + "px " + opt.shadowOffset + 'px ' + opt.shadowColor,
                 "animation-duration": opt.animateTime + 's',
                 "animation-delay": opt.animateDelay + 's',
                 "animation-iteration-count": (opt.animateInfinite ? "infinite" : ""+opt.animateTimes)
