@@ -6,6 +6,7 @@
 |-css 
 |-html 
     |-design.html 当前主要的页面
+    |-mobile.html 手机端页面
 |-js 源码
     |-app 业务逻辑代码
         |-design 
@@ -20,6 +21,8 @@
             |-compimg.js 图片控件对象
             |-data.js 模拟的数据
             |-styleobj.js 样式和动画对话框模块的处理
+        |-mobile
+            |-index.js 手机端内容初始化
     |-lib gazira库
 |-public 公共资源
     |-js 部署代码
