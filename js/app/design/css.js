@@ -69,6 +69,26 @@ define(function(require, exports, module) {
             } else if (type === "offset") {
                 $(element).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + value + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
             }
+        },
+        setAllStyle: function(cssObj) {
+            var element = this.node;
+            var cssText = "";
+            cssText = cssText + "width:" + (cssObj['width'] || 0) + "px;";
+            cssText = cssText + "height:" + (cssObj['height'] || 0) + "px;";
+            cssText = cssText + "left:" + (cssObj['left'] || 0) + "px;";
+            cssText = cssText + "top:" + (cssObj['top'] || 0) + "px;";
+            cssText = cssText + "background:" + (cssObj['background'] || "white")+";";
+            cssText = cssText + "opacity:" + (cssObj['opacity'] || 1)+";";
+            cssText = cssText + "border-radius:" + (cssObj['borderRadius'] || 0)+"px;";
+            cssText = cssText + "border:" + cssObj['borderWidth'] + 'px ' + cssObj['borderType'] + " "+cssObj['borderColor'] + ";";
+            cssText = cssText + "box-shadow:" + cssObj['shadowSize'] + 'px ' + cssObj['shadowSize'] + 'px ' +
+                cssObj['shadowOffset'] + 'px ' + cssObj['shadowColor'] + ";";
+            cssText = cssText + "-webkit-animation-duration:"+cssObj['animateTime']+'s;';
+            cssText = cssText + "-webkit-animation-delay:"+cssObj['animateDelay']+'s;';
+            cssText = cssText + "-webkit-animation-iteration-count:"+cssObj['animateTimes']+";";
+            cssText = cssText + "-webkit-animation-iteration-count:"+(cssObj['animateInfinite'] == "infinite");
+
+            element.style.cssText = cssText;
         }
     };
 

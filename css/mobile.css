@@ -1,0 +1,109 @@
+html { font-family:"微软雅黑", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; font-size: 62.5%; }
+body { margin: 0; font-size:1.4rem; line-height: 20px; color: #000; background-color: #fff; height: 100%; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
+a { background: transparent; text-decoration: none; color: #000; }
+a:active { outline: 0; }
+b, strong { font-weight: bold; }
+dfn { font-style:normal;}
+img { border: 0; vertical-align: middle; }
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent; /* For some Androids */
+    outline: none;
+}
+input,textarea,button { border: 0; margin: 0; padding: 0; font-family:"微软雅黑", "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;}
+textarea { resize: none;}
+table { border-collapse: collapse; border-spacing: 0; }
+td, th { padding: 0; }
+h1, h2, h3, h4, h5, h6, p, figure, form, blockquote { margin: 0; }
+ul, ol, li, dl, dd { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+input::-moz-placeholder, textarea::-moz-placeholder { color: #ccc; }
+input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #ccc; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #ccc; }
+
+.clearfix:after { content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.clearfix { display:inline-block;}
+/* Hides from IE-mac \*/
+* html .clearfix { height:1%;}
+.clearfix { display:block;}
+
+html, body, .swipe, .swipe-wrap { width: 100%; height: 100%;}
+
+/* ===============================================================
+Basic Swiper Styles
+================================================================*/
+.swiper-container {
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+    -webkit-backface-visibility:hidden;
+    -moz-backface-visibility:hidden;
+    -ms-backface-visibility:hidden;
+    -o-backface-visibility:hidden;
+    backface-visibility:hidden;
+    /* Fix of Webkit flickering */
+    z-index:1;
+}
+.swiper-wrapper {
+    position:relative;
+    width:100%;
+    height: 100%;
+    -webkit-transition-property:-webkit-transform, left, top;
+    -webkit-transition-duration:0s;
+    -webkit-transform:translate3d(0px,0,0);
+    -webkit-transition-timing-function:ease;
+
+    -moz-transition-property:-moz-transform, left, top;
+    -moz-transition-duration:0s;
+    -moz-transform:translate3d(0px,0,0);
+    -moz-transition-timing-function:ease;
+
+    -o-transition-property:-o-transform, left, top;
+    -o-transition-duration:0s;
+    -o-transform:translate3d(0px,0,0);
+    -o-transition-timing-function:ease;
+    -o-transform:translate(0px,0px);
+
+    -ms-transition-property:-ms-transform, left, top;
+    -ms-transition-duration:0s;
+    -ms-transform:translate3d(0px,0,0);
+    -ms-transition-timing-function:ease;
+
+    transition-property:transform, left, top;
+    transition-duration:0s;
+    transform:translate3d(0px,0,0);
+    transition-timing-function:ease;
+}
+.swiper-free-mode > .swiper-wrapper {
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -ms-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    margin: 0 auto;
+}
+.swiper-slide {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+}
+.swiper-container ul {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.swiper-container ul li {
+    position: absolute; overflow: hidden;
+}
+.swiper-container ul li img{
+    width: 100%; height: 100%;
+}

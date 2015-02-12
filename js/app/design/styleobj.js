@@ -82,10 +82,10 @@ define(function(require, exports, module) {
      * 对话框的拖拽，滑动条，颜色选择器，选择框的变化
      */
     function bindEveryEvent(){
-//        new Dnd({                          // 创建拖拽事件
-//            element: '#styleAnimation',
-//            except: 'ul'
-//        });
+        new Dnd({                          // 创建拖拽事件
+            element: '#styleAnimation',
+            except: 'ul'
+        });
         $dialog.find('input').bind('click', function() {    //input点击时重新获取焦点
             this.focus();
         });
