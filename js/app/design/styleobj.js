@@ -5,7 +5,7 @@ define(function(require, exports, module) {
 
     var $ = require('$');
     var Action = require('../../lib/util/dom/action');
-    var Dnd = require('../../../js/lib/util/dom/dnd');
+    var Dnd = require('../../lib/util/dom/dnd');
     var Css = require('./css');
 
     require('./range');

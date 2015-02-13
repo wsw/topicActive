@@ -5,8 +5,8 @@ define(function (require, exprots, module) {
 
     var $ = require("$");
     require('./resize.js');
-    require('../../../js/lib/cmp/smartmenu');
-    var Dnd = require('../../../js/lib/util/dom/dnd');
+    require('../../lib/cmp/smartmenu');
+    var Dnd = require('../../lib/util/dom/dnd');
     var Context = require('./menu');
 
     var template = '<li class="comp-resize comp-rotate drag" data-action="liClick" title="按住鼠标进行拖动，点击鼠标进行编辑">\

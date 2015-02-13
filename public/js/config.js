@@ -1,6 +1,6 @@
 (function() {
     var version = '0.0.1'; // 线上部署版本
-    var development = true; // 开关：true开发版本 false部署版本
+    var development = false; // 开关：true开发版本 false部署版本
     var _ts = location.search.indexOf('use-cache') > -1 ? '' : new Date().getTime();
     var plugins = [];
     var map = [];

@@ -4,7 +4,7 @@
 define(function(require, exports, module) {
 
     var $ = require('$');
-    var Swiper = require('../../../js/lib/cmp/swiper');
+    var Swiper = require('../../lib/cmp/swiper');
     var Data = require('../design/data');
     var Css = require('../design/css');
 

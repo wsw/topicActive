@@ -27,9 +27,11 @@
 |-public 公共资源
     |-js 部署代码
         |-dist 部署业务逻辑代码
+            |-design index.js 
+            |-mobile index.js
         |-jquery
         |-seajs
-        |-config.js seajs配置文件
+        |-config.js seajs配置文件（切换开发与部署环境）
     |-theme 样式
 |-test 测试用例
 |-Gruntfile.js 

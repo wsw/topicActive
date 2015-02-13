@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     var Dialog = require('../../lib/cmp/dialog/dialog');
     var Scene = require('./scene');
     var Data = require('./data');
-    var Sortable = require('../../../js/lib/util/dom/sortable');
+    var Sortable = require('../../lib/util/dom/sortable');
 
     /**
      * 页面上各种事件的监听

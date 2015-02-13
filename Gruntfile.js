@@ -82,7 +82,8 @@ module.exports = function(grunt) {
                 idleading: 'dist/',
                 alias: {
                     $: '$'
-                }
+                },
+                include: 'all'
             },
             app: {
                 files: [
@@ -148,19 +149,9 @@ module.exports = function(grunt) {
         clean: {
             build: ['.build']
         },
-        // 单元测试
-        qunit: {
-            net: {
-                options: {
-                    urls: fileList.server
-                }
-            },
-            all: ['test/**/*.html'].concat(fileList.notServer)
-        },
         // 文件监听
         watch: {
-            files: 'test/**/*.js',
-            tasks: ['qunit']
+
         }
     });
 
@@ -173,7 +164,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // 默认任务：代码检查，单元测试，转化，合并，压缩，清理
-    grunt.registerTask('default', ['jshint', 'transport', 'concat', 'uglify', 'qunit', 'clean']);
+    grunt.registerTask('default', [ 'transport', 'concat', 'uglify', 'clean']);
+//    grunt.registerTask('default', [ 'transport']);
     // jquery任务：压缩jquery
     grunt.registerTask('jquery', ['uglify:jquery']);
-}
+};

@@ -7,7 +7,7 @@ define(function(require, exports, module) {
     var $ = require('$');
     var CompImg = require('./compimg');
     var Css = require('./css');
-    require('../../../js/lib/cmp/smartmenu');
+    require('../../lib/cmp/smartmenu');
 
     var $pageManage = $("#pageManage");
     var $container = $('.design');
