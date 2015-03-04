@@ -28,6 +28,8 @@ define(function(require, exports, module) {
         var x0 = 0;
         var y0 = 0;
 
+        var ratio = 0;
+
         $(el).bind('mousedown', function(e){
 
             ctX = $ct.offset().left;
@@ -41,6 +43,8 @@ define(function(require, exports, module) {
 
             width = $pel.width();
             height = $pel.height();
+
+            ratio = height/width;
 
             /*px = $pel.offset().left;
             py = $pel.offset().top;*/
@@ -146,10 +150,18 @@ define(function(require, exports, module) {
                     (newWidth < minWidth) ? (newWidth = minWidth, pl = px - newWidth + width) : "";
                     (newWidth + px > ctXX) ? (newWidth = ctXX - px) : "";
 
+
+
                     newHeight = height - my + y;
                     pt = py + (my - y);
                     (pt < ctY) ? (newHeight = py + height - ctY, pt = ctY) : "";
                     (newHeight < minHeight) ? (newHeight = minHeight, pt = py - newHeight + height) : "";
+
+                    if (e.ctrlKey) {
+                        newHeight = ratio * newWidth;
+                        newWidth = newHeight / ratio;
+                        pt = py - newHeight + height;
+                    }
 
                     $pel.width(newWidth);
                     $pel.height(newHeight);
@@ -176,6 +188,13 @@ define(function(require, exports, module) {
                     (newWidth < minWidth) ? (newWidth = minWidth, pl = px - newWidth + width) : "";
                     (newHeight < minHeight) ? (newHeight = minHeight, pt = py - newHeight + height) : "";
 
+                    if (e.ctrlKey) {
+                        newHeight = ratio * newWidth;
+                        newWidth = newHeight / ratio;
+                        pt = py - newHeight + height;
+                        pl = px - newWidth + width;
+                    }
+
                     $pel.width(newWidth);
                     $pel.height(newHeight);
                     $pel.css({left: (pl-ctX)+'px', top: (pt-ctY)+'px'});
@@ -190,6 +209,10 @@ define(function(require, exports, module) {
                     (newWidth + px > ctXX) ? (newWidth = ctXX - px) : "";
                     (newHeight + py > ctYY) ? (newHeight = ctYY - py) : "";
 
+                    if (e.ctrlKey) {
+                        newHeight = ratio * newWidth;
+                    }
+
                     $pel.width(newWidth);
                     $pel.height(newHeight);
                     break;
@@ -202,6 +225,10 @@ define(function(require, exports, module) {
                     newHeight = height + my - y;
                     (newHeight < minHeight) ? (newHeight = minHeight, pt = py - newHeight + height) : "";
                     (newHeight + py > ctYY) ? (newHeight = ctYY - py) : "";
+
+                    if (e.ctrlKey) {
+                        newHeight = ratio * newWidth;
+                    }
 
                     $pel.width(newWidth);
                     $pel.height(newHeight);

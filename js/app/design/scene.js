@@ -43,6 +43,7 @@ define(function(require, exports, module) {
             var opt = window.cloneNode;
             opt.container = ".design";
             opt.top = window.parseInt(opt.top) + 30;
+            opt.zIndex = window.parseInt(opt.zIndex)+1;
             new CompImg(opt);
         }
     }
