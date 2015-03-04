@@ -55,7 +55,6 @@ define(function(require, exports, module) {
         }
     });
 
-
     module.exports = {
         getStyle: getStyle,
         edit: EditImg

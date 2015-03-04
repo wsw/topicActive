@@ -25,6 +25,8 @@ define(function(require, exports, module) {
         var ctXX = 0;
         var ctYY = 0;
 
+        var x0 = 0;
+        var y0 = 0;
 
         $(el).bind('mousedown', function(e){
 
@@ -40,8 +42,14 @@ define(function(require, exports, module) {
             width = $pel.width();
             height = $pel.height();
 
-            px = $pel.offset().left;
-            py = $pel.offset().top;
+            /*px = $pel.offset().left;
+            py = $pel.offset().top;*/
+
+            px = ctX + $pel[0].offsetLeft;
+            py = ctY + $pel[0].offsetTop;
+
+            x0 = px + width/2;
+            y0 = py + height/2;
 
             //在支持 setCapture 做些东东
             el.setCapture ? (
@@ -64,8 +72,8 @@ define(function(require, exports, module) {
             //运算中...
             //line: 上：2，下：3，右：4，左：5  point：7 6 8 9
 
-            var minWidth = 40;   //最小的宽度
-            var minHeight = 20;   //最新的高度
+            var minWidth = 50;   //最小的宽度
+            var minHeight = 30;   //最新的高度
             var mx = e.clientX;
             var my = e.clientY;   //当前移动点的 x y 坐标
 
@@ -77,34 +85,24 @@ define(function(require, exports, module) {
 
             switch (type) {
                 case "1" :
+                    var angle = 0;
 
-                    var arcX = mx - x;
-                    var arcY = my - y;
-                    var arc = 0;
-
-                    var rotate = $pel.rotationDegrees();
-
-                    if (arcY >= 0 && arcX >= 0) {  // 偏移量都是为正的
-                        arc = Math.atan(arcY/arcX) * 180 / Math.PI;
-                    } else if (arcX < 0 && arcY > 0) {
-                        arc = Math.atan(-arcX/arcY) * 180 / Math.PI;
-                    } else if (arcX < 0 && arcY < 0) {
-                        arc = Math.atan(arcY/arcX) * 180 / Math.PI;
-                    } else if (arcX >= 0 && arcY < 0) {
-                        arc = Math.atan(-arcX/arcY) * 180 / Math.PI;
+                    if (my-y0 < 0) {
+                        angle = Math.atan((mx-x0)/(y0-my))*180/Math.PI;
+                    } else if (mx-x0 > 0){
+                        angle = Math.atan((my-y0)/(mx-x0))*180/Math.PI + 90;
+                    } else {
+                        angle = Math.atan((x0-mx)/(my-y0))*180/Math.PI + 180;
                     }
 
-                    arc /= 30;
-                    arc = arc % 90;
-                    rotate = rotate % 270;
-
-                    $pel.css({transform: "rotateZ("+(arc+rotate)+"deg)"});
+                    //console.log(angle);
+                    $pel.css({transform: "rotateZ("+(angle)+"deg)"});
 
                     break;
                 case "2" :
                     newHeight = height - my + y;
 
-                    pt = my;
+                    pt = py + (my - y);
 
                     (pt < ctY) ? (newHeight = py + height - ctY, pt = ctY) : "";
 
@@ -134,7 +132,7 @@ define(function(require, exports, module) {
                 case "5" :
                     newWidth = width - mx + x;
 
-                    pl = mx;
+                    pl = px + (mx - x);
 
                     (pl < ctX) ? (newWidth = px + width - ctX, pl = ctX) : "";
 
@@ -149,7 +147,7 @@ define(function(require, exports, module) {
                     (newWidth + px > ctXX) ? (newWidth = ctXX - px) : "";
 
                     newHeight = height - my + y;
-                    pt = my;
+                    pt = py + (my - y);
                     (pt < ctY) ? (newHeight = py + height - ctY, pt = ctY) : "";
                     (newHeight < minHeight) ? (newHeight = minHeight, pt = py - newHeight + height) : "";
 
@@ -161,8 +159,11 @@ define(function(require, exports, module) {
                     newWidth = width - mx + x;  // 新的宽度为：本身的宽度+本身最初左上角x点坐标-当前移动到x点坐标
                     newHeight = height - my + y;  // 新的高度为：本身的高度+本身最初左上角y点坐标-当前移动到y点坐标
 
-                    pl = mx;   // 当前div的left即为当前移动的x点坐标
-                    pt = my;   // 当前div的top即为当前移动的y点坐标
+                    /*pl = mx;   // 当前div的left即为当前移动的x点坐标
+                    pt = my;   // 当前div的top即为当前移动的y点坐标*/
+                    /*修正当有旋转值是已上方法是不行的*/
+                    pl = px + (mx - x);
+                    pt = py + (my - y);
 
                     // 当前div的left 超出当前容器左上角x点坐标时， 当前div的left就设为容器左上角的x点坐标，
                     // 新的宽度就为：本身的宽度+本身最初左上角x点坐标-容器左上角x点坐标
@@ -194,7 +195,7 @@ define(function(require, exports, module) {
                     break;
                 case "9" :
                     newWidth = width - mx + x;
-                    pl = mx;
+                    pl = px + (mx - x);
                     (pl < ctX) ? (newWidth = px + width - ctX, pl = ctX) : "";
                     (newWidth < minWidth) ? (newWidth = minWidth, pl = px - newWidth + width) : "";
 

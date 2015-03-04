@@ -14,30 +14,31 @@ define(function(require, exports, module) {
     };
     rangeFunc.prototype = {
         init: function(opt) {
-
+            this.dragging = false;
             this.bindElementEvent();
         },
         bindElementEvent: function() {
             var element = this.element;
+            var _this = this;
             //var percent = element.attr('data-value');
             var parent = element.parent();
             var pageX, pageY;
             var diffX, elL;
-
-            var dragging = false;
 
             var width = parent.width() - element.width();
 
             //element.css('left', (percent*width /100)  + 'px');
 
             // 滑动事件绑定
-            element.bind('mousedown', function(e) {
+            element.on('mousedown', function(e) {
                 pageX =  e.pageX;
                 elL = $(this).position().left;
-                dragging = true;
+                if (!_this.dragging) {
+                    _this.dragging = true;
+                }
             });
-            $(document).bind('mousemove', function(e) {
-                if (dragging) {
+            $(document).on('mousemove', function(e) {
+                if (_this.dragging) {
                     var moveX = e.pageX;
                     var left = moveX - pageX + elL;
                     // 左右边界的限制
@@ -48,8 +49,10 @@ define(function(require, exports, module) {
                     parent.parent().find('input').val(parseInt(left/width * parseInt(parent.parent().find('input').attr('data-max'))))
                         .trigger('input');
                 }
-            }).bind('mouseup', function() {
-                dragging = false;
+            }).on('mouseup', function() {
+                if (_this.dragging) {
+                    _this.dragging = false;
+                }
             });
 
             // 点击事件绑定

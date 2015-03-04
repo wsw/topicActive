@@ -11,6 +11,8 @@ define(function(require, exports, module) {
     var Data = require('./data');
     var Sortable = require('../../lib/util/dom/sortable');
 
+    var index = 1;
+
     /**
      * 页面上各种事件的监听
      */
@@ -220,5 +222,9 @@ define(function(require, exports, module) {
 //            element: '#pageManage .content-list',
 //            item: 'li'
 //        })
+
+        window.onbeforeunload = function() {
+            return "";
+        }
     });
 });

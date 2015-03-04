@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            /*-moz-user-select:-moz-none;*/
+        }
+    </style>
+
+
+    <script type="text/javascript">
+
+        window.onload = function(){
+            /*
+             var msg = document.getElementById("msg");
+             var c = 0;
+             MouseGuesture.instance({distance:100}).regist(document.getElementById("panel"),function(key){
+             //debugger;
+             msg.innerHTML += key+",";
+             }
+             )*/
+           // document.body.onselectstart=function(){return false;}
+            var c = 0;
+            var a = false;
+
+            var msg = document.getElementById("msg");
+            var panel = document.getElementById("panel");
+
+//            panel.onmousedown = function(){
+//
+//
+//            }
+
+            panel.addEventListener('mousedown', function() {
+                a = true;
+            })
+
+            document.onmousemove = function(){
+                console.log(a);
+                 if(a){
+                 if(c%50 == 0){
+                 msg.innerHTML += c+",";
+                 }
+                 c++;
+                     panel.style.marginLeft = c + 'px';
+                 }
+
+            };
+
+            panel.onmouseup = function(){
+
+                a = false;
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<h1 id="msg">MouseTest : </h1>
+<a id="panel" style="display: block;width:20px;height:10px;border:solid green 2px;">
+
+</a>
+</body>
+</html>
+

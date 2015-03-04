@@ -5,6 +5,7 @@
 define(function(require, exports, module) {
 
     var $ = require('$');
+    var Browser = require('../../lib/util/bom/browser');
 
     var css = function(node) {
         this.node = node;
@@ -17,14 +18,25 @@ define(function(require, exports, module) {
         getStyle: function() {
             var element = this.node;
 
+            console.log(element.style);
+
             var reg = /\-?[0-9]+\.?[0-9]*/g;
             var bw = element.style.borderWidth && element.style.borderWidth.match(reg);
             var br = element.style.borderRadius && element.style.borderRadius.match(reg);
-            var at = element.style.webkitAnimationDuration.match(reg);
-            var ad = element.style.webkitAnimationDelay.match(reg);
-            var ats = element.style.webkitAnimationIterationCount.match(reg);
             var tf = element.style.transform.match(reg);
             var sh = element.style.boxShadow.match(reg);
+
+            //
+            if (Browser.firefox) {
+                var tp = sh.splice(0);
+                sh[0] = tp[3], sh[1] = tp[4], sh[2] = tp[5];
+                sh[3] = tp[0], sh[4] = tp[1], sh[5] = tp[2];
+            }
+
+            var elStyle = element.style;
+            var at = (elStyle.webkitAnimationDuration || elStyle.mozAnimationDuration || elStyle.animationDuration).match(reg);
+            var ad = (elStyle.webkitAnimationDelay || elStyle.mozAnimationDelay || elStyle.animationDelay).match(reg);
+            var ats = (elStyle.webkitAnimationIterationCount || elStyle.mozAnimationIterationCount || elStyle.animationIterationCount).match(reg);
 
             return {
                 //元素的基本样式
@@ -36,7 +48,7 @@ define(function(require, exports, module) {
 
                 // 样式和动画 对话框上的值信息
                 background: element.style.backgroundColor,
-                opacity: window.parseInt($(element).css('opacity'))*100,
+                opacity: window.parseInt($(element).css('opacity')*100),
                 borderWidth: bw && bw[0] || 0,
                 borderRadius: br && br[0] || 0,
                 borderType: element.style.borderStyle || "solid",
@@ -49,7 +61,7 @@ define(function(require, exports, module) {
                 animateTime: at && at[0] || 0,
                 animateDelay: ad && ad[0] || 0,
                 animateTimes: ats && ats[0] || 0,
-                animateInfinite: element.style.webkitAnimationIterationCount == "infinite"
+                animateInfinite: (elStyle.webkitAnimationIterationCount || elStyle.mozAnimationIterationCount || elStyle.animationIterationCount) == "infinite"
             };
         },
         /**
@@ -61,6 +73,12 @@ define(function(require, exports, module) {
             var element = this.node;
             var reg = /\-?[0-9]+\.?[0-9]*/g;
             var sh = element.style.boxShadow.match(reg);
+
+            if (Browser.firefox) {
+                var tp = sh.splice(0);
+                sh[0] = tp[3], sh[1] = tp[4], sh[2] = tp[5];
+                sh[3] = tp[0], sh[4] = tp[1], sh[5] = tp[2];
+            }
 
             if (type === "size") {
                 $(element).css('box-shadow', value+'px ' + value+'px ' + sh[5] + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
@@ -83,10 +101,21 @@ define(function(require, exports, module) {
             cssText = cssText + "border:" + cssObj['borderWidth'] + 'px ' + cssObj['borderType'] + " "+cssObj['borderColor'] + ";";
             cssText = cssText + "box-shadow:" + cssObj['shadowSize'] + 'px ' + cssObj['shadowSize'] + 'px ' +
                 cssObj['shadowOffset'] + 'px ' + cssObj['shadowColor'] + ";";
+            /*webkit*/
             cssText = cssText + "-webkit-animation-duration:"+cssObj['animateTime']+'s;';
             cssText = cssText + "-webkit-animation-delay:"+cssObj['animateDelay']+'s;';
             cssText = cssText + "-webkit-animation-iteration-count:"+cssObj['animateTimes']+";";
             cssText = cssText + "-webkit-animation-iteration-count:"+(cssObj['animateInfinite'] == "infinite");
+            /*moz*/
+            cssText = cssText + "-moz-animation-duration:"+cssObj['animateTime']+'s;';
+            cssText = cssText + "-moz-animation-delay:"+cssObj['animateDelay']+'s;';
+            cssText = cssText + "-moz-animation-iteration-count:"+cssObj['animateTimes']+";";
+            cssText = cssText + "-moz-animation-iteration-count:"+(cssObj['animateInfinite'] == "infinite");
+
+            cssText = cssText + "animation-duration:"+cssObj['animateTime']+'s;';
+            cssText = cssText + "animation-delay:"+cssObj['animateDelay']+'s;';
+            cssText = cssText + "animation-iteration-count:"+cssObj['animateTimes']+";";
+            cssText = cssText + "animation-iteration-count:"+(cssObj['animateInfinite'] == "infinite");
 
             element.style.cssText = cssText;
         }

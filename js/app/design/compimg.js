@@ -114,8 +114,8 @@ define(function (require, exprots, module) {
         },
         bindClickEvent: function() {
             this.$elemet.on('mousedown', function() {
-                $(this).find('div.bar').show();
-                $(this).siblings().find('div.bar').hide();
+                $(this).addClass('selected').find('div.bar').show();
+                $(this).siblings().removeClass('selected').find('div.bar').hide();
             });
 
         }

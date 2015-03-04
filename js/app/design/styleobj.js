@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var Action = require('../../lib/util/dom/action');
     var Dnd = require('../../lib/util/dom/dnd');
     var Css = require('./css');
+    require('./drag');
 
     require('./range');
     require('./colorpicker');
@@ -71,6 +72,22 @@ define(function(require, exports, module) {
             if ($dialog.css('display') != "none") {
                 new obj(node[0], "", (new Css(node[0])).getStyle());
             }
+        },
+        /**
+         * 清楚所有样式的
+         */
+        clearAllStyle: function() {
+            $opacity.val(100).trigger('input');
+            $borderWidth.val(0).trigger('input');
+            $borderRadius.val(0).trigger('input');
+            $transform.val(0).trigger('input');
+            $shadowSize.val(0).trigger('input');
+            $shadowOffset.val(0).trigger('input');
+            $borderType.val("solid");
+
+            $background.val('rgb(255,255,255)');
+            $borderColor.val('rgb(255,255,255)');
+            $shadowColor.val('rgb(255,255,255)');
         }
     });
 
@@ -82,14 +99,20 @@ define(function(require, exports, module) {
      * 对话框的拖拽，滑动条，颜色选择器，选择框的变化
      */
     function bindEveryEvent(){
-        new Dnd({                          // 创建拖拽事件
+        /*new Dnd({                          // 创建拖拽事件
             element: '#styleAnimation',
-            except: 'ul'
+            handler: 'h5'
+        });*/
+
+        $dialog.find('h5').drag('options', {
+            "handle": '.style-animation',
+            "drag": '.style-animation'
         });
+
         $dialog.find('input').bind('click', function() {    //input点击时重新获取焦点
             this.focus();
         });
-        $dialog.find('.percent-select a').rangefunc({});    // slider的事件绑定
+        $dialog.find('.percent-select i').rangefunc({});    // slider的事件绑定
         $dialog.find(".color-select").colorpicker()         // 颜色选择器的绑定
             .on('changeColor', function(ev) {
                 $(this).css('background', ev.color.toString('rgb'));
@@ -122,7 +145,7 @@ define(function(require, exports, module) {
                     // 当前输入值的最大最小值做限制
                     value >= max ? ($target.val(max), value=max): (value < 0 ? ($target.val(0), value=0) : "");
                     // 实时的改变滑动条
-                    var $slide = $target.parent().find('a');
+                    var $slide = $target.parent().find('i');
                     var percent = (value / max) * 100;
                     $slide.attr('data-value', percent).css('left', (percent*($slide.parent().width()-$slide.width())/100) + 'px');
                     // 当前输入框的类型进行对应的变化
@@ -146,13 +169,13 @@ define(function(require, exports, module) {
                             (new Css(element)).setShadow("offset", value);
                             break;
                         case "animateTime":
-                            $(element).css('-webkit-animation-duration', value+'s');
+                            $(element).css({'-webkit-animation-duration': value+'s','-moz-animation-duration':value+'s','animation-duration':value+'s'});
                             break;
                         case "animateDelay":
-                            $(element).css('-webkit-animation-delay', value+'s');
+                            $(element).css({'-webkit-animation-delay':value+'s','-moz-animation-delay':value+'s','animation-delay':value+'s'});
                             break;
                         case "animateTimes":
-                            $(element).css('-webkit-animation-iteration-count', value+"");
+                            $(element).css({'-webkit-animation-iteration-count':value+"",'-moz-animation-iteration-count': value+"",'animation-iteration-count':value+""});
                             break;
                     }
                 } else {
@@ -177,6 +200,7 @@ define(function(require, exports, module) {
                 } else if (type == "animateType") {
                     $(element).removeClass(animation).addClass($(e.target).val());
                     animation = $(e.target).val();
+                    $(element).attr('data-animation', animation);
                 }
             });
         // 循环播放框变化

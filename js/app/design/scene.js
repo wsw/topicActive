@@ -62,7 +62,7 @@ define(function(require, exports, module) {
         $container.html("").attr('data-scene-id', item.sceneId)
             .attr('data-page-id', item.id);
         // 初始化当前容器中各个控件, 目前只有图片类型的
-        $.each(item.elements, function(index, value) {
+        $.each(item.elements || [], function(index, value) {
             if (value.content) {
                 new CompImg({
                     container: ".design",
@@ -163,6 +163,21 @@ define(function(require, exports, module) {
     function setTemplate(item) {
         containerInit(item);
     }
+
+    /**
+     * 绑定键盘快捷键Ctrl+c, Ctrl+v
+     */
+    $(document).bind('keydown', function(e) {
+        if (e.keyCode == 67 && e.ctrlKey) {
+            var $selected = $container.find('li.selected');
+            if ($selected.size() > 0) {
+                window.cloneNode = (new Css($selected[0])).getStyle();
+            }
+        } else if (e.keyCode == 86 && e.ctrlKey) {
+            cloneNode();
+        }
+
+    });
 
 
     module.exports = {

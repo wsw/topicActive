@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-    var server = 'http://localhost/mobi/';
+    var server = ' ';
     var networkFileList = [];
     var prefixPath = function(arr, prefix) {
         var temp = [];
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
                 debug: true, // 允许使用debugger语句
                 strict: false, // 不需要强制严格模式
                 curly: true, // 循环和条件语句中的语句块必须放在{}
-                eqeqeq: true, // 相等比较需要用 === 或 !==
+                eqeqeq: false, // 相等比较需要用 === 或 !==(允许)
                 eqnull: true, // null允许用==判断相等
                 newcap: false, // 构造函数必须大写，这个不要求
                 noarg: false, // 允许使用argument.callee 和 argument.caller
@@ -47,7 +47,7 @@ module.exports = function(grunt) {
                 trailing: true, // 不允许行尾有空白
                 devel: false, // 不开启alert/console全局变量支持
                 unused: false, // 允许变量声明后不使用，常见于一些函数调用上的参数没有使用
-                quotmark: 'single', // 字符串引号必须使用单引号
+                //quotmark: 'single', // 字符串引号必须使用单引号
                 sub: true, // 允许使用[]来访问对象属性
                 boss: true, // 允许if/while/for中使用赋值语句
                 immed: false, // 允许使用匿名函数并立即执行
@@ -56,13 +56,14 @@ module.exports = function(grunt) {
                 expr: true, // 允许表达式用做函数调用或者语句使用
                 evil: false // 不允许使用eval和new Function
             },
-            useDefault: ['Gruntfile.js', 'js/**/*.js', '!**/tpl/*.js', '!js/lib/util/dom/position.js'],
+            //useDefault: ['Gruntfile.js', 'js/**/*.js', '!**/tpl/*.js', '!js/app/design/data.js', '!js/lib/**/*.js'],
+            useDefault: ['Gruntfile.js', 'js/app/design/*.js', '!js/app/design/colorpicker.js'],
             useEval: { // 允许使用eval或者new Function
                 options: {
                     evil: true
                 },
                 files: {
-                    src: ['js/lib/util/dom/position.js']
+                    src: []
                 }
             },
             testUnit: { // 单元测试
@@ -110,7 +111,7 @@ module.exports = function(grunt) {
                         dest: 'public/js/dist/app'
                     }
                 ]
-            },
+            }/*,
             editor: {
                 options: {
                     relative: true
@@ -121,7 +122,7 @@ module.exports = function(grunt) {
                         dest: 'public/js/dist/lib/cmp/editor/ueditor/ueditor.js'
                     }
                 ]
-            }
+            }*/
         },
         // 压缩
         uglify: {
@@ -165,7 +166,7 @@ module.exports = function(grunt) {
 
     // 默认任务：代码检查，单元测试，转化，合并，压缩，清理
     grunt.registerTask('default', [ 'transport', 'concat', 'uglify', 'clean']);
-//    grunt.registerTask('default', [ 'transport']);
+//    grunt.registerTask('default', [ 'jshint']);
     // jquery任务：压缩jquery
     grunt.registerTask('jquery', ['uglify:jquery']);
 };

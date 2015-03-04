@@ -160,7 +160,7 @@ define(function(require, exports, module) {
                 "type": 1,
                 "pageMode": 2,
                 "image": {
-                    "imgSrc": "/topicActive/css/image/bg.jpg",
+                    "imgSrc": "../css/image/bg.jpg",
                     "background": false
                 },
                 "isTpl": 0,
@@ -448,7 +448,7 @@ define(function(require, exports, module) {
                 "type": 1,
                 "pageMode": 2,
                 "image": {
-                    "imgSrc": "/topicActive/css/image/bg1.jpg",
+                    "imgSrc": "../css/image/bg1.jpg",
                     "background": false
                 },
                 "isTpl": 0,
@@ -624,6 +624,7 @@ define(function(require, exports, module) {
     var template = [
         {
             "id": 0,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -635,6 +636,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 2,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -646,6 +648,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 3,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -657,6 +660,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 4,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -668,6 +672,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 5,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -679,6 +684,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 6,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -690,6 +696,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 7,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -701,6 +708,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 8,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -712,6 +720,7 @@ define(function(require, exports, module) {
             }
         },{
             "id": 0,
+            elements: null,
             "scene": {
                 "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
                 "createTime": 1422327309000,
@@ -768,10 +777,17 @@ define(function(require, exports, module) {
 
     item[4] = newItem;
 
+    function initChild() {
+
+    }
+
     module.exports = {
         list: list,
         item: item,
         template: template
-    }
+    };
+
+
+
 
 });
