@@ -18,8 +18,6 @@ define(function(require, exports, module) {
         getStyle: function() {
             var element = this.node;
 
-            console.log(element.style);
-
             var reg = /\-?[0-9]+\.?[0-9]*/g;
             var bw = element.style.borderWidth && element.style.borderWidth.match(reg);
             var br = element.style.borderRadius && element.style.borderRadius.match(reg);

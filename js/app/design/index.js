@@ -82,8 +82,9 @@ define(function(require, exports, module) {
              * @param node 当前点击元素节点$对象
              */
             bgModify: function(e, node) {
+
                 if (node.attr('src') == "") {  //判断当前为纯色还是图片
-                    designContainer.css('background', node.css('background'));
+                    designContainer.css('background', node.css('backgroundColor'));
                 } else {
                     designContainer.css('background', "url("+node.attr('src')+")");
                 }
@@ -111,11 +112,12 @@ define(function(require, exports, module) {
              */
             changeScene: function(e, node) {
                 if (!node.hasClass('active')) {
-                    Scene.pageSave(designContainer, node.siblings('active'));
-                    node.addClass('active').siblings().removeClass('active');
-                    var i = node.index();
-                    i > 4 ? i = 4 : "";
-                    Scene.ctInit(Data.item[i]);
+                    var active = node.siblings('.active');
+
+                    Scene.changePage(active, node);
+
+                    active.removeClass('active');
+                    node.addClass('active');
                 }
             },
             /**
@@ -124,21 +126,7 @@ define(function(require, exports, module) {
              * @param node 当前点击元素节点$对象
              */
             addNewScene: function(e, node) {
-                //var sceneId = sceneId;
-                var pageId = window.parseInt(Math.random()*10000);
-
-                var liHtml = '<li data-action="changeScene">' +
-                    '<span class="number">1</span>' +
-                    '<span class="text" data-action="textModify">第1页</span> </li>';
-
-                var list = node.parent().parent().find('.content-list');
-                var lists = list.find('li').removeClass('active');
-                var $li = $(liHtml);
-                $li.find('.number').text(lists.size()+1);
-                $li.find('.text').text('第' + (lists.size()+1) + '页');
-                $li.attr('data-scene-id', sceneId).attr('data-page-id', pageId);
-                list.append($li);
-                $li.click();
+                Scene.onePageContentCreate();
             },
             /**
              * 图片对话框中新增一个图片控件
@@ -165,16 +153,14 @@ define(function(require, exports, module) {
              * @param node 当前点击元素节点$对象
              */
             pageDelete: function(e, node) {
-                var element = pageList.find('li.active');
-                var index = element.index();
-                index = index < 1 ? 1: index-1;
-                //delete ajax
-                var pageId = element.attr('data-page-id');
-                var sceneId = element.attr('data-scene-id');
-
-                // 选择状态变化
-                pageList.find('li').eq(index).click();
-                element.remove();
+                if (pageList.find('li').size() > 1) {
+                    var element = pageList.find('li.active');
+                    var index = element.index();
+                    index = index < 1 ? 1: index-1;
+                    Scene.deletePage(element);
+                    pageList.find('li').eq(index).click();
+                    element.remove();
+                }
             },
             /**
              * 当前页面复制一份
@@ -183,13 +169,8 @@ define(function(require, exports, module) {
              */
             pageClone: function(e, node) {
                 var element = pageList.find('li.active');
-                var index = element.index();
-                // 保存当前页面内容
-                var item = Scene.pageSave(designContainer, element);
-                console.log(item);
-                //
-                Scene.pageCreate(item);
-
+                Scene.clonePage(element);
+                pageList.find('li').last().click();
             },
             /**
              * 设置模版
@@ -199,7 +180,7 @@ define(function(require, exports, module) {
             selectTemplate: function(e, node) {
                 var id = node.attr('data-id');
 
-                Scene.setTemplate(Data.template[id]);
+                //Scene.setTemplate(Data.template[id]);
             },
             /**
              * 页面模板模块 tab页
@@ -215,8 +196,7 @@ define(function(require, exports, module) {
                 }
             }
         });
-        Scene.init(Data.list);
-        Scene.ctInit(Data.item[0]);
+        Scene.init();
 
 //        new Sortable({
 //            element: '#pageManage .content-list',

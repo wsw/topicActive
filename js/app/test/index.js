@@ -5,6 +5,7 @@
  */
 define(function(require, exports, module) {
     var $ = require('$');
+    var test = require('./test');
 
     console.log($("#div").position());
     console.log($("#div").offset());
@@ -19,5 +20,8 @@ define(function(require, exports, module) {
     console.log($("#div").offset());
     console.log($("#div")[0].offsetTop + " " + $("#div")[0].offsetLeft);
     console.log("width:"+$("#div").width());
+
+    test.add();
+    test.add();
 
 });

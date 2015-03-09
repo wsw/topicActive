@@ -5,8 +5,11 @@ define(function(require, exports, module) {
 
     var $ = require('$');
     var Swiper = require('../../lib/cmp/swiper');
-    var Data = require('../design/data');
+    var Data = require('./data');
+    var Touch = require('./touch');
     var Css = require('../design/css');
+
+
 
     var template = '<div class="swiper-slide"><ul></ul></div>';
 
@@ -14,8 +17,9 @@ define(function(require, exports, module) {
 
     $.each(Data.item, function(index, value) {
         var node = $(template);
+        console.log(value);
         if (value.scene && value.scene.image) {
-            if (value.scene.image.imgSrc) {
+            if (value.scene.image.imgSrc && value.scene.image.imgSrc != "none") {
                 node.css('background', "url("+value.scene.image.imgSrc+")");
             } else {
                 node.css('background', value.scene.image.background);
@@ -33,6 +37,9 @@ define(function(require, exports, module) {
     });
 
     new Swiper('.swiper-container', {
-        mode: 'vertical'
+        mode: 'vertical',
+        animating: true
     });
+
+    //require('./main');
 });

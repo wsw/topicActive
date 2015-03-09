@@ -107,3 +107,50 @@ Basic Swiper Styles
 .swiper-container ul li img{
     width: 100%; height: 100%;
 }
+
+/*.swiper-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translateY(100%);
+    transform: translateY(100%);
+    display: none;
+    z-index: 0;
+}
+.z-current {
+    z-index: 1;
+}
+.swiper-slide:first-child {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    display: block;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    text-align: center;
+}
+.swiper-container ul {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.swiper-container ul li {
+    position: absolute; overflow: hidden;
+}
+.swiper-container ul li img{
+    width: 100%; height: 100%;
+}
+
+
+.translate0 {
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0)
+}*/

@@ -2,792 +2,150 @@
  * Created by weishuwen on 2015/2/3.
  */
 define(function(require, exports, module) {
+    var Data = {};
 
-    var list = [   //页面管理 模块 列表数据
-        {
-            "id": 9339434,
-            "sceneId": 712959,
-            "num": 1,
-            "name": "第1页",
-            "properties": null,
-            "elements": null,
-            "scene": null
-        },
-        {
-            "id": 9378598,
-            "sceneId": 712959,
-            "num": 2,
-            "name": "第2页",
-            "properties": null,
-            "elements": null,
-            "scene": null
-        },
-        {
-            "id": 9378595,
-            "sceneId": 712959,
-            "num": 3,
-            "name": "第3页",
-            "properties": null,
-            "elements": null,
-            "scene": null
-        },
-        {
-            "id": 9340467,
-            "sceneId": 712959,
-            "num": 4,
-            "name": "第4页",
-            "properties": null,
-            "elements": null,
-            "scene": null
-        }
-    ];
+    var sceneId = 0;
+    var pageId = 0;
+    var elementId = 0;
+    var number = 1;
 
-    var item = [
-        {
-            "id": 9339434,
-            "sceneId": 712959,
-            "num": 1,
-            "name": "第1页",
-            "properties": null,
-            "elements": [
-                {
-                    "id": 63620385,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "10",
-                        "transform": "350",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 2,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "fadeIn",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 4,
-                        "animateInfinite": true,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "70",
-                        "left": "46",
-                        "top": "64"
-                    }
-                },
-                {
-                    "id": 63620386,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 2,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "30",
-                        "left": "146",
-                        "top": "264"
-                    }
-                },
-                {
-                    "id": 63620387,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/bg.jpg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 2,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "155",
-                        "height": "70",
-                        "left": "146",
-                        "top": "94"
-                    }
-                }],
-            "scene": {
-                "id": 712959,
-                "name": "2222",
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "type": 1,
-                "pageMode": 2,
-                "image": {
-                    "imgSrc": "../css/image/bg.jpg",
-                    "background": false
-                },
-                "isTpl": 0,
-                "isPromotion": 0,
-                "status": 1,
-                "openLimit": 0,
-                "submitLimit": 0,
-                "startDate": null,
-                "endDate": null,
-                "accessCode": null,
-                "thirdCode": null,
-                "updateTime": 1422344387000,
-                "publishTime": 1422344387000,
-                "applyTemplate": 0,
-                "applyPromotion": 0,
-                "sourceId": null,
-                "code": "oRy7T2",
-                "description": null,
-                "sort": 0,
-                "pageCount": 0,
-                "dataCount": 0,
-                "showCount": 0,
-                "userLoginName": null,
-                "userName": null
-            }
-        },
-        {
-            "id": 9339434,
-            "sceneId": 712959,
-            "num": 1,
-            "name": "第2页",
-            "properties": null,
-            "elements": [
-                {
-                    "id": 63620385,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "350",
-                        "borderType": "solid",
-                        "borderWidth": "2",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "fadeIn",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "70",
-                        "left": "46",
-                        "top": "64"
-                    }
-                },
-                {
-                    "id": 63620386,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 0,
-                        "animateDelay": 0,
-                        "animateTimes": 0,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "30",
-                        "left": "146",
-                        "top": "264"
-                    }
-                },
-                {
-                    "id": 63620387,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/bg.jpg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 0,
-                        "animateDelay": 0,
-                        "animateTimes": 0,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "155",
-                        "height": "70",
-                        "left": "146",
-                        "top": "94"
-                    }
-                }],
-            "scene": {
-                "id": 712959,
-                "name": "2222",
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "type": 1,
-                "pageMode": 2,
-                "image": {
-                    "imgSrc": "../css/image/bg2.jpg",
-                    "background": false
-                },
-                "isTpl": 0,
-                "isPromotion": 0,
-                "status": 1,
-                "openLimit": 0,
-                "submitLimit": 0,
-                "startDate": null,
-                "endDate": null,
-                "accessCode": null,
-                "thirdCode": null,
-                "updateTime": 1422344387000,
-                "publishTime": 1422344387000,
-                "applyTemplate": 0,
-                "applyPromotion": 0,
-                "sourceId": null,
-                "code": "oRy7T2",
-                "description": null,
-                "sort": 0,
-                "pageCount": 0,
-                "dataCount": 0,
-                "showCount": 0,
-                "userLoginName": null,
-                "userName": null
-            }
-        },
-        {
-            "id": 9339434,
-            "sceneId": 712959,
-            "num": 1,
-            "name": "第3页",
-            "properties": null,
-            "elements": [
-                {
-                    "id": 63620385,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "350",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "fadeIn",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "70",
-                        "left": "46",
-                        "top": "64"
-                    }
-                },
-                {
-                    "id": 63620386,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 0,
-                        "animateDelay": 0,
-                        "animateTimes": 0,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "30",
-                        "left": "146",
-                        "top": "264"
-                    }
-                },
-                {
-                    "id": 63620387,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/bg.jpg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 0,
-                        "animateDelay": 0,
-                        "animateTimes": 0,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "155",
-                        "height": "70",
-                        "left": "146",
-                        "top": "94"
-                    }
-                }],
-            "scene": {
-                "id": 712959,
-                "name": "2222",
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "type": 1,
-                "pageMode": 2,
-                "image": {
-                    "imgSrc": "../css/image/bg1.jpg",
-                    "background": false
-                },
-                "isTpl": 0,
-                "isPromotion": 0,
-                "status": 1,
-                "openLimit": 0,
-                "submitLimit": 0,
-                "startDate": null,
-                "endDate": null,
-                "accessCode": null,
-                "thirdCode": null,
-                "updateTime": 1422344387000,
-                "publishTime": 1422344387000,
-                "applyTemplate": 0,
-                "applyPromotion": 0,
-                "sourceId": null,
-                "code": "oRy7T2",
-                "description": null,
-                "sort": 0,
-                "pageCount": 0,
-                "dataCount": 0,
-                "showCount": 0,
-                "userLoginName": null,
-                "userName": null
-            }
-        },
-        {
-            "id": 9339434,
-            "sceneId": 712959,
-            "num": 1,
-            "name": "第4页",
-            "properties": null,
-            "elements": [
-                {
-                    "id": 63620385,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "350",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "fadeIn",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "70",
-                        "left": "46",
-                        "top": "64"
-                    }
-                },
-                {
-                    "id": 63620386,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/dog.jpeg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "105",
-                        "height": "30",
-                        "left": "146",
-                        "top": "264"
-                    }
-                },
-                {
-                    "id": 63620387,
-                    "pageId": 9339434,
-                    "sceneId": 712959,
-                    "type": "2",
-                    "isInput": 0,
-                    "title": null,
-                    "content": '../css/image/bg.jpg',
-                    "status": 1,
-                    "css": {
-                        "background": "rgb(255,255,255)",
-                        "opacity": 100,
-                        "borderRadius": "4",
-                        "transform": "0",
-                        "borderType": "solid",
-                        "borderWidth": "2px",
-                        "borderColor": "rgb(220,0,0)",
-                        "shadowSize": 3,
-                        "shadowOffset": 3,
-                        "shadowColor": "rgb(10,0,0)",
-                        "animateType": "",
-                        "animateTime": 2,
-                        "animateDelay": 0,
-                        "animateTimes": 2,
-                        "animateInfinite": false,
-
-                        "zIndex": "555555",
-                        "color": "",
-                        "width": "155",
-                        "height": "70",
-                        "left": "146",
-                        "top": "94"
-                    }
-                }],
-            "scene": {
-                "id": 712959,
-                "name": "2222",
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "type": 1,
-                "pageMode": 2,
-                "image": {
-                    //"imgSrc": "../css/image/bg.jpg",
-                    "background": "blue"
-                },
-                "isTpl": 0,
-                "isPromotion": 0,
-                "status": 1,
-                "openLimit": 0,
-                "submitLimit": 0,
-                "startDate": null,
-                "endDate": null,
-                "accessCode": null,
-                "thirdCode": null,
-                "updateTime": 1422344387000,
-                "publishTime": 1422344387000,
-                "applyTemplate": 0,
-                "applyPromotion": 0,
-                "sourceId": null,
-                "code": "oRy7T2",
-                "description": null,
-                "sort": 0,
-                "pageCount": 0,
-                "dataCount": 0,
-                "showCount": 0,
-                "userLoginName": null,
-                "userName": null
-            }
-        }
-    ];
-
-    var template = [
-        {
-            "id": 0,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "http://res.eqxiu.com//group1/M00/39/EB/yq0KA1SszcCANQ2jAACbPrrck1I552.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 2,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "http://res.eqxiu.com//group1/M00/C5/D9/yq0KA1SH7WGAcLRVAAFlJSWRcus339.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 3,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "http://res.eqxiu.com//group1/M00/CD/7B/yq0KA1SOQnuAWAlCAABMB2xStqU718.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 4,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "/topicActive/css/image/bg.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 5,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "http://res.eqxiu.com//group1/M00/CD/7B/yq0KA1SOQnuAWAlCAABMB2xStqU718.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 6,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "http://res.eqxiu.com//group1/M00/A2/F7/yq0KA1Qb6EuAWdXuAAPkKC5eRbY090.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 7,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    //"imgSrc": "/topicActive/css/image/bg.jpg",
-                    "background": "black"
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 8,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "/topicActive/css/image/bg.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        },{
-            "id": 0,
-            elements: null,
-            "scene": {
-                "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
-                "createTime": 1422327309000,
-                "image": {
-                    "imgSrc": "/topicActive/css/image/bg.jpg",
-                    "background": false
-                },
-                "isTpl": 1
-            }
-        }
-    ];
-
-    var newItem = {
-        "id": 9339439,
-        "sceneId": 712959,
-        "num": 1,
+    var blankScene = [{
+        "id": pageId++,
+        "sceneId": sceneId,
+        "num": number++,
         "name": "第1页",
-        "properties": null,
         "elements": [],
         "scene": {
-            "id": 712959,
+            "id": sceneId,
             "name": "2222",
             "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
             "createTime": 1422327309000,
-            "type": 1,
-            "pageMode": 2,
             "image": {
                 "background": "white"
-            },
-            "isTpl": 0,
-            "isPromotion": 0,
-            "status": 1,
-            "openLimit": 0,
-            "submitLimit": 0,
-            "startDate": null,
-            "endDate": null,
-            "accessCode": null,
-            "thirdCode": null,
-            "updateTime": 1422344387000,
-            "publishTime": 1422344387000,
-            "applyTemplate": 0,
-            "applyPromotion": 0,
-            "sourceId": null,
-            "code": "oRy7T2",
-            "description": null,
-            "sort": 0,
-            "pageCount": 0,
-            "dataCount": 0,
-            "showCount": 0,
-            "userLoginName": null,
-            "userName": null
+            }
+        }
+    }];
+
+    Data = {
+        loadFirstData: function() {
+            var scene = JSON.parse(localStorage.getItem('scene'));
+            if (scene) {
+                number = scene.length+1;
+                for (var i = 0; i < scene.length; i++) {
+                    pageId = Math.max(pageId, scene[i].id);
+                }
+                pageId += 1;
+                return scene;
+            } else {
+                localStorage.setItem('scene', JSON.stringify(blankScene));
+                return blankScene;
+            }
+        },
+        newPageContent: function() {
+            var scene = JSON.parse(localStorage.getItem('scene'));
+
+            var item = {
+                "id": pageId++,
+                "sceneId": sceneId,
+                "num": number,
+                "name": "第"+(number++)+"页",
+                "elements": [],
+                "scene": {
+                    "id": sceneId,
+                    "name": "2222",
+                    "createUser": "4a2d8aae4b14dcd7014b294902a64c24",
+                    "createTime": 1422327309000,
+                    "image": {
+                        "background": "white"
+                    }
+                }
+            };
+            scene.push(item);
+            localStorage.setItem('scene', JSON.stringify(scene));
+            return item;
+        },
+        savePageContent: function(page) {
+            var scene = JSON.parse(localStorage.getItem('scene'));
+            for (var i = 0; i < scene.length; i++) {
+                if (scene[i].id == page.id) {
+                   scene[i] = page;
+                }
+            }
+            localStorage.setItem('scene', JSON.stringify(scene));
+        },
+        findPageByPageId: function(id) {
+            var scene = JSON.parse(localStorage.getItem('scene'));
+            for (var i = 0; i < scene.length; i++) {
+                if (scene[i].id == id) {
+                    return scene[i];
+                }
+            }
+        },
+        deletePageByPageId: function(id) {
+            var scene = JSON.parse(localStorage.getItem('scene'));
+            var newScene = [];
+            var index = 1;
+            for (var i = 0; i < scene.length; i++) {
+                if (scene[i].id != id) {
+                    scene[i].num = index++;
+                    newScene.push(scene[i]);
+                }
+            }
+            number--;
+            localStorage.setItem('scene', JSON.stringify(newScene));
+            return newScene;
+        },
+        clonePageByPageId: function(id) {
+            console.log(id);
+            var scene = JSON.parse(localStorage.getItem('scene'));
+            var index = 1;
+            for (var i = 0, l = scene.length; i < l; i++) {
+                scene[i].num = index++;
+                if (scene[i].id == id) {
+                    var page = Data.cloneObj(scene[i]);
+                    page.num = number++;
+                    page.id = pageId++;
+                    scene.push(page);
+                }
+            }
+            var str = "";
+            for (var i = 0, l = scene.length; i < l; i++) {
+                str += " " + scene[i].num;
+            }
+            console.log(str);
+            localStorage.setItem('scene', JSON.stringify(scene));
+            return scene;
+        },
+        cloneObj: function(obj) {
+            var o;
+            switch(typeof obj){
+                case 'undefined': break;
+                case 'string'   : o = obj + '';break;
+                case 'number'   : o = obj - 0;break;
+                case 'boolean'  : o = obj;break;
+                case 'object'   :
+                    if(obj === null){
+                        o = null;
+                    }else{
+                        if(obj instanceof Array){
+                            o = [];
+                            for(var i = 0, len = obj.length; i < len; i++){
+                                o.push(this.cloneObj(obj[i]));
+                            }
+                        }else{
+                            o = {};
+                            for(var k in obj){
+                                o[k] = this.cloneObj(obj[k]);
+                            }
+                        }
+                    }
+                    break;
+                default:
+                    o = obj;break;
+            }
+            return o;
         }
     };
 
-    item[4] = newItem;
-
-    function initChild() {
-
-    }
-
-    module.exports = {
-        list: list,
-        item: item,
-        template: template
-    };
-
-
-
-
+    module.exports = Data;
 });
