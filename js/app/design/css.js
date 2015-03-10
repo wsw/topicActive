@@ -100,16 +100,19 @@ define(function(require, exports, module) {
             cssText = cssText + "box-shadow:" + cssObj['shadowSize'] + 'px ' + cssObj['shadowSize'] + 'px ' +
                 cssObj['shadowOffset'] + 'px ' + cssObj['shadowColor'] + ";";
             /*webkit*/
+            cssText = cssText + "-webkit-transform: rotate(" + cssObj['transform'] + "deg);";
             cssText = cssText + "-webkit-animation-duration:"+cssObj['animateTime']+'s;';
             cssText = cssText + "-webkit-animation-delay:"+cssObj['animateDelay']+'s;';
             cssText = cssText + "-webkit-animation-iteration-count:"+cssObj['animateTimes']+";";
             cssText = cssText + "-webkit-animation-iteration-count:"+(cssObj['animateInfinite'] == "infinite");
             /*moz*/
+            cssText = cssText + "-moz-transform: rotate(" + cssObj['transform'] + "deg);";
             cssText = cssText + "-moz-animation-duration:"+cssObj['animateTime']+'s;';
             cssText = cssText + "-moz-animation-delay:"+cssObj['animateDelay']+'s;';
             cssText = cssText + "-moz-animation-iteration-count:"+cssObj['animateTimes']+";";
             cssText = cssText + "-moz-animation-iteration-count:"+(cssObj['animateInfinite'] == "infinite");
 
+            cssText = cssText + "transform: rotate(" + cssObj['transform'] + "deg);";
             cssText = cssText + "animation-duration:"+cssObj['animateTime']+'s;';
             cssText = cssText + "animation-delay:"+cssObj['animateDelay']+'s;';
             cssText = cssText + "animation-iteration-count:"+cssObj['animateTimes']+";";

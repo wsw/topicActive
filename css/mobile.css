@@ -108,7 +108,7 @@ Basic Swiper Styles
     width: 100%; height: 100%;
 }
 
-/*.swiper-slide {
+.swiper-slide {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -144,13 +144,88 @@ Basic Swiper Styles
     width: 100%; height: 100%;
 }
 
+/*向上混动箭头*/
+.arrow {
+    position: absolute;
+    z-index: 99;
+    bottom: 5px;
+    left: 50%;
+    margin-left: -10px;
+    width: 20px;
+    -webkit-animation-name: arrowChange;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 1s;
 
-.translate0 {
-    -webkit-transition: all 0.5s ease-in-out;
-    -moz-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    transform: translateY(0)
-}*/
+    animation-name: arrowChange;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+.arrow img {
+    width: 100%;
+}
+@-webkit-keyframes arrowChange {
+    0% { opacity: 0; bottom: 5px; }
+    20% { opacity: 0.2; bottom: 10px; }
+    40% { opacity: 0.4; bottom: 14px; }
+    60% { opacity: 0.6; bottom: 18px; }
+    80% { opacity: 0.8; bottom: 22px; }
+    100% { opacity: 1; bottom: 26px; }
+}
+@keyframes arrowChange {
+    0% { opacity: 0; bottom: 5px; }
+    20% { opacity: 0.2; bottom: 10px; }
+    40% { opacity: 0.4; bottom: 14px; }
+    60% { opacity: 0.6; bottom: 18px; }
+    80% { opacity: 0.8; bottom: 22px; }
+    100% { opacity: 1; bottom: 26px; }
+}
+/*音乐*/
+.music {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
+    background: none;
+}
+.music .music-rotate {
+    margin: 10px 0 0 10px;
+    width: 30px;
+    height: 30px;
+    background: url("./image/music_off.png") no-repeat;
+    background-size: 100%;
+}
+.music.on {
+    background: url("./image/music.gif") no-repeat;
+    background-size: 100%;
+}
+.music.on .music-rotate {
+    -webkit-animation-name: rotating;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 1s;
+
+    animation-name: rotating;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+}
+@-webkit-keyframes rotating {
+    0% { -webkit-transform: rotate(0deg);}
+    20% { -webkit-transform: rotate(72deg);}
+    40% { -webkit-transform: rotate(144deg);}
+    60% { -webkit-transform: rotate(216deg);}
+    80% { -webkit-transform: rotate(288deg);}
+    100% { -webkit-transform: rotate(360deg);}
+}
+@keyframes rotating {
+    0% { transform: rotate(0deg);}
+    20% {transform: rotate(72deg);}
+    40% { transform: rotate(144deg);}
+    60% { transform: rotate(216deg);}
+    80% { transform: rotate(288deg);}
+    100% { transform: rotate(360deg);}
+}

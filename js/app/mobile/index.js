@@ -36,10 +36,14 @@ define(function(require, exports, module) {
         }
     });
 
-    new Swiper('.swiper-container', {
+    /*new Swiper('.swiper-container', {
         mode: 'vertical',
         animating: true
+    });*/
+
+    $("#music").bind('touchstart', function() {
+        $(this).hasClass('on') ? $(this).removeClass('on') : $(this).addClass('on');
     });
 
-    //require('./main');
+    require('./main');
 });

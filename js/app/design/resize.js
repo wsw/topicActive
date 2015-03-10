@@ -99,7 +99,7 @@ define(function(require, exports, module) {
                         angle = Math.atan((x0-mx)/(my-y0))*180/Math.PI + 180;
                     }
 
-                    //console.log(angle);
+                    console.log(angle);
                     $pel.css({transform: "rotateZ("+(angle)+"deg)"});
 
                     break;
