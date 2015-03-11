@@ -39,20 +39,20 @@ define(function(require, exports, module) {
     };
 
     var preCssObj = {
-        "transform": 'translateY(-100%)',
+        "transform": 'translate3d(0,-100%,0)',
         "z-index": zIndex-1
     };
     var nextCssObj = {
-        "transform": 'translateY(100%)',
+        "transform": 'translate3d(0,100%,0)',
         "z-index": zIndex-1
     };
     var curCssObj = {
-        'transform': 'translateY(0)'
+        'transform': 'translate3d(0,0,0)'
     };
 
     function getMoveCssObj(y) {
         return {
-            'transform': 'translateY('+y+'px);',
+            'transform': 'translate3d(0,'+y+'px,0)',
             'zIndex': zIndex
         };
     }
@@ -65,7 +65,6 @@ define(function(require, exports, module) {
         if (moving) {
             return false;
         }
-
         switch (e.type) {
             case eventList.TOUCH_START:
             case eventList.MOUSE_DOWN:

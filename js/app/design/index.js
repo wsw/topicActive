@@ -22,6 +22,7 @@ define(function(require, exports, module) {
         var pageList = $("#pageManage .content-list");
         var bgDialog = null;
         var imgDialog = null;
+        var styleAnimation = $("#styleAnimation");
         var sceneId = 712959;
 
         Action.listen({
@@ -112,12 +113,10 @@ define(function(require, exports, module) {
              */
             changeScene: function(e, node) {
                 if (!node.hasClass('active')) {
-                    var active = node.siblings('.active');
-
+                    var active = node.siblings('.active').removeClass('active');
                     Scene.changePage(active, node);
-
-                    active.removeClass('active');
                     node.addClass('active');
+                    styleAnimation.hide();
                 }
             },
             /**

@@ -17,12 +17,13 @@ define(function(require, exports, module) {
         constructOr: css,
         getStyle: function() {
             var element = this.node;
+            var box = element.getElementsByTagName('div')[0];
 
             var reg = /\-?[0-9]+\.?[0-9]*/g;
-            var bw = element.style.borderWidth && element.style.borderWidth.match(reg);
-            var br = element.style.borderRadius && element.style.borderRadius.match(reg);
+            var bw = box.style.borderWidth && box.style.borderWidth.match(reg);
+            var br = box.style.borderRadius && box.style.borderRadius.match(reg);
             var tf = element.style.transform.match(reg);
-            var sh = element.style.boxShadow.match(reg);
+            var sh = box.style.boxShadow.match(reg);
 
             //
             if (Browser.firefox) {
@@ -31,7 +32,7 @@ define(function(require, exports, module) {
                 sh[3] = tp[0], sh[4] = tp[1], sh[5] = tp[2];
             }
 
-            var elStyle = element.style;
+            var elStyle = box.style;
             var at = (elStyle.webkitAnimationDuration || elStyle.mozAnimationDuration || elStyle.animationDuration).match(reg);
             var ad = (elStyle.webkitAnimationDelay || elStyle.mozAnimationDelay || elStyle.animationDelay).match(reg);
             var ats = (elStyle.webkitAnimationIterationCount || elStyle.mozAnimationIterationCount || elStyle.animationIterationCount).match(reg);
@@ -45,17 +46,17 @@ define(function(require, exports, module) {
                 src: $(element).find('img').attr('src'),
 
                 // 样式和动画 对话框上的值信息
-                background: element.style.backgroundColor,
+                background: box.backgroundColor,
                 opacity: window.parseInt($(element).css('opacity')*100),
                 borderWidth: bw && bw[0] || 0,
                 borderRadius: br && br[0] || 0,
-                borderType: element.style.borderStyle || "solid",
-                borderColor: element.style.borderColor || "rgb(255,255,255)",
+                borderType: box.style.borderStyle || "solid",
+                borderColor: box.style.borderColor || "rgb(255,255,255)",
                 transform: tf && tf[0] || 0,
                 shadowSize: sh && sh[4],
                 shadowOffset: sh && sh[5],
                 shadowColor: sh && "rgb("+sh[0]+","+sh[1]+","+sh[2]+")",
-                animateType: element.getAttribute('data-animation'),
+                animateType: box.getAttribute('data-animation'),
                 animateTime: at && at[0] || 0,
                 animateDelay: ad && ad[0] || 0,
                 animateTimes: ats && ats[0] || 0,
@@ -69,8 +70,9 @@ define(function(require, exports, module) {
          */
         setShadow: function(type, value) {
             var element = this.node;
+            var box = element.getElementsByTagName('div')[0];
             var reg = /\-?[0-9]+\.?[0-9]*/g;
-            var sh = element.style.boxShadow.match(reg);
+            var sh = box.style.boxShadow.match(reg);
 
             if (Browser.firefox) {
                 var tp = sh.splice(0);
@@ -79,11 +81,11 @@ define(function(require, exports, module) {
             }
 
             if (type === "size") {
-                $(element).css('box-shadow', value+'px ' + value+'px ' + sh[5] + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
+                $(box).css('box-shadow', value+'px ' + value+'px ' + sh[5] + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
             } else if (type === "color") {
-                $(element).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + sh[5] + 'px ' +value);
+                $(box).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + sh[5] + 'px ' +value);
             } else if (type === "offset") {
-                $(element).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + value + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
+                $(box).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + value + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
             }
         },
         setAllStyle: function(cssObj) {

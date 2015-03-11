@@ -5,7 +5,6 @@ define(function(require, exports, module) {
 
     var $ = require('$');
     var Action = require('../../lib/util/dom/action');
-    var Dnd = require('../../lib/util/dom/dnd');
     var Css = require('./css');
     require('./drag');
 
@@ -99,11 +98,7 @@ define(function(require, exports, module) {
      * 对话框的拖拽，滑动条，颜色选择器，选择框的变化
      */
     function bindEveryEvent(){
-        /*new Dnd({                          // 创建拖拽事件
-            element: '#styleAnimation',
-            handler: 'h5'
-        });*/
-
+        /*对话框拖拽事件*/
         $dialog.find('h5').drag('options', {
             "handle": '.style-animation',
             "drag": '.style-animation'
@@ -134,9 +129,12 @@ define(function(require, exports, module) {
     function interfaceContentChange() {
         // 输入框值变化时
         $dialog.on('input', function(e) {
+            //
             if (e.target.tagName.toLowerCase() === "input") {
                 var $target = $(e.target);
                 var type = $target.attr('data-type');
+                //改变动画内容
+                var $box = $(element).find('.element-box');
                 // 除去输入框为颜色的
                 if (type != "borderColor" && type != "background" && type != "shadowColor") {
 
@@ -154,10 +152,10 @@ define(function(require, exports, module) {
                             $(element).css('opacity', value/100);
                             break;
                         case "borderWidth":
-                            $(element).css('border-width', value+'px');
+                            $box.css('border-width', value+'px');
                             break;
                         case "borderRadius":
-                            $(element).css('border-radius', value+'%').find('.element-box').css('border-radius', value+'%');
+                            $box.css('border-radius', value+'%').find('.element-box').css('border-radius', value+'%');
                             break;
                         case "transform":
                             $(element).css('transform', "rotateZ("+value+"deg)");
@@ -169,48 +167,49 @@ define(function(require, exports, module) {
                             (new Css(element)).setShadow("offset", value);
                             break;
                         case "animateTime":
-                            $(element).css({'-webkit-animation-duration': value+'s','-moz-animation-duration':value+'s','animation-duration':value+'s'});
+                            $box.css({'-webkit-animation-duration': value+'s','-moz-animation-duration':value+'s','animation-duration':value+'s'});
                             break;
                         case "animateDelay":
-                            $(element).css({'-webkit-animation-delay':value+'s','-moz-animation-delay':value+'s','animation-delay':value+'s'});
+                            $box.css({'-webkit-animation-delay':value+'s','-moz-animation-delay':value+'s','animation-delay':value+'s'});
                             break;
                         case "animateTimes":
-                            $(element).css({'-webkit-animation-iteration-count':value+"",'-moz-animation-iteration-count': value+"",'animation-iteration-count':value+""});
+                            $box.css({'-webkit-animation-iteration-count':value+"",'-moz-animation-iteration-count': value+"",'animation-iteration-count':value+""});
                             break;
                     }
                 } else {
                     value = $target.val();
                     // 对输入框的值进行限制的。
                     if (type == "borderColor") {
-                        $(element).css('border-color', value);
+                        $box.css('border-color', value);
                     } else if (type == "background") {
-                        $(element).css('background', value);
+                        $box.css('background', value);
                     } else if (type == "shadowColor") {
                         (new Css(element)).setShadow("color", value);
                     }
                 }
             }
         })
-            // 选择框值变化时
-            .on('change', function(e) {
-                // 类型
-                var type = e.target.getAttribute('data-type');
-                if (type == "borderType") {
-                    $(element).css('border-style', $(e.target).val());
-                } else if (type == "animateType") {
-                    $(element).removeClass(animation).addClass($(e.target).val());
-                    animation = $(e.target).val();
-                    $(element).attr('data-animation', animation);
-                }
-            });
+        // 选择框值变化时
+        .on('change', function(e) {
+            // 类型
+            var $box = $(element).find('.element-box');
+            var type = e.target.getAttribute('data-type');
+            if (type == "borderType") {
+                $box.css('border-style', $(e.target).val());
+            } else if (type == "animateType") {
+                $box.removeClass(animation).addClass($(e.target).val());
+                animation = $(e.target).val();
+                $box.attr('data-animation', animation);
+            }
+        });
         // 循环播放框变化
         $animateInfinite.on('click', function() {
            if (animateInfinite) {
                animateInfinite = false;
-               $(element).css('animation-iteration-count', $animateTimes.val());
+               $(element).find('.element-box').css('animation-iteration-count', $animateTimes.val());
            } else {
                animateInfinite = true;
-               $(element).css('animation-iteration-count', 'infinite');
+               $(element).find('.element-box').css('animation-iteration-count', 'infinite');
            }
         });
     }
@@ -223,7 +222,7 @@ define(function(require, exports, module) {
      */
     var obj = function(element, type, opt) {
         var Default = {
-            background: "rgb(255,0,0)",
+            background: "rgb(255,255,255)",
             opacity: 100,
             borderWidth: 0,
             borderRadius: 0,
@@ -236,7 +235,7 @@ define(function(require, exports, module) {
             animateType: "",
             animateTime: 2,
             animateDelay: 0,
-            animateTimes: 2,
+            animateTimes: 1,
             animateInfinite: false
         };
 

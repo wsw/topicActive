@@ -40,7 +40,7 @@ define(function (require, exprots, module) {
             left: 0,    //
             dataId: null, //
             // style and animation 上的数据  也是默认的
-            background: "rgb(255,0,0)",
+            background: "rgb(255,255,255)",
             opacity: 100,
             borderWidth: 0,
             borderRadius: 0,
@@ -51,9 +51,9 @@ define(function (require, exprots, module) {
             shadowOffset: 0,
             shadowColor: "rgb(0,0,0)",
             animateType: "",
-            animateTime: 0,
+            animateTime: 1,
             animateDelay: 0,
-            animateTimes: 0,
+            animateTimes: 1,
             animateInfinite: false
         };
         Default = $.extend({}, Default, opt);
@@ -61,12 +61,15 @@ define(function (require, exprots, module) {
     };
 
     CompImg.prototype = {
+        constructor: CompImg,
         init: function(opt) {
             this.id = opt.id;
             this.$ct = $(opt.container);
             this.$elemet = $(template);
             this.$elemet.attr('id', this.id);
             this.$ct.append(this.$elemet);
+
+            var $box = this.$elemet.find('.element-box');
             // 样式初始化
             this.$elemet.css({
                 width: opt.width+'px',
@@ -74,25 +77,26 @@ define(function (require, exprots, module) {
                 top: opt.top + 'px',
                 left: opt.left + 'px',
                 transform: "rotateZ("+opt.transform+"deg)",
-                background: opt.background,
-                "border-style": opt.borderType || "solid",
-                "border-radius": (opt.borderRadius || 0) + '%',
-                "border-width:" : (opt.borderWidth || 0) + 'px',
-                "zIndex": opt.zIndex,
-                "box-shadow": opt.shadowSize + "px " + opt.shadowSize + "px " + opt.shadowOffset + 'px ' + opt.shadowColor,
-                "animation-duration": opt.animateTime + 's',
-                "animation-delay": opt.animateDelay + 's',
-                "animation-iteration-count": (opt.animateInfinite ? "infinite" : ""+opt.animateTimes)
-                // 字符串的
-                // "animation-iteration-count": "8"
+                "zIndex": opt.zIndex
             }).find('img').attr('src', opt.src);
 
             // 动画类型
-            this.$elemet.attr('data-animation', opt.animateType).addClass('animated '+opt.animateType);
+            console.log(opt);
+            $box[0].style.borderWidth = (opt.borderWidth|| 0) + 'px';
+            $box.css({
+                //"border-width:" : (opt.borderWidth|| 0) + 'px' ,
+                "border-style": opt.borderType || "solid",
+                "border-radius": (opt.borderRadius || 0) + '%',
+                "border-color": opt.borderColor,
+                "animation-duration": opt.animateTime + 's',
+                "animation-delay": opt.animateDelay + 's',
+                "background": opt.background,
+                "animation-iteration-count": (opt.animateInfinite ? "infinite" : ""+opt.animateTimes),
+                "box-shadow": opt.shadowSize + "px " + opt.shadowSize + "px " + opt.shadowOffset + 'px ' + opt.shadowColor
+                // 字符串的
+                // "animation-iteration-count": "8"
+            }).attr('data-animation', opt.animateType).addClass('animated '+opt.animateType);
 
-            // 内容
-            this.$elemet.find('.element-box').css({"boder-radius": (opt.borderRadius || 0) + '%'});
-            //
             if (opt.dataId) {
                 this.$elemet.attr('data-id', opt.dataId);
             }
@@ -117,7 +121,6 @@ define(function (require, exprots, module) {
                 $(this).addClass('selected').find('div.bar').show();
                 $(this).siblings().removeClass('selected').find('div.bar').hide();
             });
-
         }
     };
 
