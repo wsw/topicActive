@@ -193,14 +193,19 @@ define(function(require, exports, module) {
                     node.parents(".content-1").find('.content-list').hide()
                         .eq(pNode.index()).show();
                 }
+            },
+            /**
+             * 保存当前选中页面的内容信息
+             * @param e
+             * @param node
+             */
+            saveScene: function(e, node) {
+                var element = pageList.find('li.active');
+                Scene.onePageContentSave(element);
+                alert('保存成功');
             }
         });
         Scene.init();
-
-//        new Sortable({
-//            element: '#pageManage .content-list',
-//            item: 'li'
-//        })
 
         window.onbeforeunload = function() {
             return "";

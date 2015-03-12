@@ -15,6 +15,9 @@ define(function(require, exports, module) {
      */
     css.prototype = {
         constructOr: css,
+        /**
+         * 根据当前的创建的节点元素，获取该元素所有样式属性值
+         */
         getStyle: function() {
             var element = this.node;
             var box = element.getElementsByTagName('div')[0];
@@ -88,6 +91,10 @@ define(function(require, exports, module) {
                 $(box).css('box-shadow', sh[4]+'px ' + sh[4]+'px ' + value + 'px ' + "rgb("+sh[0]+","+sh[1]+","+sh[2]+")");
             }
         },
+        /**
+         * 根据样式值对象设置当前元素的样式值
+         * @param cssObj
+         */
         setAllStyle: function(cssObj) {
             var element = this.node;
             var cssText = "";

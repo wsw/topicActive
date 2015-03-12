@@ -4,12 +4,12 @@
 define(function(require, exports, module) {
 
     var $ = require('$');
-    var Swiper = require('../../lib/cmp/swiper');
     var Data = require('./data');
-    var Touch = require('./touch');
     var Css = require('../design/css');
+    var Slider = require('./main');
 
-
+    // 根据屏幕宽度动态设置viewport， 其中width固定320，initialscale按比例进行设置
+    document.getElementById('viewport').content = "width=320,initial-scale="+(document.body.clientWidth/320)+",user-scalable=no";
 
     var template = '<div class="swiper-slide"><ul></ul></div>';
 
@@ -17,7 +17,6 @@ define(function(require, exports, module) {
 
     $.each(Data.item, function(index, value) {
         var node = $(template);
-        console.log(value);
         if (value.scene && value.scene.image) {
             if (value.scene.image.imgSrc && value.scene.image.imgSrc != "none") {
                 node.css('background', "url("+value.scene.image.imgSrc+")");
@@ -36,14 +35,10 @@ define(function(require, exports, module) {
         }
     });
 
-    /*new Swiper('.swiper-container', {
-        mode: 'vertical',
-        animating: true
-    });*/
-
     $("#music").bind('touchstart', function() {
         $(this).hasClass('on') ? $(this).removeClass('on') : $(this).addClass('on');
     });
 
-    require('./main');
+    new Slider("#container .swiper-slide");
+
 });

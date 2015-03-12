@@ -88,9 +88,7 @@ define(function(require, exports, module) {
             });
         },
         /**
-         * 页面管理中当前页面的容器内容保存
-         * @param container $
-         * @param node $
+         * 创建一个新的页面
          */
         onePageContentCreate: function() {
             var item = Data.newPageContent();
@@ -104,12 +102,20 @@ define(function(require, exports, module) {
             // 初始化容器内的内容
             $li.click();
         },
+        /**
+         * 切换页面
+         * @param oldNode 前一个节点
+         * @param newNode 新的节点
+         */
         changePage: function(oldNode, newNode) {
             this.onePageContentSave(oldNode);
             var newPage = Data.findPageByPageId(newNode.attr('data-page-id'));
-            console.log(newPage)
             this.containerInit(newPage);
         },
+        /**
+         * 保存页面
+         * @param node 当前要保存的节点
+         */
         onePageContentSave: function(node) {
             var container = $container;
             var sceneId = container.attr('data-scene-id');
@@ -141,23 +147,24 @@ define(function(require, exports, module) {
             // @保存page内容到服务器
             Data.savePageContent(page);
         },
+        /**
+         * 删除一个页面
+         * @param node 要删除页面的节点
+         */
         deletePage: function(node) {
             var pageId = node.attr('data-page-id');
             this.pageManageInit(Data.deletePageByPageId(pageId));
         },
+        /**
+         * 复制一个页面
+         * @param node 要复制页面的节点
+         */
         clonePage: function(node) {
             this.onePageContentSave(node);
             var pageId = node.attr('data-page-id');
-//            Data.clonePageByPageId(pageId)
             this.pageManageInit(Data.clonePageByPageId(pageId));
         }
     };
-
-
-    function pageManageInit(list) {
-
-    }
-
     /**
      * 复制一个对象的方法
      */
@@ -170,72 +177,6 @@ define(function(require, exports, module) {
             opt.zIndex = window.parseInt(opt.zIndex)+1;
             new CompImg(opt);
         }
-    }
-
-
-    function containerInit(item) {
-        // 判断当前背景为图片还是纯色
-        if (item.scene && item.scene.image.imgSrc && item.scene.image.imgSrc != "none") {
-            $container.css({"background-image": "url("+item.scene.image.imgSrc+")"});
-        } else {
-            $container.css('background',item.scene.image.background);
-        }
-        // 当前容器内容置空，并绑定相关的id
-        $container.html("").attr('data-scene-id', item.sceneId)
-            .attr('data-page-id', item.id);
-        // 初始化当前容器中各个控件, 目前只有图片类型的
-        $.each(item.elements || [], function(index, value) {
-            if (value.content) {
-                new CompImg({
-                    container: ".design",
-                    id: "CompImg-"+value.id,
-                    width: value.css.width,
-                    height: value.css.height,
-                    src: value.content,
-                    top: value.css.top,
-                    left: value.css.left,
-                    dataId: value.id,
-                    // css style
-                    background: value.css.background,
-                    opacity: value.css.opacity,
-                    borderWidth: value.css.borderWidth,
-                    borderRadius: value.css.borderRadius,
-                    borderType: value.css.borderType,
-                    borderColor: value.css.borderColor,
-                    transform: value.css.transform,
-                    shadowSize: value.css.shadowSize,
-                    shadowOffset: value.css.shadowOffset,
-                    shadowColor: value.css.shadowColor,
-                    animateType: value.css.animateType,
-                    animateTime: value.css.animateTime,
-                    animateDelay: value.css.animateDelay,
-                    animateTimes: value.css.animateTimes,
-                    animateInfinite: value.css.animateInfinite
-                });
-            }
-        });
-    }
-
-
-    function onePageContentSave(container, node) {
-
-
-    }
-
-    /**
-     * 创建一个新的场景包括当前页的内容信息
-     * @param item
-     */
-    function onePageContentCreate(item) {
-
-    }
-
-    /**
-     * 设置模版内容到设计容器里
-     * @param item
-     */
-    function setTemplate(item) {
-        containerInit(item);
     }
 
     /**
@@ -253,15 +194,5 @@ define(function(require, exports, module) {
 
     });
 
-
-    /*module.exports = {
-        init: pageManageInit,
-        ctInit: containerInit,
-        pageSave: onePageContentSave,
-        pageCreate: onePageContentCreate,
-        setTemplate: setTemplate
-    };*/
-
     module.exports = Scene;
-
 });

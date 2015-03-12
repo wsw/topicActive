@@ -7,8 +7,6 @@ define(function(require, exports, module) {
     var StyleAnimation = require('./styleobj');
     var MenuFunc = require('./menufunc');
 
-    var $container = $(".design");
-
     var contextMenu = [
         [
             {

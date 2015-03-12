@@ -5,19 +5,33 @@
 define(function(require, exports, module) {
 
     var $ = require('$');
-    require('./transit');
-
-    var startX = 0,
-        startY = 0;
+    require('./transit'); // jquery css3动画插件
 
     var touchStart = false;  //触摸开始
     var moving = false;  // 页面是否正在动画
-    var container = $("#container .swiper-slide");
+    var container = null;
     var index = 0; //当前显示页面索引
-    var size = container.size(); // 页面的数量
+    var size = 0; // 页面的数量
     var docHeight = $(document.body).height();  //
     var distanceY = 0, distanceX = 0;  // 滑动的距离
+    var startX = 0, startY = 0;
     var zIndex = 10;
+
+    var Slider = function(ct) {
+        this.open(ct);
+    };
+
+    module.exports = Slider;
+
+    Slider.prototype.open = function(ct) {
+        container = $(ct);
+        size = container.size();
+        $(document).on(eventList.toString(), handlerOriginEvent);
+    };
+
+    Slider.prototype.off = function() {
+        $(document).off(eventList.toString(), handlerOriginEvent);
+    };
 
     var eventList = {
         TOUCH_START: 'touchstart',
@@ -58,7 +72,6 @@ define(function(require, exports, module) {
     }
 
     function handlerOriginEvent(e) {
-        var target = e.target;
         var pageX = e.pageX || (e.originalEvent.targetTouches && e.originalEvent.targetTouches.length > 0 && e.originalEvent.targetTouches[0].pageX);
         var pageY = e.pageY || (e.originalEvent.targetTouches && e.originalEvent.targetTouches.length > 0 && e.originalEvent.targetTouches[0].pageY);
 
@@ -102,14 +115,9 @@ define(function(require, exports, module) {
                 touchStart = false;
                 distanceY = 0;
                 break;
-
         }
         return false;
     }
-
-    $(function() {
-        $(document).on(eventList.toString(), handlerOriginEvent);
-    });
 
     /**
      *  页面没有切换

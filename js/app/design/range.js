@@ -68,10 +68,7 @@ define(function(require, exports, module) {
     };
 
     $.fn.rangefunc = function(opt) {
-        var Default = {
 
-        };
-        Default = $.extend({}, Default, opt);
         this.each(function() {
            new rangeFunc(this, opt);
         });
