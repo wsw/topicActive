@@ -109,10 +109,9 @@ define(function(require, exports, module) {
                 }
             }
             var str = "";
-            for (var i = 0, l = scene.length; i < l; i++) {
+            for (i = 0, l = scene.length; i < l; i++) {
                 str += " " + scene[i].num;
             }
-            console.log(str);
             localStorage.setItem('scene', JSON.stringify(scene));
             return scene;
         },
@@ -135,7 +134,9 @@ define(function(require, exports, module) {
                         }else{
                             o = {};
                             for(var k in obj){
-                                o[k] = this.cloneObj(obj[k]);
+                                if (obj.hasOwnProperty(k)) {
+                                    o[k] = this.cloneObj(obj[k]);
+                                }
                             }
                         }
                     }

@@ -35,8 +35,22 @@ define(function(require, exports, module) {
         }
     });
 
+    /*音乐部分*/
+
+    var audio = $("#media")[0];
+
     $("#music").bind('touchstart', function() {
-        $(this).hasClass('on') ? $(this).removeClass('on') : $(this).addClass('on');
+        if ($(this).hasClass('on')) {
+            audio.pause();
+            $(this).removeClass('on');
+        } else {
+            audio.play();
+            $(this).addClass('on');
+        }
+    });
+
+    $(document).on('touchstart', function() {
+        //audio.play();
     });
 
     new Slider("#container .swiper-slide");
