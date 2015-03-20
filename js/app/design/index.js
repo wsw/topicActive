@@ -9,7 +9,6 @@ define(function(require, exports, module) {
     var Dialog = require('../../lib/cmp/dialog/dialog');
     var Scene = require('./scene');
     var Data = require('./data');
-    var Sortable = require('../../lib/util/dom/sortable');
 
     var index = 1;
 

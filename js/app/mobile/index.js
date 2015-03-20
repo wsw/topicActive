@@ -6,7 +6,7 @@ define(function(require, exports, module) {
     var $ = require('$');
     var Data = require('./data');
     var Css = require('../design/css');
-    var Slider = require('./main');
+    var Slider = require('./main2');
 
     // 根据屏幕宽度动态设置viewport， 其中width固定320，initialscale按比例进行设置
     document.getElementById('viewport').content = "width=320,initial-scale="+(document.body.clientWidth/320)+",user-scalable=no";
@@ -53,6 +53,9 @@ define(function(require, exports, module) {
         //audio.play();
     });
 
-    new Slider("#container .swiper-slide");
+    new Slider({
+        container: "#container .swiper-slide",
+        type: 2
+    });
 
 });

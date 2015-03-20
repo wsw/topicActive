@@ -65,6 +65,7 @@ define(function(require, exports, module) {
             return item;
         },
         savePageContent: function(page) {
+            console.log(page);
             var scene = JSON.parse(localStorage.getItem('scene'));
             for (var i = 0; i < scene.length; i++) {
                 if (scene[i].id == page.id) {
@@ -77,6 +78,7 @@ define(function(require, exports, module) {
             var scene = JSON.parse(localStorage.getItem('scene'));
             for (var i = 0; i < scene.length; i++) {
                 if (scene[i].id == id) {
+                    console.log(scene[i]);
                     return scene[i];
                 }
             }

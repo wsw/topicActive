@@ -44,8 +44,11 @@ define(function(require, exports, module) {
                 //元素的基本样式
                 width: $(element).width(),
                 height: $(element).height(),
-                left: $(element).position().left,
-                top: $(element).position().top,
+                /**
+                 *  当存在角度的时候，用jq获取left，right不是想要的
+                 */
+                left: element.offsetWidth,
+                top: element.offsetTop,
                 src: $(element).find('img').attr('src'),
 
                 // 样式和动画 对话框上的值信息
