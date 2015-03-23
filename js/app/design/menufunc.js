@@ -11,6 +11,7 @@ define(function(require, exports, module) {
 
     var imgDialog = null;
     var element = null;
+    var designContainer = $('.design');
 
     /**
      * 获取当前对象的css属性值
@@ -52,6 +53,10 @@ define(function(require, exports, module) {
                 $(element).find('img').attr('src', $img.attr('src'));
                 imgDialog.hide();
             }
+        },
+        editImg: function() {
+            var node = designContainer.find('li.selected');
+            EditImg(node);
         }
     });
 

@@ -68,9 +68,10 @@ define(function(require, exports, module) {
          * @param node
          */
         liClick: function(e, node) {
-            if ($dialog.css('display') != "none") {
+            /*if ($dialog.css('display') != "none") {
                 new obj(node[0], "", (new Css(node[0])).getStyle());
-            }
+            }*/
+            new obj(node[0], "", (new Css(node[0])).getStyle());
         },
         /**
          * 清楚所有样式的
@@ -89,6 +90,13 @@ define(function(require, exports, module) {
             $shadowColor.val('rgb(255,255,255)');
         }
     });
+
+
+    Action.listen({
+        liClick: function(e, node) {
+            node.click();
+        }
+    }, document, 'mousedown');
 
 
     bindEveryEvent(); //绑定各种事件

@@ -40,6 +40,8 @@ define(function(require, exports, module) {
             var ad = (elStyle.webkitAnimationDelay || elStyle.mozAnimationDelay || elStyle.animationDelay).match(reg);
             var ats = (elStyle.webkitAnimationIterationCount || elStyle.mozAnimationIterationCount || elStyle.animationIterationCount).match(reg);
 
+            console.log("opacity:" + $(element).css('opacity'));
+
             return {
                 //元素的基本样式
                 width: $(element).width(),

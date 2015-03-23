@@ -55,7 +55,9 @@ define(function(require, exports, module) {
 
     new Slider({
         container: "#container .swiper-slide",
-        type: 2
+        type: 1
     });
+
+    $(".arrow").addClass('vertical');
 
 });

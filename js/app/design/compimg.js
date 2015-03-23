@@ -77,11 +77,11 @@ define(function (require, exprots, module) {
                 top: opt.top + 'px',
                 left: opt.left + 'px',
                 transform: "rotateZ("+opt.transform+"deg)",
+                opacity: opt.opacity / 100,
                 "zIndex": opt.zIndex
             }).find('img').attr('src', opt.src);
 
             // 动画类型
-            console.log(opt);
             $box[0].style.borderWidth = (opt.borderWidth|| 0) + 'px';
             $box.css({
                 //"border-width:" : (opt.borderWidth|| 0) + 'px' ,
@@ -118,8 +118,8 @@ define(function (require, exprots, module) {
         },
         bindClickEvent: function() {
             this.$elemet.on('mousedown', function() {
-                $(this).addClass('selected').find('div.bar').show();
-                $(this).siblings().removeClass('selected').find('div.bar').hide();
+                // 通过css控制缩放点的显示情况
+                $(this).addClass('selected').siblings().removeClass('selected');
             });
         }
     };

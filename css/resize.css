@@ -10,7 +10,6 @@
     width: 100%;
 }
 
-
 /* resize 组件样式*/
 
 .comp-resize .bar {
@@ -103,4 +102,7 @@
     background-color: #9ad64b
 }
 
+.selected div.bar {
+    display: block;
+}
 

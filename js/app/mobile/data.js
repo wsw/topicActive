@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 
     //;console.log(localStorage.getItem('scene'));
 
-    //var item = JSON.parse(localStorage.getItem('scene')) || [];
+    var item = JSON.parse(localStorage.getItem('scene')) || [];
 
     module.exports = {
         item: item

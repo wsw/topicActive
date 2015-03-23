@@ -140,7 +140,8 @@ define(function(require, exports, module) {
                         id: "CompImg-"+index++,
                         width: $img.width(),
                         height: $img.height(),
-                        src: $img.attr('src')
+                        src: $img.attr('src'),
+                        top: 200
                     });
                     imgDialog.hide();
                 }
@@ -202,12 +203,20 @@ define(function(require, exports, module) {
                 var element = pageList.find('li.active');
                 Scene.onePageContentSave(element);
                 alert('保存成功');
+            },
+            ulClick: function(e, node) {
+                node.find('li').removeClass('selected');
+                styleAnimation.hide();
+            },
+            liClick: function(e, node) {
+                styleAnimation.show();
+                node.addClass('selected').siblings().removeClass('selected');
             }
         });
         Scene.init();
 
-        window.onbeforeunload = function() {
+        /*window.onbeforeunload = function() {
             return "";
-        }
+        }*/
     });
 });

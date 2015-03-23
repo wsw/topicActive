@@ -2,6 +2,9 @@ body,div,p,img,h1,h5,h6,h3,h4,ul,li,span,b,i,em,strong { padding: 0; margin: 0; 
 ul li {
     list-style: none;
 }
+a:hover, a:visited, a:link, a:active {
+    text-decoration: none;
+}
 body {
     min-width: 1000px;
     background: #c6cdd5;
@@ -10,7 +13,6 @@ body {
     width: 1000px;
     margin: 0 auto;
 }
-
 .custom-nav {
     background: #3a383e; border: none; border-radius: 0;
 }
@@ -80,7 +82,7 @@ body {
 }
 
 .content-3 {
-    width: 270px; color: #5e676e;
+    width: 270px; color: #5e676e; position: absolute; left: 0; top: 50px;
 }
 .content-3 h5 {
     background: #3a383e; height: 50px; line-height: 50px; color: #ffffff; padding-left:10px;
@@ -95,7 +97,7 @@ body {
 .content-3 .content-opera li a { color: #5e676e; text-decoration: none;}
 
 .content-3 .content-list {
-    height: 425px; padding: 20px 5px; background: #F7F7F7; overflow-y: auto;
+    height: 530px; padding: 20px 5px; background: #F7F7F7; overflow-y: auto;
 }
 .content-3 .content-list li {
     height: 55px; background: #e1e1e1; color: #5e676e; margin-bottom: 10px; line-height: 55px; cursor: pointer;
@@ -103,7 +105,6 @@ body {
 .content-3 .content-list li:hover, .content-3 .content-list li.active  {
     background: #9ad64b; color: #ffffff;
 }
-
 .content-3 .content-list li .number {
     width: 20px; height: 20px; border-radius: 50%; float: left; margin-left: 10px; background: #ffffff; color: #000000;
     margin-top: 17px; line-height: 20px; text-align: center; font-size: 12px;
@@ -119,6 +120,17 @@ body {
 }
 .content-3 .content-bottom a {
     color: #ffffff; text-decoration: none;
+}
+
+.content-4 {
+    width: 270px; position: absolute; right: 0; top: 50px; height: 550px; background: #F7F7F7;
+}
+.content-4 > h5 {
+    height: 50px; line-height: 50px; color: #5e676e; background: #e1e1e1; padding-left: 25px;
+}
+.content-4 > a {
+    width: 200px; margin-left: 10px; background: #e1e1e1; color: #5e676e;
+    float: left; height: 40px; margin-top: 20px; line-height: 40px; text-align: center;
 }
 
 /**插入图片对话框的样式**/
@@ -215,7 +227,7 @@ body {
 
 /* 样式和动画弹出框 */
 .style-animation {
-    position: absolute; top: 100px; right: 150px; background: #F7F7F7; width: 260px; color: #5e676e;
+    position: absolute; top: 50px; right: 0; background: #F7F7F7; width: 270px; color: #5e676e;
 }
 .style-animation h5 {
     height: 20px; padding-right: 10px; color: #ffffff; font-size: 16px; background: #3a383e;
@@ -223,6 +235,10 @@ body {
 }
 .style-animation h5 span {
     cursor: pointer;
+}
+.style-animation .edit {
+    width: 200px; margin-left: 10px; background: #e1e1e1; color: #5e676e;
+    display: block; height: 40px; margin-top: 20px; line-height: 40px; text-align: center;
 }
 .style-animation .content-nav {
     padding-top: 5px; background: #e1e1e1;
@@ -238,7 +254,7 @@ body {
     border-top-left-radius: 5px;
 }
 .style-animation .content-list {
-    padding: 10px; cursor: pointer; min-height: 400px;
+    padding: 10px; cursor: pointer; min-height: 400px; max-height: 550px; overflow-y: auto;
 }
 .style-animation .content-list li .li-header {
     background: #e1e1e1; height: 45px; line-height: 45px; padding-left: 10px; cursor: pointer;
