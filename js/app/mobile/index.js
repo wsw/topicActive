@@ -6,7 +6,7 @@ define(function(require, exports, module) {
     var $ = require('$');
     var Data = require('./data');
     var Css = require('../design/css');
-    var Slider = require('./main2');
+    var Slider = require('./slider');
 
     // 根据屏幕宽度动态设置viewport， 其中width固定320，initialscale按比例进行设置
     document.getElementById('viewport').content = "width=320,initial-scale="+(document.body.clientWidth/320)+",user-scalable=no";
@@ -53,11 +53,20 @@ define(function(require, exports, module) {
         //audio.play();
     });
 
+
+    var swipeType = 5;
+
+
     new Slider({
         container: "#container .swiper-slide",
-        type: 1
+        type: swipeType
     });
 
-    $(".arrow").addClass('vertical');
+    if (swipeType > 2) {
+        $(".arrow").addClass('horizontal');
+    } else {
+        $(".arrow").addClass('vertical');
+    }
+
 
 });
