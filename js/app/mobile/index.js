@@ -68,7 +68,7 @@ define(function(require, exports, module) {
         container: "#container .swiper-slide",
         type: swipeType,
         ratio: scale,
-        delayed: 5000
+        delayed: 1000
     });
 
     if (swipeType > 2) {

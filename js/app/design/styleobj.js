@@ -236,7 +236,7 @@ define(function(require, exports, module) {
             borderRadius: 0,
             borderType: "solid",
             borderColor: "rgb(0,0,0)",
-            transform: 350,
+            transform: 0,
             shadowSize: 0,
             shadowOffset: 0,
             shadowColor: "rgb(0,0,0)",
@@ -278,6 +278,8 @@ define(function(require, exports, module) {
          * @param opt
          */
         initInterfaceData: function(opt) {
+
+            console.log(opt.transform);
 
             $background.val(opt.background);
             $opacity.val(opt.opacity).trigger('input');

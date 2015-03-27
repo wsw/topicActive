@@ -61,7 +61,7 @@ define(function(require, exports, module) {
                 borderRadius: br && br[0] || 0,
                 borderType: box.style.borderStyle || "solid",
                 borderColor: box.style.borderColor || "rgb(255,255,255)",
-                transform: tf && tf[0] || 0,
+                transform: tf && ((tf[0]>0? tf[0] : window.parseInt(tf[0])+360)) || 0,
                 shadowSize: sh && sh[4],
                 shadowOffset: sh && sh[5],
                 shadowColor: sh && "rgb("+sh[0]+","+sh[1]+","+sh[2]+")",
