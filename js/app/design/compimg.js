@@ -70,6 +70,9 @@ define(function (require, exprots, module) {
             this.$ct.append(this.$elemet);
 
             var $box = this.$elemet.find('.element-box');
+
+            console.log('init: left:' + opt.left);
+
             // 样式初始化
             this.$elemet.css({
                 width: opt.width+'px',

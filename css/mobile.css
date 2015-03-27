@@ -144,6 +144,7 @@ Basic Swiper Styles
     width: 100%;
     height: 100%;
     position: relative;
+    overflow: hidden;
 }
 .swiper-container ul li {
     position: absolute; overflow: hidden;

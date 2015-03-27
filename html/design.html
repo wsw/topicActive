@@ -29,6 +29,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="#" data-action="createImg">图片</a></li>
                     <li><a href="#" data-action="createBg">背景</a></li>
+                    <li><a href="#" data-action="createAudio">音乐</a></li>
                 </ul>
                 <form class="navbar-form navbar-right">
                     <button type="button" class="btn btn-success" data-action="saveScene">保存场景</button>
@@ -38,9 +39,11 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <!--<canvas id="canvas" width="500" height="800" style="position: absolute; left: 0; top: 0; background: white; z-index: 9999"></canvas>-->
+
     <div class="row container">
         <!--页面模板-->
-        <div class="content-1" style="display: none">
+        <!--<div class="content-1" style="display: none">
             <h5>页面模板</h5>
             <ul class="content-nav clearfix">
                 <li class="active"><a href="#" data-action="templateTab">静态</a></li>
@@ -116,14 +119,14 @@
                     <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
                 </li>
             </ul>
-        </div>
+        </div>-->
         <!--手机设计容器-->
         <div class="col-md-5 col-md-offset-3" style="">
             <div class="content-2">
                 <div class="phone-top"></div>
                 <div class="menu-bar"></div>
                 <div class="title">第一个容器</div>
-                <ul class="design" data-action="ulClick"></ul>
+                <ul class="design" id="design" data-action="ulClick"></ul>
                 <div class="phone-bottom"></div>
             </div>
         </div>
@@ -147,7 +150,8 @@
         <div class="content-4" id="pageProperty">
             <h5>页面属性</h5>
             <a class="" href="javascript:;" data-action="createBg">选择背景</a>
-            <a class="" href="javascript:;">选择模板</a>
+            <a class="" href="javascript:;" data-action="setTemplate">选择模板</a>
+            <a class="" href="javascript:;" data-action="saveTemplate">保存为模板</a>
         </div>
     </div>
     <div id="img-dialog" class="hide">
@@ -271,6 +275,62 @@
             </div>
             <div class="content-row" style="display: none">
                 自然风景
+            </div>
+        </div>
+    </div>
+
+    <div id="template-dialog" class="hide">
+        <div class="bg-inner-content">
+            <div class="btn-row clearfix">
+                <a href="#" data-action="dialogTab" class="active">静态</a>
+                <a href="#" data-action="dialogTab" class=" ">动态</a>
+            </div>
+            <div class="content-row">
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color1"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color2"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="../css/image/bg.jpg" data-action="selectTemplate"  alt="" class="color3"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color4"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color5"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color6"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color7"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color8"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color9"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color10"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color11"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color12"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color13"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="selectTemplate" class="color13"/>
+                </div>
+            </div>
+            <div class="content-row" style="display: none">
+                动态
             </div>
         </div>
     </div>
@@ -441,8 +501,10 @@
             </li>
         </ul>
     </div>
-<script src="../public/js/seajs/sea.js"></script>
-<script src="../public/js/config.js"></script>
-<script>seajs.use('../public/js/dist/app/design/index');</script>
+
+
+    <script src="../public/js/seajs/sea.js"></script>
+    <script src="../public/js/config.js"></script>
+    <script>seajs.use('../public/js/dist/app/design/index');</script>
 </body>
 </html>

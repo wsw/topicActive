@@ -154,8 +154,8 @@ define(function(require, exports, module) {
     var handleEvent = function(e) {
         var dnd, proxy, element;
         var target;
-        var pageX = e.pageX || (e.originalEvent.targetTouches && e.originalEvent.targetTouches[0].pageX);
-        var pageY = e.pageY || (e.originalEvent.targetTouches && e.originalEvent.targetTouches[0].pageY);
+        var pageX = e.pageX || (e.originalEvent && e.originalEvent.targetTouches && e.originalEvent.targetTouches[0].pageX);
+        var pageY = e.pageY || (e.originalEvent && e.originalEvent.targetTouches && e.originalEvent.targetTouches[0].pageY);
 
         switch(e.type) {
             case 'mousedown':
@@ -328,8 +328,6 @@ define(function(require, exports, module) {
         left = e.pageX - diffX;
         top = e.pageY - diffY;
 
-        console.log(diffX + " " + diffY);
-
         if(grid) {
             var offset = proxy.offset();
             left = offset.left + floorNumber(left - offset.left, grid);
@@ -352,6 +350,8 @@ define(function(require, exports, module) {
         if (obj.get('parentIsRelative')) {
             var xleft = dragging.position().left + diffX;
             var xtop = dragging.position().top + diffY;
+            /*var xleft = dragging[0].offsetLeft + diffX;
+            var xtop = dragging[0].offsetTop + diffY;*/
         } else {
             xleft = dragging.offset().left + diffX;
             xtop = dragging.offset().top + diffY;

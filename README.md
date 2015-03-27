@@ -22,8 +22,10 @@
             |-data.js 模拟的数据
             |-styleobj.js 样式和动画对话框模块的处理
         |-mobile
-            |-index.js 手机端内容初始化
+            |-index.js 手机端内容初始化,包括动画类型的选择
             |-main.js 页面切换效果代码
+            |-slider.js 页面切换框架，包括几种不同切换的效果
+            |-transit.js jquery的css3动画框架，网上找的
     |-lib gazira库
 |-public 公共资源
     |-js 部署代码

@@ -98,7 +98,7 @@ define(function(require, exports, module) {
             return newScene;
         },
         clonePageByPageId: function(id) {
-            console.log(id);
+
             var scene = JSON.parse(localStorage.getItem('scene'));
             var index = 1;
             for (var i = 0, l = scene.length; i < l; i++) {
@@ -107,6 +107,7 @@ define(function(require, exports, module) {
                     var page = Data.cloneObj(scene[i]);
                     page.num = number++;
                     page.id = pageId++;
+                    page.zIndex++;
                     scene.push(page);
                 }
             }

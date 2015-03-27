@@ -9,6 +9,8 @@ define(function(require, exports, module) {
     var Dialog = require('../../lib/cmp/dialog/dialog');
     var Scene = require('./scene');
     var Data = require('./data');
+    var Template = require('./template');
+    var audio = require('./tpl/audio.tpl');
 
     var index = 1;
 
@@ -19,8 +21,10 @@ define(function(require, exports, module) {
 
         var designContainer = $('.design');
         var pageList = $("#pageManage .content-list");
-        var bgDialog = null;
-        var imgDialog = null;
+        var bgDialog = null;   // 背景对话框
+        var imgDialog = null;  // 图片对话框
+        var templateDialog = null;  // 模板对话框
+        var audioDialog = null; // 声音对话框
         var styleAnimation = $("#styleAnimation");
         var sceneId = 712959;
 
@@ -88,7 +92,7 @@ define(function(require, exports, module) {
                 } else {
                     designContainer.css('background', "url("+node.attr('src')+")");
                 }
-                bgDialog.hide();
+                bgDialog && bgDialog.hide();
             },
             /**
              * 页面管理中列表项标题修改
@@ -172,16 +176,6 @@ define(function(require, exports, module) {
                 pageList.find('li').last().click();
             },
             /**
-             * 设置模版
-             * @param e
-             * @param node 当前点击元素节点$对象
-             */
-            selectTemplate: function(e, node) {
-                var id = node.attr('data-id');
-
-                //Scene.setTemplate(Data.template[id]);
-            },
-            /**
              * 页面模板模块 tab页
              * @param e
              * @param node 当前点击元素节点$对象
@@ -211,12 +205,88 @@ define(function(require, exports, module) {
             liClick: function(e, node) {
                 styleAnimation.show();
                 node.addClass('selected').siblings().removeClass('selected');
+            },
+            /**
+             * 选择模版 按钮
+             * @param e
+             * @param node
+             */
+            setTemplate: function(e, node) {
+                templateDialog = new Dialog({
+                    hasMask: {
+                        hideOnClick: true
+                    },
+                    content: $('#template-dialog').html(),
+                    width: 560,
+                    height: 360,
+                    closable: false,
+                    title: ""
+                }).show().after('hide', function() {
+                        this.destroy();
+                    });
+            },
+            /**
+             * 选择为模版 按钮
+             * @param e
+             * @param node
+             */
+            saveTemplate: function(e, node) {
+                Template.save(function(base64Data) {
+                    console.log(base64Data);
+                });
+            },
+            /**
+             * 选择要替换的模版
+             */
+            selectTemplate: function(e, node) {
+                console.log(node);
+                templateDialog.hide();
+            },
+            createAudio: function(e, node) {
+                audioDialog = new Dialog({
+                    hasMask: {
+                        hideOnClick: true
+                    },
+                    content: audio.render(),
+                    width: 560,
+                    height: 200,
+                    closable: false,
+                    title: ""
+                }).show().after('hide', function() {
+                        this.destroy();
+                    });
+            },
+            audioDialogOk: function(e, node) {
+                var root = node.parents('.audio-inner-content');
+                var index = root.find('.btn-nav a.active').index();
+                var result;
+
+                if (index == 0) {
+                    result = root.find('.content-row').eq(index).find('select').val();
+                } else if (index = 1) {
+                    result = root.find('.content-row').eq(index).find('input').val();
+                }
+                alert(result);
+                audioDialog.hide();
+            },
+            audioDialogCancel: function() {
+                audioDialog.hide();
             }
         });
+
+        Action.listen({
+            audioSelect: function(e, node) {
+                console.log(node.val())
+            }
+        }, document, "change");
+
         Scene.init();
 
         /*window.onbeforeunload = function() {
             return "";
-        }*/
+        };*/
+
+        require("./template")
     });
+
 });

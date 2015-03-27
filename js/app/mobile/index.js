@@ -8,8 +8,10 @@ define(function(require, exports, module) {
     var Css = require('../design/css');
     var Slider = require('./slider');
 
+    var scale = document.body.clientWidth/320;
+
     // 根据屏幕宽度动态设置viewport， 其中width固定320，initialscale按比例进行设置
-    document.getElementById('viewport').content = "width=320,initial-scale="+(document.body.clientWidth/320)+",user-scalable=no";
+    document.getElementById('viewport').content = "width=320,initial-scale="+scale+",user-scalable=no";
 
     var template = '<div class="swiper-slide"><ul></ul></div>';
 
@@ -54,12 +56,19 @@ define(function(require, exports, module) {
     });
 
 
-    var swipeType = 5;
+    var swipeType = 4;
 
-
-    new Slider({
+    /**
+     * type number 滑动类型目前有5种
+     * ratio number initial-scale
+     * delayed number 滑动每帧间隔延时
+     * @type {Slider}
+     */
+    var slider = new Slider({
         container: "#container .swiper-slide",
-        type: swipeType
+        type: swipeType,
+        ratio: scale,
+        delayed: 5000
     });
 
     if (swipeType > 2) {
@@ -68,5 +77,7 @@ define(function(require, exports, module) {
         $(".arrow").addClass('vertical');
     }
 
-
+    /*setTimeout(function() {
+       slider.close();
+    }, 5000)*/
 });

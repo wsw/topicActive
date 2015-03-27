@@ -40,8 +40,9 @@ define(function(require, exports, module) {
             var ad = (elStyle.webkitAnimationDelay || elStyle.mozAnimationDelay || elStyle.animationDelay).match(reg);
             var ats = (elStyle.webkitAnimationIterationCount || elStyle.mozAnimationIterationCount || elStyle.animationIterationCount).match(reg);
 
-            console.log("opacity:" + $(element).css('opacity'));
-
+            /***
+             *
+             */
             return {
                 //元素的基本样式
                 width: $(element).width(),
@@ -49,7 +50,7 @@ define(function(require, exports, module) {
                 /**
                  *  当存在角度的时候，用jq获取left，right不是想要的
                  */
-                left: element.offsetWidth,
+                left: element.offsetLeft,
                 top: element.offsetTop,
                 src: $(element).find('img').attr('src'),
 

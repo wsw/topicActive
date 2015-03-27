@@ -6,7 +6,7 @@ a:hover, a:visited, a:link, a:active {
     text-decoration: none;
 }
 body {
-    min-width: 1000px;
+    min-width: 1050px;
     background: #c6cdd5;
 }
 .container {
@@ -270,7 +270,7 @@ body {
     text-align: right; padding-right: 10px;
 }
 .style-animation .content-list li .ipt {
-    width: 130px; height: 25px; margin-left: 20px; border: 1px solid #ccc; border-radius: 4px;
+    width: 120px; height: 25px; margin-left: 20px; border: 1px solid #ccc; border-radius: 4px;
     outline: none;
 }
 .style-animation .content-list li .ipt-sm {
@@ -298,4 +298,38 @@ body {
 .style-animation .btn-clear {
     height: 35px; width: 120px; text-align: center; color: #ffffff; background: rgb(154, 214, 75);
     display: block; margin: 20px auto 10px; line-height: 35px; text-decoration: none;
+}
+/*音乐对话框样式*/
+.audio-inner-content {
+    height: 150px; background: white;
+}
+.audio-inner-content .btn-row {
+    text-align: center; padding-top: 20px;
+}
+.audio-inner-content .btn-row a {
+    display: inline-block; margin-left: 10px; text-decoration: none; font-size: 12px; color: #999;
+}
+.audio-inner-content .btn-row.btn-nav a:hover,
+.audio-inner-content .btn-row.btn-nav a.active {
+    color: green;
+}
+.audio-inner-content .content-row {
+    padding: 10px; text-align: center; color: #999;
+}
+.audio-inner-content .content-row.hide {
+    display: none;
+}
+.audio-inner-content select {
+    width: 250px; height: 35px; margin: 10px auto; display: block; border: 1px solid #E7E7E7; line-height: 35px;
+    outline: none;
+}
+.audio-inner-content input {
+    width: 220px; height: 35px; margin: 10px auto; border: 1px solid #E7E7E7; line-height: 35px;
+    outline: none; padding-left: 10px;
+}
+.audio-inner-content .btn-row .btn-ok {
+    width: 100px; height: 40px; line-height: 40px; color: white; background: #9ad64b; border-radius: 5px;
+}
+.audio-inner-content .btn-row .btn-cancel {
+    width: 100px; height: 40px; line-height: 40px; color: white; background: #ccc; border-radius: 5px;
 }
