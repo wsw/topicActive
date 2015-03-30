@@ -1,0 +1,509 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/theme/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../public/theme/bootstrap/css/bootstrap-colorpicker.css"/>
+    <link rel="stylesheet" href="../public/theme/smartmenu.css"/>
+    <link rel="stylesheet" href="../public/theme/animate.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/resize.css"/>
+    <link rel="stylesheet" href="../css/dialog_style.css"/>
+    <title>设计</title>
+    <style>
+        .col-md-3,.col-md-5{position:static;}
+        .content-2{position:absolute;left:50%;top:40%;margin-left:-200px;margin-top:-300px;}
+        #pageManage{position:absolute;left:0;top:50px;bottom:0;height:auto;width:220px;box-shadow: 2px 2px 6px rgb(216, 216, 216);}
+        #pageManage .content-list{height:800px;}
+        #pageManage h5{display:none;}
+
+        #styleAnimation{position:absolute;top:50px;bottom:0;right:0;display:block;overflow:auto;}
+        #styleAnimation h5{display:none;}
+
+        .custom-nav{box-shadow: 0 2px 2px gray;z-index:999;}
+
+        .style-animation .content-list li .percent-select {
+            box-shadow: 0 1px 2px #a0a0a0 inset;
+            border-radius: 4px;
+            float: left;
+            height: 4px;
+            margin-left: 0;
+            margin-top: 11px;
+            border: none;
+            width:160px;
+        }
+        .style-animation .content-list li .percent-select i {top:-7px;border-radius:20px;background: -moz-linear-gradient(center top , #ffffff, #f0f0f0) repeat scroll 0 0 rgba(0, 0, 0, 0);
+            border-radius: 16px;
+            box-shadow: 0 1px 2px #a0a0a0;
+            cursor: pointer;
+            float: right;
+            height: 18px;
+            margin-right: -9px;
+            margin-top:-11px;
+            top: 50%;
+            width: 18px;
+        }
+
+        .style-animation .content-list li .ipt-sm {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 25px;
+            margin-left: 10px;
+            outline: medium none;
+            width: 40px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-inverse custom-nav" role="navigation">
+        <div class="container-fluid container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Brand</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" data-action="createImg">图片</a></li>
+                    <li><a href="#" data-action="createBg">背景</a></li>
+                </ul>
+                <form class="navbar-form navbar-right">
+                    <button type="button" class="btn btn-success" data-action="saveScene">保存场景</button>
+                </form>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="row container">
+        <!--页面模板-->
+        <div class="col-md-4">
+            <div class="content-1">
+                <h5>页面模板</h5>
+                <ul class="content-nav clearfix">
+                    <li class="active"><a href="#" data-action="templateTab">静态</a></li>
+                    <li><a href="#" data-action="templateTab">动态</a></li>
+                    <li><a href="#" data-action="templateTab">报名</a></li>
+                </ul>
+                <ul class="content-list">
+                    <li>
+                        <img data-action="selectTemplate" data-id="0" src="../css/image/list-1.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="1" src="../css/image/list-2.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="2" src="../css/image/list-3.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="3" src="../css/image/list-4.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="4" src="../css/image/list-6.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="5" src="../css/image/list-5.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
+                    </li>
+                </ul>
+                <ul class="content-list" style="display: none;">
+                    <li>
+                        <img data-action="selectTemplate" data-id="0" src="../css/image/list-1.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="1" src="../css/image/list-2.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="2" src="../css/image/list-3.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="3" src="../css/image/list-4.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="4" src="../css/image/list-6.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="5" src="../css/image/list-5.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
+                    </li>
+                </ul>
+                <ul class="content-list" style="display: none;">
+                    <li>
+                        <img data-action="selectTemplate" data-id="0" src="../css/image/list-1.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="1" src="../css/image/list-2.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="2" src="../css/image/list-3.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="3" src="../css/image/list-4.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="4" src="../css/image/list-6.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="5" src="../css/image/list-5.png" alt=""/>
+                    </li>
+                    <li>
+                        <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!--手机设计容器-->
+        <div class="col-md-5" style="">
+            <div class="content-2">
+                <div class="phone-top"></div>
+                <div class="menu-bar"></div>
+                <div class="title">第一个容器</div>
+                <ul class="design"></ul>
+                <div class="phone-bottom"></div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="content-3" id="pageManage">
+                <h5>页面管理</h5>
+                <ul class="content-opera clearfix">
+                    <li><a href="#" data-action="pageClone">复制</a></li>
+                    <li><a href="#" data-action="pageDelete">删除</a></li>
+                </ul>
+                <ul class="content-list">
+                    <!--<li data-action="changeScene" class="active">-->
+                        <!--<span class="number">1</span>-->
+                        <!--<span class="text" data-action="textModify">第1页</span>-->
+                    <!--</li>-->
+                    <!--<li data-action="changeScene">-->
+                        <!--<span class="number">2</span>-->
+                        <!--<span class="text" data-action="textModify">第2页</span>-->
+                    <!--</li>-->
+                    <!--<li data-action="changeScene">-->
+                        <!--<span class="number">3</span>-->
+                        <!--<span class="text" data-action="textModify">第3页</span>-->
+                    <!--</li>-->
+                    <!--<li data-action="changeScene">-->
+                        <!--<span class="number">4</span>-->
+                        <!--<span class="text" data-action="textModify">第4页</span>-->
+                    <!--</li>-->
+                </ul>
+                <div class="content-bottom">
+                    <a href="#" data-action="addNewScene">+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div>-->
+        <!--<ul class="container">-->
+
+
+        <!--</ul>-->
+    <!--</div>-->
+    <div id="img-dialog" class="hide">
+        <div class="img-inner-content">
+            <div class="btn-row clearfix">
+                <a href="#" data-action="dialogTab" class="active">纯色图片</a>
+                <a href="#" data-action="dialogTab" class=" ">底纹边框</a>
+                <a href="#" data-action="dialogTab" class=" ">商务教育</a>
+                <a href="#" data-action="dialogTab" class=" ">自然风景</a>
+            </div>
+            <div class="content-row">
+                <div class="img-wrap" data-action="addImgComp" >
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/bg.jpg" alt="" style="height: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/bg.jpg" alt="" style="height: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/bg.jpg" alt="" style="height: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/bg.jpg" alt="" style="height: 106px; "/>
+                </div>
+                <div class="img-wrap" data-action="addImgComp">
+                    <img src="../css/image/dog.jpeg" alt="" style="width: 106px; "/>
+                </div>
+            </div>
+            <div class="content-row" style="display: none">
+                底纹边框
+            </div>
+            <div class="content-row" style="display: none">
+                商务教育
+            </div>
+            <div class="content-row" style="display: none">
+                自然风景
+            </div>
+        </div>
+    </div>
+
+    <div id="bg-dialog" class="hide">
+        <div class="bg-inner-content">
+            <div class="btn-row clearfix">
+                <a href="#" data-action="dialogTab" class="active">纯色背景</a>
+                <a href="#" data-action="dialogTab" class=" ">底纹边框</a>
+                <a href="#" data-action="dialogTab" class=" ">商务教育</a>
+                <a href="#" data-action="dialogTab" class=" ">自然风景</a>
+            </div>
+            <div class="content-row">
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color1"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color2"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="../css/image/bg.jpg" data-action="bgModify"  alt="" class="color3"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color4"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color5"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color6"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color7"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color8"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color9"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color10"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color11"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color12"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color13"/>
+                </div>
+                <div class="img-wrap">
+                    <img src="" alt="" data-action="bgModify" class="color13"/>
+                </div>
+            </div>
+            <div class="content-row" style="display: none">
+                底纹边框
+            </div>
+            <div class="content-row" style="display: none">
+                商务教育
+            </div>
+            <div class="content-row" style="display: none">
+                自然风景
+            </div>
+        </div>
+    </div>
+
+    <div id="styleAnimation" class="style-animation" style="display: ;">
+        <h5><span data-action="styleAnimationClose">x</span></h5>
+        <ul class="content-nav clearfix">
+            <li class="active"><a href="#" data-action="styleAnimationChange">样式</a></li>
+            <li><a href="#" data-action="styleAnimationChange">动画</a></li>
+        </ul>
+        <ul class="content-list">
+            <li data-action="styleAnimationLiTab">
+                <div class="li-header">
+                    <b class="caret"></b>
+                    &nbsp;基础样式
+                </div>
+                <div class="li-content">
+                    <p>背景颜色</p>
+                    <div class="user-ipt">
+                        <span class="color-select"></span>
+                        <input type="text" class="ipt" id="background" data-type="background"/>
+                    </div>
+                    <hr class="line"/>
+                    <p>透明度</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="opacity" data-max="100" data-type="opacity"/> %
+                    </div>
+                    <hr class="line"/>
+                </div>
+            </li>
+            <li data-action="styleAnimationLiTab">
+                <div class="li-header">
+                    <b class="caret"></b>
+                    &nbsp;边框样式
+                </div>
+                <div style="display: none;" class="li-content">
+                    <p>边框尺寸</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="borderWidth" data-max="20" data-type="borderWidth"/> px
+                    </div>
+                    <hr class="line"/>
+                    <p>边框弧度</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="borderRadius" data-max="50" data-type="borderRadius"/> %
+                    </div>
+                    <hr class="line"/>
+                    <p>边框样式</p>
+                    <div class="user-ipt">
+                        <select name="" id="borderType" class="type-select" data-type="borderType">
+                            <option value="solid">直线</option>
+                            <option value="dashed">虚线</option>
+                            <option value="dotted">点线</option>
+                            <option value="groove">3D沟槽</option>
+                            <option value="inset">3D的嵌入</option>
+                            <option value="outset">3D突出</option>
+                        </select>
+                    </div>
+                    <hr class="line"/>
+                    <p>边框颜色</p>
+                    <div class="user-ipt">
+                        <span class="color-select"></span>
+                        <input type="text" class="ipt" id="borderColor" data-type="borderColor"/>
+                    </div>
+                    <p>旋转</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="transform" data-type="transform" data-max="360"/> 度
+                    </div>
+                    <hr class="line"/>
+                </div>
+            </li>
+            <li data-action="styleAnimationLiTab" >
+                <div class="li-header">
+                    <b class="caret"></b>
+                    &nbsp;阴影样式
+                </div>
+                <div class="li-content" style="display: none;">
+                    <p>大小</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" data-max="10" id="shadowSize" data-type="shadowSize"/> px
+                    </div>
+                    <hr class="line"/>
+                    <p>颜色</p>
+                    <div class="user-ipt">
+                        <span class="color-select"></span>
+                        <input type="text" class="ipt" id="shadowColor" data-type="shadowColor" />
+                    </div>
+                    <hr class="line"/>
+                    <p>模糊</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="shadowOffset" data-max="10" data-type="shadowOffset"/> px
+                    </div>
+                </div>
+            </li>
+            <li>
+                <a href="#" class="btn-clear" data-action="clearAllStyle">清楚全部样式</a>
+            </li>
+        </ul>
+        <ul class="content-list">
+            <li>
+                <p>动画类型</p>
+                <div class="user-ipt">
+                    <select name="" id="animateType" class="type-select" data-type="animateType" >
+                        <option value="">无</option>
+                        <option value="fadeIn">淡入</option>
+                        <option value="swing">摇摆</option>
+                        <option value="shake">抖动</option>
+                        <option value="flip">旋转</option>
+                        <option value="flip">翻转</option>
+                        <option value="rotateOut">悬摆</option>
+                        <option value="bounceIn">中心弹入</option>
+                        <option value="zoomIn">中心放大</option>
+                        <option value="fadeOut">淡出</option>
+                        <option value="slideInDown">上面进入</option>
+                        <option value="slideInRight">右边进入</option>
+                        <option value="slideInUp">下边进人</option>
+                        <option value="slideInLeft">左边进入</option>
+                    </select>
+                </div>
+                <hr class="line"/>
+                <div class="animate-panel">
+                    <p>动画时间</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="animateTime" data-max="20" data-type="animateTime"/> 秒
+                    </div>
+                    <hr class="line"/>
+                    <p>延迟时间</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="animateDelay" data-type="animateDelay" data-max="20"/> 秒
+                    </div>
+                    <hr class="line"/>
+                    <p>动画次数</p>
+                    <div class="user-ipt">
+                        <span class="percent-select">
+                            <i></i>
+                        </span>
+                        <input type="text" class="ipt-sm" id="animateTimes" data-type="animateTimes" data-max="10"/> 次
+                    </div>
+                    <div class="user-ipt">
+                        <input type="checkbox" id="animateInfinite" data-type="animateInfinite"/> 循环播放
+                    </div>
+                    <hr class="line"/>
+                </div>
+            </li>
+        </ul>
+    </div>
+<script src="../public/js/seajs/sea.js"></script>
+<script src="../public/js/config.js"></script>
+<script>seajs.use('../public/js/dist/app/design/index');</script>
+</body>
+</html>
