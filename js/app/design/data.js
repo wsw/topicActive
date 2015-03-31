@@ -148,6 +148,38 @@ define(function(require, exports, module) {
                     o = obj;break;
             }
             return o;
+        },
+        saveTemplate: function(page) {
+            var template = JSON.parse(localStorage.getItem('template'));
+
+            if (template && template.length > 0) {
+                page.id = template.length+1;
+                template.push(page);
+            } else {
+                page.id = 1;
+                template = [page];
+            }
+
+            localStorage.setItem('template', JSON.stringify(template));
+        },
+        getTemplate: function() {
+            var template = JSON.parse(localStorage.getItem('template'));
+
+            if (template && template.length > 0) {
+                return template;
+            } else {
+                return [];
+            }
+        },
+        getTemplateById: function(id) {
+            var template = JSON.parse(localStorage.getItem('template'));
+
+            for (var i = 0; i < template.length; i++) {
+                if (id == template[i].id) {
+                    return template[i];
+                }
+            }
+            return ;
         }
     };
 

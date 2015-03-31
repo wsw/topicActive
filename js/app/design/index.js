@@ -11,6 +11,7 @@ define(function(require, exports, module) {
     var Data = require('./data');
     var Template = require('./template');
     var audio = require('./tpl/audio.tpl');
+    var templateTpl = require('./tpl/templateTpl.tpl');
 
     var index = 1;
 
@@ -212,11 +213,12 @@ define(function(require, exports, module) {
              * @param node
              */
             setTemplate: function(e, node) {
+                console.log(Data.getTemplate())
                 templateDialog = new Dialog({
                     hasMask: {
                         hideOnClick: true
                     },
-                    content: $('#template-dialog').html(),
+                    content: templateTpl.render({templates: Data.getTemplate()}),
                     width: 560,
                     height: 360,
                     closable: false,
@@ -232,14 +234,16 @@ define(function(require, exports, module) {
              */
             saveTemplate: function(e, node) {
                 Template.save(function(base64Data) {
-                    console.log(base64Data);
+                    alert('保存模版成功');
                 });
             },
             /**
              * 选择要替换的模版
              */
             selectTemplate: function(e, node) {
-                console.log(node);
+                if (window.confirm("确定替换成模版？")) {
+                    Template.initTemplate(Data.getTemplateById(node.attr('data-id')));
+                }
                 templateDialog.hide();
             },
             createAudio: function(e, node) {
@@ -282,9 +286,35 @@ define(function(require, exports, module) {
 
         Scene.init();
 
-        /*window.onbeforeunload = function() {
+        window.onbeforeunload = function() {
             return "";
-        };*/
+        };
+
+
+        /**
+         * 页面左右两块自适应
+         */
+        $(function() {
+
+            var winHeight = $(window).height();
+            var $left = $("#pageManage .content-list");
+            var $right = $("#pageProperty");
+
+            $left.height(winHeight-50-45-60-40);
+            $right.height(winHeight-50);
+
+            $(window).bind('resize', function() {
+                winHeight = $(window).height();
+
+                if (winHeight < document.body.clientHeight) {
+                    winHeight = document.body.clientHeight;
+                }
+
+                $left.height(winHeight-50-45-60-40);
+                $right.height(winHeight-50);
+            });
+
+        });
 
         require("./template")
     });

@@ -1,0 +1,20 @@
+<div class="bg-inner-content">
+    <div class="btn-row clearfix">
+        <a href="#" data-action="dialogTab" class="active">静态</a>
+        <a href="#" data-action="dialogTab" class=" ">动态</a>
+    </div>
+    <div class="content-row">
+        {{for data=templates key=index item=template}}
+        <div class="img-wrap">
+            <img data-id="{{template.id}}" src="{{template.screenshot}}" alt="" data-action="selectTemplate" class="color1"/>
+        </div>
+        {{endfor}}
+    </div>
+    <div class="content-row" style="display: none">
+        {{for data=templates key=index item=template}}
+        <div class="img-wrap">
+            <img data-id="{{template.id}}" src="{{template.screenshot}}" alt="" data-action="selectTemplate" class="color1"/>
+        </div>
+        {{endfor}}
+    </div>
+</div>
