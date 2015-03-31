@@ -7,11 +7,23 @@ define(function(require, exports, module) {
     var Data = require('./data');
     var Css = require('../design/css');
     var Slider = require('./slider');
+    var Load = require('./loading');
+    require('../../../css/loading.css');
 
     var scale = document.body.clientWidth/320;
 
     // 根据屏幕宽度动态设置viewport， 其中width固定320，initialscale按比例进行设置
     document.getElementById('viewport').content = "width=320,initial-scale="+scale+",user-scalable=no";
+
+    var load = new Load({
+        opacity: 1,
+        z_index: 999999,
+        styleEdition: 3
+    });
+
+    window.onload = function() {
+        load.end();
+    };
 
     var template = '<div class="swiper-slide"><ul></ul></div>';
 

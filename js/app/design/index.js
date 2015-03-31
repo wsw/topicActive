@@ -299,9 +299,11 @@ define(function(require, exports, module) {
             var winHeight = $(window).height();
             var $left = $("#pageManage .content-list");
             var $right = $("#pageProperty");
+            var $right_2 = $("#styleAnimation .content-list");
 
             $left.height(winHeight-50-45-60-40);
             $right.height(winHeight-50);
+            $right_2.height(winHeight-50-50-60);
 
             $(window).bind('resize', function() {
                 winHeight = $(window).height();
@@ -312,6 +314,7 @@ define(function(require, exports, module) {
 
                 $left.height(winHeight-50-45-60-40);
                 $right.height(winHeight-50);
+                $right_2.height(winHeight-50-50-60);
             });
 
         });
