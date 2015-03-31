@@ -303,7 +303,7 @@ define(function(require, exports, module) {
 
             $left.height(winHeight-50-45-60-40);
             $right.height(winHeight-50);
-            $right_2.height(winHeight-50-50-60);
+            $right_2.height(winHeight-50-50-60-20);
 
             $(window).bind('resize', function() {
                 winHeight = $(window).height();
@@ -314,7 +314,7 @@ define(function(require, exports, module) {
 
                 $left.height(winHeight-50-45-60-40);
                 $right.height(winHeight-50);
-                $right_2.height(winHeight-50-50-60);
+                $right_2.height(winHeight-50-50-60-20);
             });
 
         });

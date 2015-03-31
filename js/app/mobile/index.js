@@ -8,7 +8,6 @@ define(function(require, exports, module) {
     var Css = require('../design/css');
     var Slider = require('./slider');
     var Load = require('./loading');
-    require('../../../css/loading.css');
 
     var scale = document.body.clientWidth/320;
 
@@ -18,11 +17,14 @@ define(function(require, exports, module) {
     var load = new Load({
         opacity: 1,
         z_index: 999999,
-        styleEdition: 3
+        styleEdition: 5
     });
 
     window.onload = function() {
-        load.end();
+        setTimeout(function(){
+            load.end();
+        }, 1000);
+        //load.end();
     };
 
     var template = '<div class="swiper-slide"><ul></ul></div>';

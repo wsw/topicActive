@@ -1,5 +1,5 @@
 # topicActive
-微信专题活动后台制作
+微信专题活动后台制作和移动端滑动框架
 
 ## 目录结构
 <pre>
@@ -25,6 +25,7 @@
             |-index.js 手机端内容初始化,包括动画类型的选择
             |-main.js 页面切换效果代码
             |-slider.js 页面切换框架，包括几种不同切换的效果
+            |-loading.js 页面内容加载时动画过程
             |-transit.js jquery的css3动画框架，网上找的
     |-lib gazira库
 |-public 公共资源

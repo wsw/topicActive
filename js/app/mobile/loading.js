@@ -4,6 +4,10 @@
 define(function(require, exports, module) {
     var $ = require('$');
 
+    /**
+     * 默认几个值
+     * @type {{opacity: string, z_index: string, styleEdition: number, onbefore: onbefore}}
+     */
     var defaults = {
         opacity: '0.7',
         z_index: '999999',

@@ -3,7 +3,6 @@
  */
 
 define(function(require, exports, module) {
-    require('../../lib/cmp/html2canvas/html2canvas');
     var $ = require('$');
     var Css = require('./css');
     var CompImg = require('./compimg');
