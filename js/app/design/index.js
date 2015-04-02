@@ -288,10 +288,13 @@ define(function(require, exports, module) {
 
         Scene.init();
 
+        /**
+         * 页面刷新或关闭进行确认
+         * @returns {string}
+         */
         window.onbeforeunload = function() {
             return "";
         };
-
 
         /**
          * 页面左右两块自适应

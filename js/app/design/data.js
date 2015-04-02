@@ -1,5 +1,7 @@
 /**
  * Created by weishuwen on 2015/2/3.
+ *
+ * 目前数据全是同步操作，要改成ajax，可以统一改成callback方式进行异步
  */
 define(function(require, exports, module) {
     var Data = {};
