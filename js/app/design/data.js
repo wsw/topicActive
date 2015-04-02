@@ -180,6 +180,19 @@ define(function(require, exports, module) {
                 }
             }
             return ;
+        },
+        getImages: function() {
+            var images = [];
+            images.push("../css/image/dog.jpeg");
+            images.push("../css/image/bg.jpg");
+
+            return images;
+        },
+        getBackground: function() {
+            var images = [];
+            images.push("../css/image/bg.jpg");
+
+            return images;
         }
     };
 

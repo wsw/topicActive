@@ -12,6 +12,8 @@ define(function(require, exports, module) {
     var Template = require('./template');
     var audio = require('./tpl/audio.tpl');
     var templateTpl = require('./tpl/templateTpl.tpl');
+    var imageTpl = require('./tpl/imageTpl.tpl.js');
+    var backgroundTpl = require('./tpl/backgroundTpl.tpl.js');
 
     var index = 1;
 
@@ -38,7 +40,7 @@ define(function(require, exports, module) {
                     hasMask: {
                         hideOnClick: true
                     },
-                    content: $('#img-dialog').html(),
+                    content: imageTpl.render({images: Data.getImages()}),
                     width: 560,
                     height: 360,
                     closable: false,
@@ -56,7 +58,7 @@ define(function(require, exports, module) {
                     hasMask: {
                         hideOnClick: true
                     },
-                    content: $('#bg-dialog').html(),
+                    content: backgroundTpl.render({images: Data.getBackground()}),
                     width: 560,
                     height: 360,
                     closable: false,

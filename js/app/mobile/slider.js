@@ -154,6 +154,7 @@ define(function(require, exports, module) {
                         }
                     }
                     break;
+                case eventList.TOUCH_CANCEL:
                 case eventList.TOUCH_END:
                 case eventList.MOUSE_UP:
                     if (_this.swipeType === "vertical") {
