@@ -11,9 +11,9 @@ define(function(require, exports, module) {
     var Data = require('./data');
     var Template = require('./template');
     var audio = require('./tpl/audio.tpl');
-    var templateTpl = require('./tpl/templateTpl.tpl');
-    var imageTpl = require('./tpl/imageTpl.tpl.js');
-    var backgroundTpl = require('./tpl/backgroundTpl.tpl.js');
+    var templateTpl = require('./tpl/template.tpl');
+    var imageTpl = require('./tpl/image.tpl');
+    var backgroundTpl = require('./tpl/background.tpl');
 
     var index = 1;
 
