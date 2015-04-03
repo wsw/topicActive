@@ -8,7 +8,8 @@ define(function(require, exports, module) {
     var Action = require('../../lib/util/dom/action');
     var Dialog = require('../../lib/cmp/dialog/dialog');
     var Css = require('./css');
-
+    var Data = require('./data');
+    var imageTpl = require('./tpl/image.tpl.js');
     var imgDialog = null;
     var element = null;
     var designContainer = $('.design');
@@ -33,7 +34,7 @@ define(function(require, exports, module) {
             hasMask: {
                 hideOnClick: true
             },
-            content: $('#img-dialog').html(),
+            content: imageTpl.render({images: Data.getImages()}),
             width: 560,
             height: 360,
             closable: false,

@@ -6,27 +6,32 @@
     <meta content="telephone=no" name="format-detection">
     <meta name="apple-touch-fullscreen" content="no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <title>mobile</title>
+    <title>活动</title>
     <link rel="stylesheet" href="../css/mobile.css"/>
     <link rel="stylesheet" href="../public/theme/animate.css"/>
     <link rel="stylesheet" href="../css/loading.css"/>
 </head>
 <body>
-<div class="swiper-container">
-    <div class="swiper-wrapper" id="container">
+    <!--活动页面内容-->
+    <div class="swiper-container">
+        <div class="swiper-wrapper" id="container">
 
+        </div>
     </div>
-</div>
-<div class="arrow">
-    <img class="horizontal" src="../css/image/btn01_arrow_right.png" alt="arrow"/>
-    <img class="vertical" src="../css/image/btn01_arrow.png" alt="arrow"/>
-</div>
-<div class="music on" id="music">
-    <div class="music-rotate"></div>
-    <audio loop="" src="../css/audio.mp3" id="media" autoplay="" preload=""></audio>
-</div>
+    <!--滑动提示箭头-->
+    <div class="arrow">
+        <img class="horizontal" src="../css/image/btn01_arrow_right.png" alt="arrow"/>
+        <img class="vertical" src="../css/image/btn01_arrow.png" alt="arrow"/>
+    </div>
+    <!--音乐图标和音乐内容-->
+    <div class="music" id="music">
+        <div class="music-rotate"></div>
+        <!--<audio loop="" src="../css/audio.mp3" id="media" autoplay="" preload=""></audio>-->
+    </div>
+
+    <!--脚本代码部分-->
+    <script src="../public/js/seajs/sea.js"></script>
+    <script src="../public/js/config.js"></script>
+    <script>seajs.use('../public/js/dist/app/mobile/index');</script>
 </body>
-<script src="../public/js/seajs/sea.js"></script>
-<script src="../public/js/config.js"></script>
-<script>seajs.use('../public/js/dist/app/mobile/index');</script>
 </html>

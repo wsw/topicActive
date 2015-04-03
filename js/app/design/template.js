@@ -38,7 +38,7 @@ define(function(require, exports, module) {
             elements.push(parameter);
         });
         page.elements = elements;
-        console.log(container);
+
         // 容器的内容
         page.scene = {image: {}};
         var url = container.css('background-image').trim();

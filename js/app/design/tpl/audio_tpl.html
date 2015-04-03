@@ -6,7 +6,13 @@
     <div class="content-row">
         <select name="audio" data-action="audioSelect">
             <option value="">选择音乐</option>
-            <option value="audio.mp3">audio.mp3</option>
+            {{for data=audios key=index item=audio}}
+                {{if (audio==url)}}
+                <option selected value="{{audio}}">{{audio}}</option>
+                {{else}}
+                <option value="{{audio}}">{{audio}}</option>
+                {{endif}}
+            {{endfor}}
         </select>
     </div>
     <div class="content-row" style="display: none">

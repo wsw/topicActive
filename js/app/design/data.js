@@ -195,6 +195,19 @@ define(function(require, exports, module) {
             images.push("../css/image/bg.jpg");
 
             return images;
+        },
+        getAudioList: function() {
+            var audios = [];
+            audios.push("../css/audio.mp3");
+
+            return audios;
+        },
+        setAudio: function(str){
+            localStorage.setItem('audio', str);
+        },
+        getAudio: function() {
+            var audio = localStorage.getItem('audio');
+            return audio;
         }
     };
 

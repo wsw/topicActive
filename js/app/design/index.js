@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     var Scene = require('./scene');
     var Data = require('./data');
     var Template = require('./template');
-    var audio = require('./tpl/audio.tpl');
+    var audioTpl = require('./tpl/audio.tpl');
     var templateTpl = require('./tpl/template.tpl');
     var imageTpl = require('./tpl/image.tpl');
     var backgroundTpl = require('./tpl/background.tpl');
@@ -29,7 +29,6 @@ define(function(require, exports, module) {
         var templateDialog = null;  // 模板对话框
         var audioDialog = null; // 声音对话框
         var styleAnimation = $("#styleAnimation");
-        var sceneId = 712959;
 
         Action.listen({
             /**
@@ -253,7 +252,7 @@ define(function(require, exports, module) {
                     hasMask: {
                         hideOnClick: true
                     },
-                    content: audio.render(),
+                    content: audioTpl.render({audios: Data.getAudioList(), url: Data.getAudio()}),
                     width: 560,
                     height: 200,
                     closable: false,
@@ -272,7 +271,9 @@ define(function(require, exports, module) {
                 } else if (index = 1) {
                     result = root.find('.content-row').eq(index).find('input').val();
                 }
-                alert(result);
+                if (result) {
+                    Data.setAudio(result);
+                }
                 audioDialog.hide();
             },
             audioDialogCancel: function() {
@@ -280,6 +281,10 @@ define(function(require, exports, module) {
             }
         });
 
+        /**
+         *  可以监听一些change事件变化
+         *
+         */
         Action.listen({
             audioSelect: function(e, node) {
                 console.log(node.val())
@@ -323,8 +328,6 @@ define(function(require, exports, module) {
             });
 
         });
-
-        require("./template")
     });
 
 });

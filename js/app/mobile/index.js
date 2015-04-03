@@ -14,6 +14,7 @@ define(function(require, exports, module) {
     // 根据屏幕宽度动态设置viewport， 其中width固定320，initialscale按比例进行设置
     document.getElementById('viewport').content = "width=320,initial-scale="+scale+",user-scalable=no";
 
+    // 加载动画
     var load = new Load({
         opacity: 1,
         z_index: 999999,
@@ -52,27 +53,27 @@ define(function(require, exports, module) {
     });
 
     /*音乐部分*/
-
-    var audio = $("#media")[0];
-
-    $("#music").bind('touchstart', function() {
-        if ($(this).hasClass('on')) {
-            audio.pause();
-            $(this).removeClass('on');
-        } else {
-            audio.play();
-            $(this).addClass('on');
-        }
-    });
-
-    $(document).on('touchstart', function() {
-        //audio.play();
-    });
-
-
+    var $music = $("#music");
+    if (Data.audio) {
+        var $audio = $('<audio loop="" src="'+Data.audio+'" id="media" autoplay="" preload=""></audio>');
+        $music.append($audio);
+        var audio = $audio[0];
+        $music.addClass('on').bind('touchstart', function() {
+            if ($(this).hasClass('on')) {
+                audio.pause();
+                $(this).removeClass('on');
+            } else {
+                audio.play();
+                $(this).addClass('on');
+            }
+        });
+        $(document).on('touchstart', function() {
+            //audio.play();
+        });
+    }
     var swipeType = 4;
-
     /**
+     * 滑动相关
      * type number 滑动类型目前有5种
      * ratio number initial-scale
      * delayed number 滑动每帧间隔延时
