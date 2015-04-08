@@ -89,7 +89,7 @@ define(function(require, exports, module) {
              */
             bgModify: function(e, node) {
                 if (node.attr('src') == "") {  //判断当前为纯色还是图片
-                    designContainer.css('background', node.css('background'));
+                    designContainer.css('background', node.css('background-color'));
                 } else {
                     designContainer.css('background', "url("+node.attr('src')+")");
                 }
