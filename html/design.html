@@ -34,92 +34,11 @@
                 <form class="navbar-form navbar-right">
                     <button type="button" class="btn btn-success" data-action="saveScene">保存场景</button>
                 </form>
-
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
     </nav>
 
-    <!--<canvas id="canvas" width="500" height="800" style="position: absolute; left: 0; top: 0; background: white; z-index: 9999"></canvas>-->
-
     <div class="row container">
-        <!--页面模板-->
-        <!--<div class="content-1" style="display: none">
-            <h5>页面模板</h5>
-            <ul class="content-nav clearfix">
-                <li class="active"><a href="#" data-action="templateTab">静态</a></li>
-                <li><a href="#" data-action="templateTab">动态</a></li>
-                <li><a href="#" data-action="templateTab">报名</a></li>
-            </ul>
-            <ul class="content-list">
-                <li>
-                    <img data-action="selectTemplate" data-id="0" src="../css/image/list-1.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="1" src="../css/image/list-2.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="2" src="../css/image/list-3.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="3" src="../css/image/list-4.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="4" src="../css/image/list-6.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="5" src="../css/image/list-5.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
-                </li>
-            </ul>
-            <ul class="content-list" style="display: none;">
-                <li>
-                    <img data-action="selectTemplate" data-id="0" src="../css/image/list-1.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="1" src="../css/image/list-2.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="2" src="../css/image/list-3.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="3" src="../css/image/list-4.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="4" src="../css/image/list-6.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="5" src="../css/image/list-5.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
-                </li>
-            </ul>
-            <ul class="content-list" style="display: none;">
-                <li>
-                    <img data-action="selectTemplate" data-id="0" src="../css/image/list-1.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="1" src="../css/image/list-2.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="2" src="../css/image/list-3.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="3" src="../css/image/list-4.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="4" src="../css/image/list-6.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="5" src="../css/image/list-5.png" alt=""/>
-                </li>
-                <li>
-                    <img data-action="selectTemplate" data-id="6" src="../css/image/list-7.png" alt=""/>
-                </li>
-            </ul>
-        </div>-->
         <!--手机设计容器-->
         <div class="col-md-5 col-md-offset-3" style="">
             <div class="content-2">
@@ -130,9 +49,8 @@
                 <div class="phone-bottom"></div>
             </div>
         </div>
-
+        <!--页面管理-->
         <div class="content-3" id="pageManage">
-            <!--<h5>页面管理</h5>-->
             <ul class="content-opera clearfix">
                 <li><a href="#" data-action="pageClone">复制</a></li>
                 <li><a href="#" data-action="pageDelete">删除</a></li>
@@ -147,6 +65,7 @@
                 <a href="#" data-action="addNewScene">+</a>
             </div>
         </div>
+        <!--页面属性-->
         <div class="content-4" id="pageProperty">
             <h5>页面属性</h5>
             <a class="" href="javascript:;" data-action="createBg">选择背景</a>
@@ -154,19 +73,7 @@
             <a class="" href="javascript:;" data-action="saveTemplate">保存为模板</a>
         </div>
     </div>
-    <div id="img-dialog" class="hide">
-
-    </div>
-
-    <div id="bg-dialog" class="hide">
-
-        </div>
-    </div>
-
-    <div id="template-dialog" class="hide">
-
-    </div>
-
+    <!--控件元素对应的样式属性-->
     <div id="styleAnimation" class="style-animation" style="display: none">
         <!--<h5><span data-action="styleAnimationClose">x</span></h5>-->
         <ul class="content-nav clearfix">
@@ -335,8 +242,10 @@
     </div>
     <!--html2canvas 还没转化成seajs模块，先直接引用-->
     <script src="../public/js/dist/lib/cmp/html2canvas/html2canvas.js"></script>
+    <!--seajs相关的地址引用-->
     <script src="../public/js/seajs/sea.js"></script>
     <script src="../public/js/config.js"></script>
+    <!--目前直接提供是线上压缩后的地址，在config中有配置，若为开发模式时会自动转换开发的地址-->
     <script>seajs.use('../public/js/dist/app/design/index');</script>
 </body>
 </html>

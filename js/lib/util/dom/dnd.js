@@ -180,14 +180,10 @@ define(function(require, exports, module) {
                             if (obj.get('parentIsRelative')) {
                                 pageX = pageX - obj.get('container').offset().left;
                                 pageY = pageY - obj.get('container').offset().top;
-                                /*diffX = pageX - element.position().left;
-                                diffY = pageY - element.position().top;*/
-                                diffX = pageX - element[0].offsetLeft;
-                                diffY = pageY - element[0].offsetTop;
-                                /*left = element.position().left;
-                                top = element.position().top;*/
-                                left = element[0].offsetLeft;
-                                top = element[0].offsetTop;
+                                diffX = pageX - element.position().left;
+                                diffY = pageY - element.position().top;
+                                left = element.position().left;
+                                top = element.position().top;
                             } else {
                                 diffX = pageX - element.offset().left;
                                 diffY = pageY - element.offset().top;
@@ -398,8 +394,8 @@ define(function(require, exports, module) {
             if(isContain(dropping, proxy) === false && revert === false) { // 放置时不完全在drop中并且不需要返回的放置中央
 
                 if (obj.get('parentIsRelative')) {
-                    proxy.css('left', dropping[0].offsetLeft + (dropping.outerWidth() - proxy.outerWidth()) / 2);
-                    proxy.css('top', dropping[0].offsetTop + (dropping.outerHeight() - proxy.outerHeight()) / 2);
+                    proxy.css('left', dropping.position().left + (dropping.outerWidth() - proxy.outerWidth()) / 2);
+                    proxy.css('top', dropping.position().top + (dropping.outerHeight() - proxy.outerHeight()) / 2);
                 } else {
                     proxy.css('left', dropping.offset().left + (dropping.outerWidth() - proxy.outerWidth()) / 2);
                     proxy.css('top', dropping.offset().top + (dropping.outerHeight() - proxy.outerHeight()) / 2);
@@ -487,10 +483,8 @@ define(function(require, exports, module) {
             } else if(element.css('position') === 'absolute') {
 
                 if (obj.get('parentIsRelative')) {
-                    /*xleft = proxy.position().left;
-                    xtop = proxy.position().top;*/
-                    xleft = proxy[0].offsetLeft;
-                    xtop = proxy[0].offsetTop;
+                    xleft = proxy.position().left;
+                    xtop = proxy.position().top;
                 } else {
                     xleft = proxy.offset().left;
                     xtop = proxy.offset().top;

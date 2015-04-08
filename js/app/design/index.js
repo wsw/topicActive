@@ -88,9 +88,8 @@ define(function(require, exports, module) {
              * @param node 当前点击元素节点$对象
              */
             bgModify: function(e, node) {
-
                 if (node.attr('src') == "") {  //判断当前为纯色还是图片
-                    designContainer.css('background', node.css('backgroundColor'));
+                    designContainer.css('background', node.css('background'));
                 } else {
                     designContainer.css('background', "url("+node.attr('src')+")");
                 }
